@@ -1,1 +1,1 @@
-export enum Suit { Clubs, Diamonds, Hearts, Spades, NoTrumps }
+export enum Suit { Spades, Clubs, Diamonds, Hearts, NoTrumps }
