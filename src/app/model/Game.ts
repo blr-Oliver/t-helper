@@ -1,8 +1,8 @@
 import {Position} from './Position';
-import {Player, PlayerFactory} from './Player';
+import {Player} from './Player';
 import {Protocol} from './Protocol';
 import {PairPosition} from './PairPosition';
-import {Pair, PairFactory} from './Pair';
+import {Pair, PairRepository} from './Pair';
 
 export interface GameSchedule {
   tour: number;
@@ -32,32 +32,29 @@ export class Game {
     readonly [PairPosition.NS]: Pair;
     readonly [PairPosition.EW]: Pair;
   };
-  readonly positions: {
-    readonly [id: string]: PairPosition;
-  };
   readonly protocol: Protocol;
 
-  constructor (game: GameSchedule) {
+  constructor (game: GameSchedule, players: {[id: string]: Player}, pairs: PairRepository) {
     this.tour = game.tour;
     this.table = game.table;
     this.deal = game.deal;
     this.dealer = <Position> game.dealer;
     this.players = {
-      [Position.N]: PlayerFactory.create(game.players[Position.N]),
-      [Position.E]: PlayerFactory.create(game.players[Position.E]),
-      [Position.S]: PlayerFactory.create(game.players[Position.S]),
-      [Position.W]: PlayerFactory.create(game.players[Position.W])
+      [Position.N]: players[game.players[Position.N]],
+      [Position.E]: players[game.players[Position.E]],
+      [Position.S]: players[game.players[Position.S]],
+      [Position.W]: players[game.players[Position.W]]
     };
     this.pairs = {
-      [PairPosition.NS]: PairFactory.create(this.players[Position.N], this.players[Position.S]),
-      [PairPosition.EW]: PairFactory.create(this.players[Position.E], this.players[Position.W])
+      [PairPosition.NS]: pairs.find(this.players[Position.N]),
+      [PairPosition.EW]: pairs.find(this.players[Position.E])
     };
-    this.positions = {
-      [this.pairs[PairPosition.NS].id]: PairPosition.NS,
-      [this.pairs[PairPosition.EW].id]: PairPosition.EW
-    };
-    this.pairs[this.pairs[PairPosition.NS].id] = this.pairs[PairPosition.NS];
-    this.pairs[this.pairs[PairPosition.EW].id] = this.pairs[PairPosition.EW];
     this.protocol = new Protocol(this);
+  }
+
+  getPosition(pair: Pair): PairPosition {
+    if (this.pairs[PairPosition.NS] === pair) { return PairPosition.NS; }
+    if (this.pairs[PairPosition.EW] === pair) { return PairPosition.EW; }
+    return null;
   }
 }

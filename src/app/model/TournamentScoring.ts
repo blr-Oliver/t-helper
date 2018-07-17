@@ -13,18 +13,19 @@ export class MaxTournamentScoring implements TournamentScoring {
 
   duelScore(duel: Duel, pair: Pair): number {
     if (duel.defined) {
-      const opponent = duel.opponents[pair.id];
+      const index = duel.getPairIndex(pair);
+      const opIndex = 1 - index;
       const cross = crossPosition(duel.position);
-      const ownDiff = duel.protocols[pair.id].points[duel.position] - duel.protocols[pair.id].points[cross];
-      const opponentDiff = duel.protocols[opponent.id].points[duel.position] - duel.protocols[opponent.id].points[cross];
-      return 1 + Math.sign(ownDiff - opponentDiff);
+      const ownDiff = duel.games[index].protocol.points[duel.position] - duel.games[index].protocol.points[cross];
+      const opDiff = duel.games[opIndex].protocol.points[duel.position] - duel.games[opIndex].protocol.points[cross];
+      return 1 + Math.sign(ownDiff - opDiff);
     }
     return 1;
   }
 
   tourScore(protocol: Protocol, pair: Pair) {
     if (protocol.defined) {
-      const position = protocol.game.positions[pair.id];
+      const position = protocol.game.getPosition(pair);
       if (protocol.contract.owner === position && protocol.contract.level >= 6 &&
           protocol.tricks[position] >= protocol.contract.level + 6) {
         return protocol.contract.level - 5;
