@@ -1,6 +1,7 @@
 import {Player} from './Player';
 
 export class Pair {
+  id: number;
   name: string;
   readonly players: [Player, Player];
 

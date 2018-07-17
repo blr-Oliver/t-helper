@@ -16,8 +16,9 @@ export class Duel {
     }
     this.deal = game1.deal;
     this.position = position;
-    this.games = [game1, game2];
-    this.pairs = [game1.pairs[position], game2.pairs[position]];
+    this.games = <[Game, Game]> [game1, game2]
+      .sort((a, b) => a.pairs[position].players[0].id.localeCompare(b.pairs[position].players[0].id));
+    this.pairs = <[Pair, Pair]> this.games.map(p => p.pairs[position]);
     this.scores = new DuelScores();
   }
 
