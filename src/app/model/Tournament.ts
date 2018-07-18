@@ -4,11 +4,14 @@ import {Player} from './Player';
 import {opposite, Position} from './Position';
 import {Duel} from './Duel';
 import {PairPosition} from './PairPosition';
+import {Standings} from './Standings';
+import {PairSummary} from './PairSummary';
 
 export class Tournament {
   readonly games: Game[][];
   readonly pairs: Pair[];
   readonly duels: Duel[][];
+  readonly standings: Standings;
 
   name: string;
 
@@ -20,6 +23,7 @@ export class Tournament {
     this.pairs = Tournament.initPairs(pairs);
     this.games = Tournament.initGames(allGames);
     this.duels = Tournament.initDuels(allGames, this.pairs.length);
+    this.standings = Tournament.initStandings(this.pairs, this.duels);
   }
 
   private static collectPlayerInfo(schedule: GameSchedule[], players: { [p: string]: Player }, pairs: MapBasedPairRepository) {
@@ -82,6 +86,10 @@ export class Tournament {
       duels[duel.pairs[1].id][duel.pairs[0].id] = duel;
     }, this);
     return duels;
+  }
+
+  private static initStandings(pairs: Pair[], duels: Duel[][]): Standings {
+    return new Standings(pairs.map((pair, i) => new PairSummary(pair, duels[i])));
   }
 }
 

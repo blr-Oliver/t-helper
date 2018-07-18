@@ -2,10 +2,12 @@ import {Duel} from './Duel';
 import {Pair} from './Pair';
 import {Protocol} from './Protocol';
 import {crossPosition} from './PairPosition';
+import {Game} from './Game';
 
 export interface TournamentScoring {
   duelScore(duel: Duel, pair: Pair): number;
-  tourScore(protocol: Protocol, pair: Pair): number;
+
+  gameScore(game: Game, pair: Pair): number;
 }
 
 export class MaxTournamentScoring implements TournamentScoring {
@@ -23,11 +25,12 @@ export class MaxTournamentScoring implements TournamentScoring {
     return 1;
   }
 
-  tourScore(protocol: Protocol, pair: Pair) {
+  gameScore(game: Game, pair: Pair): number {
+    const protocol: Protocol = game.protocol;
     if (protocol.defined) {
-      const position = protocol.game.getPosition(pair);
+      const position = game.getPosition(pair);
       if (protocol.contract.owner === position && protocol.contract.level >= 6 &&
-          protocol.tricks[position] >= protocol.contract.level + 6) {
+        protocol.tricks[position] >= protocol.contract.level + 6) {
         return protocol.contract.level - 5;
       }
       return 0;
