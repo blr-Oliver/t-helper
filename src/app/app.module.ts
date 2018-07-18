@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {TopMenuComponent} from './top-menu/top-menu.component';
 import {TabsComponent} from './tabs/tabs.component';
 import {PairsComponent} from './pairs/pairs.component';
-import {ScheduleComponent} from './schedule/schedule.component';
+import {GamesComponent} from './games/games.component';
 import {DuelsComponent} from './duels/duels.component';
 import {ScoresComponent} from './scores/scores.component';
 import {PlayerComponent} from './player/player.component';
@@ -17,7 +17,7 @@ import {PlayerComponent} from './player/player.component';
     TopMenuComponent,
     TabsComponent,
     PairsComponent,
-    ScheduleComponent,
+    GamesComponent,
     DuelsComponent,
     ScoresComponent,
     PlayerComponent
