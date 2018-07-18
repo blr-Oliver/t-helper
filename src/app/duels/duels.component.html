@@ -1,1 +1,23 @@
-Duels
+<div ng-if="model.status == 'not-started'" class="alert alert-danger text-center">Турнир не начат</div>
+<table ng-if="model.status != 'not-started'" class="table table-bordered table-striped">
+  <colgroup>
+    <col width="3em" />
+    <col ng-repeat="(pair, list) in model.duels" width="{{100 / model.pairs.lentgh}}%" />
+  </colgroup>
+  <tr>
+    <th class="exclude"></th>
+    <th ng-repeat="(pair, list) in model.duels" ng-bind="pair" ></th>
+  </tr>
+  <tr ng-repeat="(pair1, clashList) in model.duels">
+    <th ng-bind="pair1">Aa</th>
+    <td ng-repeat="(pair2, duels) in clashList" ng-class="{exclude: pair1 === pair2}">
+      <ul ng-if="pair1 !== pair2" ng-repeat="duel in duels" class="duel-list">
+        <li class="duel-item">
+          <span class="deal {{duel.position | lowercase}}" ng-bind="duel.deal"></span>
+          <span class="score" ng-bind="duel.defined ? duel.score[pair1] : '?'">2</span>
+          <i class="hidden-xs">( <span ng-bind="duel.diff[pair1] | diff"></span> / <span ng-bind="duel.diff[pair2] | diff"></span> )</i>
+        </li>
+      </ul>
+    </td>
+  </tr>
+</table>
