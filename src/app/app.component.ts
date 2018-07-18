@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Tournament} from './model/Tournament';
+import schedule4 from '../data/Schedule-4.json';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  model = {
-    status: 'started'
-  };
+  tournament: Tournament;
+
+  constructor() {
+    this.tournament = new Tournament(<any> schedule4);
+    console.log(this.tournament);
+  }
 }

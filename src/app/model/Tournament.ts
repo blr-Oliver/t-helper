@@ -10,7 +10,7 @@ import {PairSummary} from './PairSummary';
 export class Tournament {
   readonly games: Game[][];
   readonly pairs: Pair[];
-  readonly duels: Duel[][];
+  readonly duels: Duel[][][];
   readonly standings: Standings;
 
   name: string;
@@ -60,8 +60,7 @@ export class Tournament {
     }, []);
   }
 
-  private static initDuels(gameList: Game[], pairCount: number): Duel[][] {
-    const duels: Duel[][] = Array(...Array(pairCount)).map(() => []);
+  private static initDuels(gameList: Game[], pairCount: number): Duel[][][] {
     const dealMap: Game[][] = gameList.reduce(function (gamesByDeal, game) {
       if (!(game.deal in gamesByDeal)) {
         gamesByDeal[game.deal] = [];
@@ -81,15 +80,23 @@ export class Tournament {
         }
       }
     }
+    const duels: Duel[][][] = Array(...Array(pairCount))
+      .map(() => Array(pairCount));
+    for (let i = 0; i < pairCount; ++i) {
+      for (let j = 0; j < pairCount; ++j) {
+        if (i !== j) {
+          duels[i][j] = duels[j][i] = [];
+        }
+      }
+    }
     allDuels.forEach(function (duel) {
-      duels[duel.pairs[0].id][duel.pairs[1].id] = duel;
-      duels[duel.pairs[1].id][duel.pairs[0].id] = duel;
-    }, this);
+      duels[duel.pairs[0].id][duel.pairs[1].id].push(duel);
+    });
     return duels;
   }
 
-  private static initStandings(pairs: Pair[], duels: Duel[][]): Standings {
-    return new Standings(pairs.map((pair, i) => new PairSummary(pair, duels[i])));
+  private static initStandings(pairs: Pair[], duels: Duel[][][]): Standings {
+    return new Standings(pairs.map((pair, i) => new PairSummary(pair, [].concat(...duels[i]))));
   }
 }
 

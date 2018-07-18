@@ -1,0 +1,290 @@
+[
+  {
+    "tour": 1,
+    "table": 1,
+    "deal": 1,
+    "players": {
+      "N": "A",
+      "S": "a",
+      "E": "B",
+      "W": "b"
+    },
+    "dealer": "N"
+  },
+  {
+    "tour": 2,
+    "table": 1,
+    "deal": 2,
+    "players": {
+      "N": "A",
+      "S": "a",
+      "E": "B",
+      "W": "b"
+    },
+    "dealer": "E"
+  },
+  {
+    "tour": 3,
+    "table": 1,
+    "deal": 3,
+    "players": {
+      "N": "A",
+      "S": "a",
+      "E": "B",
+      "W": "b"
+    },
+    "dealer": "S"
+  },
+  {
+    "tour": 4,
+    "table": 1,
+    "deal": 4,
+    "players": {
+      "N": "A",
+      "S": "a",
+      "E": "B",
+      "W": "b"
+    },
+    "dealer": "W"
+  },
+  {
+    "tour": 1,
+    "table": 2,
+    "deal": 2,
+    "players": {
+      "N": "C",
+      "S": "c",
+      "E": "D",
+      "W": "d"
+    },
+    "dealer": "E"
+  },
+  {
+    "tour": 2,
+    "table": 2,
+    "deal": 1,
+    "players": {
+      "N": "C",
+      "S": "c",
+      "E": "D",
+      "W": "d"
+    },
+    "dealer": "N"
+  },
+  {
+    "tour": 3,
+    "table": 2,
+    "deal": 4,
+    "players": {
+      "N": "d",
+      "S": "D",
+      "E": "c",
+      "W": "C"
+    },
+    "dealer": "W"
+  },
+  {
+    "tour": 4,
+    "table": 2,
+    "deal": 3,
+    "players": {
+      "N": "d",
+      "S": "D",
+      "E": "c",
+      "W": "C"
+    },
+    "dealer": "S"
+  },
+  {
+    "tour": 5,
+    "table": 1,
+    "deal": 5,
+    "players": {
+      "N": "A",
+      "S": "a",
+      "E": "C",
+      "W": "c"
+    },
+    "dealer": "N"
+  },
+  {
+    "tour": 6,
+    "table": 1,
+    "deal": 6,
+    "players": {
+      "N": "A",
+      "S": "a",
+      "E": "C",
+      "W": "c"
+    },
+    "dealer": "E"
+  },
+  {
+    "tour": 7,
+    "table": 1,
+    "deal": 7,
+    "players": {
+      "N": "A",
+      "S": "a",
+      "E": "C",
+      "W": "c"
+    },
+    "dealer": "S"
+  },
+  {
+    "tour": 8,
+    "table": 1,
+    "deal": 8,
+    "players": {
+      "N": "A",
+      "S": "a",
+      "E": "C",
+      "W": "c"
+    },
+    "dealer": "W"
+  },
+  {
+    "tour": 5,
+    "table": 2,
+    "deal": 6,
+    "players": {
+      "N": "d",
+      "S": "D",
+      "E": "B",
+      "W": "b"
+    },
+    "dealer": "E"
+  },
+  {
+    "tour": 6,
+    "table": 2,
+    "deal": 5,
+    "players": {
+      "N": "D",
+      "S": "d",
+      "E": "b",
+      "W": "B"
+    },
+    "dealer": "N"
+  },
+  {
+    "tour": 7,
+    "table": 2,
+    "deal": 8,
+    "players": {
+      "N": "B",
+      "S": "b",
+      "E": "D",
+      "W": "d"
+    },
+    "dealer": "W"
+  },
+  {
+    "tour": 8,
+    "table": 2,
+    "deal": 7,
+    "players": {
+      "N": "B",
+      "S": "b",
+      "E": "D",
+      "W": "d"
+    },
+    "dealer": "S"
+  },
+  {
+    "tour": 9,
+    "table": 1,
+    "deal": 9,
+    "players": {
+      "N": "A",
+      "S": "a",
+      "E": "D",
+      "W": "d"
+    },
+    "dealer": "N"
+  },
+  {
+    "tour": 10,
+    "table": 1,
+    "deal": 10,
+    "players": {
+      "N": "A",
+      "S": "a",
+      "E": "D",
+      "W": "d"
+    },
+    "dealer": "E"
+  },
+  {
+    "tour": 11,
+    "table": 1,
+    "deal": 11,
+    "players": {
+      "N": "A",
+      "S": "a",
+      "E": "D",
+      "W": "d"
+    },
+    "dealer": "S"
+  },
+  {
+    "tour": 12,
+    "table": 1,
+    "deal": 12,
+    "players": {
+      "N": "A",
+      "S": "a",
+      "E": "D",
+      "W": "d"
+    },
+    "dealer": "W"
+  },
+  {
+    "tour": 9,
+    "table": 2,
+    "deal": 10,
+    "players": {
+      "N": "B",
+      "S": "b",
+      "E": "C",
+      "W": "c"
+    },
+    "dealer": "E"
+  },
+  {
+    "tour": 10,
+    "table": 2,
+    "deal": 9,
+    "players": {
+      "N": "B",
+      "S": "b",
+      "E": "C",
+      "W": "c"
+    },
+    "dealer": "N"
+  },
+  {
+    "tour": 11,
+    "table": 2,
+    "deal": 12,
+    "players": {
+      "N": "c",
+      "S": "C",
+      "E": "B",
+      "W": "b"
+    },
+    "dealer": "W"
+  },
+  {
+    "tour": 12,
+    "table": 2,
+    "deal": 11,
+    "players": {
+      "N": "C",
+      "S": "c",
+      "E": "b",
+      "W": "B"
+    },
+    "dealer": "S"
+  }
+]

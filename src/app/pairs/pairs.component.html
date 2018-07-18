@@ -1,0 +1,14 @@
+<form class="form">
+  <div *ngFor="let pair of pairs" class="panel">
+    <div class="panel-heading">
+      <label [for]="'pair-' + pair.id + '-name'" class="control-label">Пара {{pair.id + 1}}</label>
+      <input [id]="'pair-' + pair.id + '-name'"
+             [name]="'pair-' + pair.id + '-name'"
+             [(ngModel)]="pair.name" class="form-control"/>
+    </div>
+    <div class="row panel-body">
+      <player [player]="pair.players[0]"></player>
+      <player [player]="pair.players[1]"></player>
+    </div>
+  </div>
+</form>

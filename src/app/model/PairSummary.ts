@@ -11,8 +11,8 @@ export class PairSummary implements StandingsRecord {
 
   constructor(pair: Pair, duels: Duel[]) {
     this.pair = pair;
-    this.duels = duels;
-    this.games = duels.map(duel => duel.games[duel.getPairIndex(pair)]);
+    this.duels = duels.filter(d => !!d);
+    this.games = this.duels.map(duel => duel.games[duel.getPairIndex(pair)]);
   }
 
   get duelScore(): number {
