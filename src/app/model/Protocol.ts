@@ -21,7 +21,7 @@ export class Protocol {
   }
 }
 
-class Contract {
+export class Contract {
   suit: Suit;
   owner: PairPosition;
   private _level: number;
@@ -43,7 +43,7 @@ class Contract {
   }
 }
 
-class Tricks {
+export class Tricks {
   private _value: number;
 
   get defined(): boolean {

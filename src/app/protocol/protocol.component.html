@@ -23,34 +23,8 @@
             <h1><span>Тур {{game.tour}}</span>&nbsp;&nbsp;&nbsp;<span>Стол {{game.table}}</span></h1>
             <h2>Сдача {{game.deal}}</h2>
           </div>
-          <div class="contract">
-            Контракт&nbsp;<select [id]="gameId + '-level'" [(ngModel)]="game.protocol.contract.level">
-            <option [ngValue]="-1">&mdash;</option>
-            <option [ngValue]="1">1</option>
-            <option [ngValue]="2">2</option>
-            <option [ngValue]="3">3</option>
-            <option [ngValue]="4">4</option>
-            <option [ngValue]="5">5</option>
-            <option [ngValue]="6">6</option>
-            <option [ngValue]="7">7</option>
-          </select><span *ngIf="game.protocol.contract.level > 0">&nbsp;<select [id]="gameId + '-suit'"
-                                                                                [(ngModel)]="game.protocol.contract.suit">
-              <option value="C">♣</option>
-              <option value="D">♦</option>
-              <option value="H">♥</option>
-              <option value="S">♠</option>
-              <option value="NT">БК</option>
-            </select> от&nbsp;<select [id]="gameId + '-owner'" [(ngModel)]="game.protocol.contract.owner">
-              <option>
-                <option value="NS">NS</option>
-                <option value="EW">EW</option>
-            </select></span>
-          </div>
-          <div class="tricks">
-            NS&nbsp;<input type="number" min="0" max="13" [(ngModel)]="game.protocol.tricks['NS']"/>
-            <input type="range" min="0" max="13" [(ngModel)]="game.protocol.tricks['NS']"/>
-            <input type="number" min="0" max="13" [(ngModel)]="game.protocol.tricks['EW']"/>&nbsp;EW
-          </div>
+          <contract [contract]="game.protocol.contract" [gameId]="gameId"></contract>
+          <tricks [tricks]="game.protocol.tricks" [gameId]="gameId"></tricks>
         </div>
       </div>
     </div>
