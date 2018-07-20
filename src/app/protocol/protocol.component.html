@@ -1,31 +1,29 @@
 <div class="protocol-wrap">
   <div class="protocol-sizer">
     <div class="protocol-frame">
-      <div class="protocol-box-anchor ns north">
+      <div class="protocol-cell north">
         <div class="position-mark" [ngClass]="{'dealer': game.dealer === 'N'}">N</div>
-        <div class="protocol-box">{{game.players['N'].name}}</div>
+        <div class="name-box">{{game.players['N'].name}}</div>
       </div>
-      <div class="protocol-box-anchor ew east">
+      <div class="protocol-cell east">
         <div class="position-mark" [ngClass]="{'dealer': game.dealer === 'E'}">E</div>
-        <div class="protocol-box">{{game.players['E'].name}}</div>
+        <div class="name-box">{{game.players['E'].name}}</div>
       </div>
-      <div class="protocol-box-anchor ns south">
+      <div class="protocol-cell south">
         <div class="position-mark" [ngClass]="{'dealer': game.dealer === 'S'}">S</div>
-        <div class="protocol-box">{{game.players['S'].name}}</div>
+        <div class="name-box">{{game.players['S'].name}}</div>
       </div>
-      <div class="protocol-box-anchor ew west">
+      <div class="protocol-cell west">
         <div class="position-mark" [ngClass]="{'dealer': game.dealer === 'W'}">W</div>
-        <div class="protocol-box">{{game.players['W'].name}}</div>
+        <div class="name-box">{{game.players['W'].name}}</div>
       </div>
-      <div class="protocol-box-anchor center">
-        <div class="protocol-box legend">
-          <div class="header">
-            <h1><span>Тур {{game.tour}}</span>&nbsp;&nbsp;&nbsp;<span>Стол {{game.table}}</span></h1>
-            <h2>Сдача {{game.deal}}</h2>
-          </div>
-          <contract [contract]="game.protocol.contract" [gameId]="gameId"></contract>
-          <tricks [tricks]="game.protocol.tricks" [gameId]="gameId"></tricks>
+      <div class="protocol-cell center legend">
+        <div class="header">
+          <h1><span>Тур {{game.tour}}</span>&nbsp;&nbsp;&nbsp;<span>Стол {{game.table}}</span></h1>
+          <h2>Сдача {{game.deal}}</h2>
         </div>
+        <contract [contract]="game.protocol.contract" [gameId]="gameId"></contract>
+        <tricks [tricks]="game.protocol.tricks" [gameId]="gameId"></tricks>
       </div>
     </div>
   </div>
