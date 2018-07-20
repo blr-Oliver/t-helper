@@ -19,7 +19,7 @@ export class Duel {
     this.games = <[Game, Game]> [game1, game2]
       .sort((a, b) => a.pairs[position].players[0].id.localeCompare(b.pairs[position].players[0].id));
     this.pairs = <[Pair, Pair]> this.games.map(p => p.pairs[position]);
-    this.scores = new DuelScores();
+    this.scores = new DuelScores(this);
   }
 
   getPairIndex(pair: Pair): number {
@@ -34,8 +34,11 @@ export class Duel {
 }
 
 class DuelScores {
-  private _duel: Duel;
+  private readonly _duel: Duel;
 
+  constructor(duel: Duel) {
+    this._duel = duel;
+  }
   get [0] (): number {
     return MaxTournamentScoring.instance.duelScore(this._duel, this._duel.pairs[0]);
   }
