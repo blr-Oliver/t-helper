@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Standings} from '../model/Standings';
 
 @Component({
   selector: '[data-scores]',
@@ -6,8 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./scores.component.scss']
 })
 export class ScoresComponent implements OnInit {
-
-  constructor() { }
+  @Input() standings: Standings;
 
   ngOnInit() {
   }
