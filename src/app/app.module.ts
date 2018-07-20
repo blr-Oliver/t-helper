@@ -8,7 +8,7 @@ import {TabsComponent} from './tabs/tabs.component';
 import {PairsComponent} from './pairs/pairs.component';
 import {GamesComponent} from './games/games.component';
 import {DuelsComponent} from './duels/duels.component';
-import {ScoresComponent} from './scores/scores.component';
+import {StandingsComponent} from './standings/standings.component';
 import {PlayerComponent} from './player/player.component';
 
 @NgModule({
@@ -19,7 +19,7 @@ import {PlayerComponent} from './player/player.component';
     PairsComponent,
     GamesComponent,
     DuelsComponent,
-    ScoresComponent,
+    StandingsComponent,
     PlayerComponent
   ],
   imports: [
