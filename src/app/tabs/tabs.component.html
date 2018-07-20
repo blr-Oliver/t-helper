@@ -9,6 +9,7 @@
   </div>
   <div role="tabpanel" class="tab-pane" id="players" [pairs]="tournament.pairs" data-players></div>
   <div role="tabpanel" class="tab-pane" id="games" [games]="tournament.games" data-games></div>
-  <div role="tabpanel" class="tab-pane" id="duels" data-duels></div>
+  <div role="tabpanel" class="tab-pane" id="duels" [pairs]="tournament.pairs" [duels]="tournament.duels"
+       data-duels></div>
   <div role="tabpanel" class="tab-pane" id="scores" data-scores></div>
 </div>

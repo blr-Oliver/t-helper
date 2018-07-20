@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Duel} from '../model/Duel';
+import {Pair} from '../model/Pair';
 
 @Component({
   selector: '[data-duels]',
@@ -6,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./duels.component.scss']
 })
 export class DuelsComponent implements OnInit {
-
-  constructor() { }
+  @Input() duels: Duel[][][];
+  @Input() pairs: Pair[];
 
   ngOnInit() {
   }
