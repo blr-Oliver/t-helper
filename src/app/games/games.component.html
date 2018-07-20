@@ -7,11 +7,13 @@
     <col/>
   </colgroup>
   <thead>
-  <th>Тур</th>
-  <th>Стол</th>
-  <th>Сдача</th>
-  <th>Игроки</th>
-  <th>Протокол</th>
+  <tr>
+    <th>Тур</th>
+    <th>Стол</th>
+    <th>Сдача</th>
+    <th>Игроки</th>
+    <th>Протокол</th>
+  </tr>
   </thead>
   <tbody *ngFor="let tour of games">
   <tr *ngFor="let game of tour; let i = index">
