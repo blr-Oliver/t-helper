@@ -10,6 +10,7 @@ import {GamesComponent} from './games/games.component';
 import {DuelsComponent} from './duels/duels.component';
 import {StandingsComponent} from './standings/standings.component';
 import {PlayerComponent} from './player/player.component';
+import {ProtocolComponent} from './protocol/protocol.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {PlayerComponent} from './player/player.component';
     GamesComponent,
     DuelsComponent,
     StandingsComponent,
-    PlayerComponent
+    PlayerComponent,
+    ProtocolComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,124 @@
+.protocol-sizer {
+  position: relative;
+  width: 100%;
+  padding-top: 70%;
+  min-width: 200px;
+}
+
+.protocol-frame {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #eeeeee;
+  * {
+    _background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+.protocol-box-anchor {
+  position: absolute;
+  &.ns {
+    left: 50%;
+    max-width: 40%;
+    max-height: 25%;
+    .protocol-box {
+      transform: translateX(-50%);
+    }
+    .position-mark {
+      left: 0;
+      transform: translateX(-50%);
+    }
+  }
+  &.ew {
+    top: 50%;
+    max-width: 25%;
+    max-height: 40%;
+    .protocol-box {
+      transform: translateY(-50%);
+    }
+    .position-mark {
+      top: 0;
+      transform: translateY(-50%);
+    }
+  }
+  &.north {
+    top: 1em;
+    padding-top: 2em;
+    .position-mark {
+      top: 0;
+    }
+  }
+  &.east {
+    right: 1em;
+    padding-right: 2em;
+    .position-mark {
+      right: 0;
+    }
+  }
+  &.south {
+    bottom: 1em;
+    padding-bottom: 2em;
+    .position-mark {
+      bottom: 0;
+    }
+  }
+  &.west {
+    left: 1em;
+    padding-left: 2em;
+    .position-mark {
+      left: 0;
+    }
+  }
+  &.center {
+    left: 50%;
+    top: 50%;
+    max-width: 40%;
+    max-height: 40%;
+    .protocol-box {
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.protocol-box {
+  padding: 0.5em;
+  font-size: 150%;
+  text-align: center;
+}
+
+.position-mark {
+  position: absolute;
+  box-sizing: content-box;
+  height: 1em;
+  width: 1em;
+  font-family: "MS Gothic", Georgia, monospace;
+  font-size: 2em;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  color: blue;
+  &.dealer {
+    border: 1px solid;
+  }
+}
+
+.legend {
+  .header {
+    margin-bottom: 0.5em;
+    * {
+      margin: 0;
+      font-size: 100%;
+    }
+    h1 {
+      font-size: 125%;
+      font-weight: bold;
+      margin-bottom: 0.3em;
+    }
+    h2 {
+      font-size: 80%;
+      margin-bottom: 0.3em;
+    }
+  }
+}
