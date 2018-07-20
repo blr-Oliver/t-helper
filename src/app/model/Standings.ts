@@ -40,16 +40,16 @@ export namespace RecordComparators {
       b.duelScore - a.duelScore;
   };
   export const byDuelScore: RecordComparator = function (a: StandingsRecord, b: StandingsRecord): number {
-    return b.duelScore - a.duelScore || a.pair.id - b.pair.id;
+    return b.duelScore - a.duelScore || a.pair.idx - b.pair.idx;
   };
   export const byBonusScore: RecordComparator = function (a: StandingsRecord, b: StandingsRecord): number {
-    return b.bonusScore - a.bonusScore || a.pair.id - b.pair.id;
+    return b.bonusScore - a.bonusScore || a.pair.idx - b.pair.idx;
   };
   export const byRank: RecordComparator = function (a: StandingsRecord, b: StandingsRecord): number {
-    return a.rank - b.rank || a.pair.id - b.pair.id;
+    return a.rank - b.rank || a.pair.idx - b.pair.idx;
   };
   export const byPair: RecordComparator = function (a: StandingsRecord, b: StandingsRecord): number {
-    return a.pair.id - b.pair.id;
+    return a.pair.idx - b.pair.idx;
   };
   export const by: { [id: string]: RecordComparator } = {
     'score': byScore,

@@ -45,7 +45,7 @@ export class Tournament {
 
   private static initPairs(pairs: MapBasedPairRepository): Pair[] {
     pairs.list.sort((a, b) => a.players[0].id.localeCompare(b.players[0].id));
-    pairs.list.forEach((p, i) => p.id = i);
+    pairs.list.forEach((p, i) => p.idx = i);
     return pairs.list;
   }
 
@@ -90,7 +90,7 @@ export class Tournament {
       }
     }
     allDuels.forEach(function (duel) {
-      duels[duel.pairs[0].id][duel.pairs[1].id].push(duel);
+      duels[duel.pairs[0].idx][duel.pairs[1].idx].push(duel);
     });
     return duels;
   }
