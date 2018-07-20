@@ -1,5 +1,5 @@
 <div class="tab-content">
-  <div role="tabpanel" class="tab-pane active" id="status">
+  <div role="tabpanel" class="tab-pane" id="status">
     Tournament
     <!--
     <tournament-start ng-switch-when="not-started"></tournament-start>
@@ -8,7 +8,7 @@
     -->
   </div>
   <div role="tabpanel" class="tab-pane" id="players" [pairs]="tournament.pairs" data-players></div>
-  <div role="tabpanel" class="tab-pane" id="games" [games]="tournament.games" data-games></div>
+  <div role="tabpanel" class="tab-pane active" id="games" [games]="tournament.games" data-games></div>
   <div role="tabpanel" class="tab-pane" id="duels" [pairs]="tournament.pairs" [duels]="tournament.duels"
        data-duels></div>
   <div role="tabpanel" class="tab-pane" id="standings" [standings]="tournament.standings" data-standings></div>
