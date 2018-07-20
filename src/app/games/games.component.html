@@ -1,1 +1,30 @@
-Schedule
+<table class="table table-striped">
+  <colgroup>
+    <col width="5%"/>
+    <col width="5%"/>
+    <col width="5%"/>
+    <col width="15%"/>
+    <col/>
+  </colgroup>
+  <thead>
+  <th>Тур</th>
+  <th>Стол</th>
+  <th>Сдача</th>
+  <th>Игроки</th>
+  <th>Протокол</th>
+  </thead>
+  <tbody *ngFor="let tour of games">
+  <tr *ngFor="let game of tour; let i = index">
+    <th *ngIf="!i" [attr.rowspan]="tour.length">{{game.tour}}</th>
+    <td>{{game.table}}</td>
+    <td>{{game.deal}}</td>
+    <td>
+      <ul>
+        <li>{{game.players['N'].id}}{{game.players['S'].id}}</li>
+        <li>{{game.players['E'].id}}{{game.players['W'].id}}</li>
+      </ul>
+    </td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>

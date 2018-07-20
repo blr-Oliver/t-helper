@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Game} from '../model/Game';
 
 @Component({
   selector: '[data-games]',
@@ -6,10 +7,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./games.component.scss']
 })
 export class GamesComponent implements OnInit {
-
-  constructor() { }
-
+  @Input() games: Game[][];
   ngOnInit() {
   }
-
 }
