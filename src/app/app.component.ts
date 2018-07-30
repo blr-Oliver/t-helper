@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Tournament} from './model/Tournament';
 import schedule4 from '../data/Schedule-4.json';
+import {IndexedDBSerializer} from './model/Serializer';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,8 @@ export class AppComponent {
 
   constructor() {
     this.tournament = new Tournament(<any> schedule4);
-    console.log(this.tournament);
+    const serializer = new IndexedDBSerializer();
+    (<any> window).tournament = this.tournament;
+    (<any> window).serializer = serializer;
   }
 }

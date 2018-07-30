@@ -47,7 +47,7 @@ export class Tricks {
   private _value: number;
 
   get defined(): boolean {
-    return this._value !== undefined;
+    return this._value > 0;
   }
   get [PairPosition.NS](): number {
     return this._value;

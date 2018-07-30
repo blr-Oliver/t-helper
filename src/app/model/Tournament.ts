@@ -8,6 +8,7 @@ import {Standings} from './Standings';
 import {PairSummary} from './PairSummary';
 
 export class Tournament {
+  id?: number;
   readonly games: Game[][];
   readonly pairs: Pair[];
   readonly duels: Duel[][][];
@@ -19,7 +20,7 @@ export class Tournament {
     const players: { [id: string]: Player } = {};
     const pairs = new MapBasedPairRepository();
     Tournament.collectPlayerInfo(schedule, players, pairs);
-    const allGames: Game[] = schedule.map(game => new Game(game, players, pairs));
+    const allGames: Game[] = schedule.map(game => new Game(game, players, pairs, this));
     this.pairs = Tournament.initPairs(pairs);
     this.games = Tournament.initGames(allGames);
     this.duels = Tournament.initDuels(allGames, this.pairs.length);

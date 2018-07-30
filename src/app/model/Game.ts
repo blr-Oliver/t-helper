@@ -3,38 +3,38 @@ import {Player} from './Player';
 import {Protocol} from './Protocol';
 import {PairPosition} from './PairPosition';
 import {Pair, PairRepository} from './Pair';
+import {Tournament} from './Tournament';
 
+export interface Seating<T> {
+  [Position.N]: T;
+  [Position.E]: T;
+  [Position.S]: T;
+  [Position.W]: T;
+}
 export interface GameSchedule {
   tour: number;
   table: number;
   deal: number;
   dealer?: string;
-  players: {
-    [Position.N]: string;
-    [Position.E]: string;
-    [Position.S]: string;
-    [Position.W]: string;
-  };
+  players: Seating<string>;
 }
 
 export class Game {
+  id?: number;
   readonly tour: number;
   readonly table: number;
   readonly deal: number;
   readonly dealer: Position;
-  readonly players: {
-    readonly [Position.N]: Player;
-    readonly [Position.E]: Player;
-    readonly [Position.S]: Player;
-    readonly [Position.W]: Player;
-  };
+  readonly players: Seating<Player>;
   readonly pairs: {
     readonly [PairPosition.NS]: Pair;
     readonly [PairPosition.EW]: Pair;
   };
+  readonly tournament: Tournament;
   readonly protocol: Protocol;
 
-  constructor (game: GameSchedule, players: {[id: string]: Player}, pairs: PairRepository) {
+  constructor(game: GameSchedule, players: { [id: string]: Player }, pairs: PairRepository, tournament: Tournament) {
+    this.tournament = tournament;
     this.tour = game.tour;
     this.table = game.table;
     this.deal = game.deal;
