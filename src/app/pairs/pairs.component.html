@@ -1,14 +1,6 @@
 <form class="form">
-  <div *ngFor="let pair of pairs" class="panel">
-    <div class="panel-heading">
-      <label [for]="'pair-' + pair.idx + '-name'" class="control-label">Пара {{pair.idx + 1}}</label>
-      <input [id]="'pair-' + pair.idx + '-name'"
-             [name]="'pair-' + pair.idx + '-name'"
-             [(ngModel)]="pair.name" class="form-control"/>
-    </div>
-    <div class="row panel-body">
-      <player [player]="pair.players[0]"></player>
-      <player [player]="pair.players[1]"></player>
-    </div>
+  <div *ngFor="let pair of pairs$ | async" class="panel">
+    <player [player]="pair[0]"></player>
+    <player [player]="pair[1]"></player>
   </div>
 </form>

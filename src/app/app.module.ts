@@ -5,7 +5,6 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {AppComponent} from './app.component';
 import {TopMenuComponent} from './top-menu/top-menu.component';
-import {TabsComponent} from './tabs/tabs.component';
 import {PairsComponent} from './pairs/pairs.component';
 import {GamesComponent} from './games/games.component';
 import {DuelsComponent} from './duels/duels.component';
@@ -21,6 +20,7 @@ import {TournamentDetailsComponent} from './tournaments/tournament-details.compo
 const appRoutes: Routes = [
   {path: 'tournaments', component: TournamentListComponent},
   {path: 'tournament/:id', component: TournamentDetailsComponent},
+  {path: 'tournament/:id/players', component: PairsComponent},
   {path: '', redirectTo: '/tournaments', pathMatch: 'full'}
 ];
 
@@ -30,7 +30,6 @@ const appRoutes: Routes = [
     TopMenuComponent,
     TournamentListComponent,
     TournamentDetailsComponent,
-    TabsComponent,
     PairsComponent,
     GamesComponent,
     DuelsComponent,

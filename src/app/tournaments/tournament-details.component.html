@@ -1,6 +1,9 @@
 <div *ngIf="tournament$ | async as tournament">
+  <br/>
   <input type="text" [(ngModel)]="tournament.name"/>
+  <br/>
   <textarea [(ngModel)]="tournament.description"></textarea>
+  <br/>
   {{tournament.status}}
   <br/>
   {{tournament.dateCreated | date}}
