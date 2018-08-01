@@ -16,10 +16,12 @@ import {ContractComponent} from './protocol/contract/contract.component';
 import {TricksComponent} from './protocol/tricks/tricks.component';
 import {TournamentListComponent} from './tournaments/tournament-list.component';
 import {TournamentService} from './tournaments/tournament.service';
+import {TournamentDetailsComponent} from './tournaments/tournament-details.component';
 
 const appRoutes: Routes = [
-  {path: '', component: TournamentListComponent, pathMatch: 'full'},
-  {path: 'tournaments', component: TournamentListComponent}
+  {path: 'tournaments', component: TournamentListComponent},
+  {path: 'tournament/:id', component: TournamentDetailsComponent},
+  {path: '', redirectTo: '/tournaments', pathMatch: 'full'}
 ];
 
 @NgModule({
@@ -27,6 +29,7 @@ const appRoutes: Routes = [
     AppComponent,
     TopMenuComponent,
     TournamentListComponent,
+    TournamentDetailsComponent,
     TabsComponent,
     PairsComponent,
     GamesComponent,

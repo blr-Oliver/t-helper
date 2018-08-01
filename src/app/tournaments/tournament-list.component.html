@@ -1,5 +1,5 @@
 <ul>
   <li *ngFor="let tournament of tournaments$ | async">
-    {{tournament.name}}
+    <a [routerLink]="['/tournament', tournament.id]">{{tournament.name}}</a>
   </li>
 </ul>

@@ -4,8 +4,7 @@ import {TournamentService} from './tournament.service';
 import {Observable} from 'rxjs';
 
 @Component({
-  templateUrl: './tournament-list.component.html',
-  styleUrls: ['./tournament-list.component.scss']
+  templateUrl: './tournament-list.component.html'
 })
 export class TournamentListComponent implements OnInit {
   tournaments$: Observable<TournamentDTO[]>;
