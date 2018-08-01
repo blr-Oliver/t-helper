@@ -1,5 +1,6 @@
 import {DTO} from './DTO';
 import {PlayerSlot} from './PlayerSlot';
+import {GameSlotDTO} from './GameSlotDTO';
 
 export class ScheduleDTO extends DTO {
   name: string;
@@ -7,4 +8,5 @@ export class ScheduleDTO extends DTO {
   totalTours: number;
   totalTables: number;
   players: PlayerSlot[];
+  games?: GameSlotDTO[];
 }

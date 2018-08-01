@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
 import {AppComponent} from './app.component';
 import {TopMenuComponent} from './top-menu/top-menu.component';
@@ -13,11 +14,19 @@ import {PlayerComponent} from './player/player.component';
 import {ProtocolComponent} from './protocol/protocol.component';
 import {ContractComponent} from './protocol/contract/contract.component';
 import {TricksComponent} from './protocol/tricks/tricks.component';
+import {TournamentListComponent} from './tournaments/tournament-list.component';
+import {TournamentService} from './tournaments/tournament.service';
+
+const appRoutes: Routes = [
+  {path: '', component: TournamentListComponent, pathMatch: 'full'},
+  {path: 'tournaments', component: TournamentListComponent}
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     TopMenuComponent,
+    TournamentListComponent,
     TabsComponent,
     PairsComponent,
     GamesComponent,
@@ -30,9 +39,10 @@ import {TricksComponent} from './protocol/tricks/tricks.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes, {enableTracing: false})
   ],
-  providers: [],
+  providers: [TournamentService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
