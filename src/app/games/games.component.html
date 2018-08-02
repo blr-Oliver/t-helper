@@ -1,7 +1,7 @@
 <table class="table table-striped">
   <colgroup>
     <col width="10%"/>
-    <col *ngFor="let game of (games$ | async)[0]"/>
+    <col *ngFor="let _ of (games$ | async)[0]"/>
   </colgroup>
   <thead>
   <tr>
