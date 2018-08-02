@@ -19,8 +19,13 @@ import {TournamentDetailsComponent} from './tournaments/tournament-details.compo
 
 const appRoutes: Routes = [
   {path: 'tournaments', component: TournamentListComponent},
-  {path: 'tournament/:id', component: TournamentDetailsComponent},
-  {path: 'tournament/:id/players', component: PairsComponent},
+  {
+    path: 'tournament/:id', component: TournamentDetailsComponent,
+    children: [
+      {path: 'players', component: PairsComponent},
+      {path: 'games', component: GamesComponent}
+    ]
+  },
   {path: '', redirectTo: '/tournaments', pathMatch: 'full'}
 ];
 

@@ -12,7 +12,7 @@ const sample: TournamentDTO[] = [
     id: 1,
     sid: 1,
     name: 'Sample tournament',
-    description: 'This is dummy one',
+    description: 'This is sample one',
     dateCreated: new Date(),
     status: 'preparing',
 
@@ -28,12 +28,17 @@ const sample: TournamentDTO[] = [
     players: 'AaBbCcDd'.split('').map((slot, i) => ({
       id: i + 1,
       tid: 1,
-      slot: slot
+      slot: slot,
+      name: ''
     })),
     protocols: schedule.map((game, i) => ({
       id: i + 1,
       tid: 1,
-      gid: game.id
+      gid: game.id,
+      owner: null,
+      suit: null,
+      level: undefined,
+      tricks: undefined
     }))
   }
 ];

@@ -21,7 +21,7 @@ export class PairsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.pairs$ = this.route.paramMap.pipe(
+    this.pairs$ = this.route.parent.paramMap.pipe(
       switchMap(params => this.tournamentService.getTournament(params.get('id'))),
       map(function (t: TournamentDTO) {
         return Array(t.schedule.players.length / 2).fill(0).map(function (_, pairIndex): PairDTO {

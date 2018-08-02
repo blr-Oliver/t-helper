@@ -1,33 +1,23 @@
 <table class="table table-striped">
   <colgroup>
-    <col width="5%"/>
-    <col width="5%"/>
-    <col width="5%"/>
-    <col width="15%"/>
-    <col/>
+    <col width="10%"/>
+    <col *ngFor="let game of (games$ | async)[0]"/>
   </colgroup>
   <thead>
   <tr>
-    <th>Тур</th>
-    <th>Стол</th>
-    <th>Сдача</th>
-    <th>Игроки</th>
-    <th>Протокол</th>
+    <th></th>
+    <th *ngFor="let game of (games$ | async)[0]">{{game.table}}</th>
   </tr>
   </thead>
-  <tbody *ngFor="let tour of games">
-  <tr *ngFor="let game of tour; let i = index">
-    <th *ngIf="!i" [attr.rowspan]="tour.length">{{game.tour}}</th>
-    <td>{{game.table}}</td>
-    <td>{{game.deal}}</td>
-    <td>
-      <ul>
-        <li>{{game.players['N'].id}}{{game.players['S'].id}}</li>
-        <li>{{game.players['E'].id}}{{game.players['W'].id}}</li>
-      </ul>
-    </td>
-    <td>
-      <protocol [game]="game"></protocol>
+  <tbody>
+  <tr *ngFor="let tourGames of games$ | async">
+    <th>{{tourGames[0].tour}}</th>
+    <td *ngFor="let game of tourGames">
+      <a [routerLink]="['..', 'protocols', game.tour, game.table]">
+        <span>{{game.players['N']}}{{game.players['S']}}</span> vs.
+        <span>{{game.players['E']}}{{game.players['W']}}</span>
+      </a>
+      in {{game.deal}}
     </td>
   </tr>
   </tbody>

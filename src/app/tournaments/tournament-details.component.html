@@ -7,4 +7,9 @@
   {{tournament.status}}
   <br/>
   {{tournament.dateCreated | date}}
+  <br/>
+  <a [routerLink]="['players']">Участники</a>
+  <br/>
+  <a [routerLink]="['games']">Игры</a>
+  <router-outlet></router-outlet>
 </div>
