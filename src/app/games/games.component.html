@@ -13,7 +13,7 @@
   <tr *ngFor="let tourGames of games$ | async">
     <th>{{tourGames[0].tour}}</th>
     <td *ngFor="let game of tourGames">
-      <a [routerLink]="['..', 'protocols', game.tour, game.table]">
+      <a [routerLink]="['..', 'protocol', game.tour, game.table]">
         <span>{{game.players['N']}}{{game.players['S']}}</span> vs.
         <span>{{game.players['E']}}{{game.players['W']}}</span>
       </a>
