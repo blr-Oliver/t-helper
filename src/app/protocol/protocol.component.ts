@@ -1,17 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import {ProtocolDTO} from '../model/dto/ProtocolDTO';
 import {ActivatedRoute} from '@angular/router';
 import {TournamentService} from '../service/tournament.service';
-import {map, switchMap} from 'rxjs/operators';
-import {ExpandedTournamentDTO} from '../model/dto/TournamentDTO';
+import {map, mergeMap} from 'rxjs/operators';
+import {GameEntity} from '../model/entity/GameEntity';
 
 @Component({
   templateUrl: './protocol.component.html',
   styleUrls: ['./protocol.component.scss']
 })
 export class ProtocolComponent implements OnInit {
-  protocol$: Observable<ProtocolDTO>;
+  protocol$: Observable<GameEntity>;
   private tournamentId: number;
 
   constructor(
@@ -23,14 +22,10 @@ export class ProtocolComponent implements OnInit {
     const self = this;
     this.route.parent.paramMap.subscribe(params => this.tournamentId = +params.get('id'));
     this.protocol$ = this.route.paramMap.pipe(
-      switchMap(function (params) {
+      mergeMap(function (params) {
         const tour = +params.get('tour'), table = +params.get('table');
         return self.tournamentService.get(self.tournamentId).pipe(
-          map(function (t: ExpandedTournamentDTO) {
-            const match = t.schedule.games.find(g => g.tour === tour && g.table === table);
-            if (match)
-              return t.protocols.find(p => p.gid === match.id);
-          })
+          map(t => t.games[tour - 1][table - 1])
         );
       })
     );
