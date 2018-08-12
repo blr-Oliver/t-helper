@@ -1,22 +1,9 @@
-<ul class="nav nav-tabs" role="tablist">
-  <li><a href="#status" role="tab" data-toggle="tab" aria-controls="status"><span class="hidden-xs">Турнир </span><i
-    class="glyphicon glyphicon-home"></i></a></li>
-  <li><a href="#players" role="tab" data-toggle="tab" aria-controls="players"><span class="hidden-xs">Участники </span><i class="glyphicon glyphicon-user"></i></a></li>
-  <!--
-  <li class="dropdown"><a href="#hardprint" role="tab" data-toggle="tab" aria-controls="hardprint" class="dropdown-toggle" data-toggle="dropdown" role="button"
-    aria-haspopup="true" aria-expanded="false">Распечатки <span class="caret"></span></a>
-    <ul class="dropdown-menu">
-      <li><a href="#">Протоколы партий</a></li>
-      <li><a href="#">Перемещение планшетов</a></li>
-      <li><a href="#">Подсчет игровых очков</a></li>
-      <li role="separator" class="divider"></li>
-      <li><a href="#">Таблица протоколов</a></li>
-    </ul>
-  </li>
-  -->
-  <li class="active"><a href="#games" role="tab" data-toggle="tab" aria-controls="games"><span
-    class="hidden-xs">Игры </span><i class="glyphicon glyphicon-th-list"></i></a></li>
-  <li><a href="#duels" role="tab" data-toggle="tab" aria-controls="duels"><span class="hidden-xs">Дуэли </span><i class="glyphicon glyphicon-flash"></i></a></li>
-  <li><a href="#standings" role="tab" data-toggle="tab" aria-controls="standings"><span
-    class="hidden-xs">Турнирные очки </span><i class="glyphicon glyphicon-flag"></i></a></li>
+<ul>
+  <li><a [routerLink]="['/tournaments']">Все турниры</a></li>
+  <ng-container *ngIf="tournamentId$ | async as tid">
+    <li><a [routerLink]="['/tournament', tid]">Обзор</a></li>
+    <li><a [routerLink]="['/tournament', tid, 'players']">Участники</a></li>
+    <li><a [routerLink]="['/tournament', tid, 'games']">Расписание</a></li>
+    <li><a [routerLink]="['/tournament', tid, 'protocol']">Игры</a></li>
+  </ng-container>
 </ul>

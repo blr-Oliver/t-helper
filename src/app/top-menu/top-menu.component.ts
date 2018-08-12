@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {TournamentService} from '../service/tournament.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'top-menu',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top-menu.component.scss']
 })
 export class TopMenuComponent implements OnInit {
+  tournamentId$: Observable<number>;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private tournamentService: TournamentService) {
   }
 
+  ngOnInit() {
+    this.tournamentId$ = this.tournamentService.getCurrentId();
+  }
 }
