@@ -2,6 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
 import {TopMenuComponent} from './top-menu/top-menu.component';
@@ -14,8 +15,9 @@ import {ProtocolComponent} from './protocol/protocol.component';
 import {ContractComponent} from './protocol/contract/contract.component';
 import {TricksComponent} from './protocol/tricks/tricks.component';
 import {TournamentListComponent} from './tournaments/tournament-list.component';
-import {TournamentService} from './tournaments/tournament.service';
+import {TournamentService} from './service/tournament.service';
 import {TournamentDetailsComponent} from './tournaments/tournament-details.component';
+import {HttpTournamentLoader} from './service/tournament-loader.service';
 
 const appRoutes: Routes = [
   {path: 'tournaments', component: TournamentListComponent},
@@ -47,10 +49,14 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes, {enableTracing: false})
   ],
-  providers: [TournamentService],
+  providers: [
+    TournamentService,
+    {provide: 'TournamentLoader', useClass: HttpTournamentLoader}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

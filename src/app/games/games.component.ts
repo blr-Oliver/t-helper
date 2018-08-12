@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {TournamentService} from '../tournaments/tournament.service';
+import {TournamentService} from '../service/tournament.service';
 import {Observable} from 'rxjs';
 import {GameSlotDTO} from '../model/dto/GameSlotDTO';
 import {map, switchMap} from 'rxjs/operators';

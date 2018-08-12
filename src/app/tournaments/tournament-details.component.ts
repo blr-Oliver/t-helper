@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TournamentDTO} from '../model/dto/TournamentDTO';
 import {Observable} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
-import {TournamentService} from './tournament.service';
+import {TournamentService} from '../service/tournament.service';
 import {switchMap} from 'rxjs/operators';
 
 @Component({

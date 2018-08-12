@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TournamentDTO} from '../model/dto/TournamentDTO';
-import {TournamentService} from './tournament.service';
+import {TournamentService} from '../service/tournament.service';
 import {Observable} from 'rxjs';
 
 @Component({
