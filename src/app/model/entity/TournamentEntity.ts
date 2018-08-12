@@ -24,6 +24,17 @@ export class TournamentEntity {
     this.games = TournamentEntity.asGameTable(allGames);
   }
 
+  get name(): string { return this.data.name; }
+  set name(value: string) { this.data.name = value; }
+
+  get description(): string { return this.data.description; }
+  set description(value: string) { this.data.description = value; }
+
+  get dateCreated(): Date { return this.data.dateCreated; }
+
+  get status(): string { return this.data.status; }
+  set status(value: string) { this.data.status = value; }
+
   private static pairSorter = (a: PairEntity, b: PairEntity) => a.name.localeCompare(b.name);
   private static collectPlayerInfo(data: ExpandedTournamentDTO, allPlayers: PlayerMap, allPairs: PairMap): PairEntity[] {
     data.players
