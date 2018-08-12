@@ -9,8 +9,10 @@ export interface TournamentDTO extends DTO {
   description?: string;
   dateCreated: Date;
   status: string;
+}
 
-  schedule?: ScheduleDTO;
-  players?: PlayerDTO[];
-  protocols?: ProtocolDTO[];
+export interface ExpandedTournamentDTO extends TournamentDTO {
+  schedule: ScheduleDTO;
+  players: PlayerDTO[];
+  protocols: ProtocolDTO[];
 }

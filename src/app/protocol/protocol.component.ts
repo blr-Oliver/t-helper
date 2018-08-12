@@ -4,7 +4,7 @@ import {ProtocolDTO} from '../model/dto/ProtocolDTO';
 import {ActivatedRoute} from '@angular/router';
 import {TournamentService} from '../service/tournament.service';
 import {map, switchMap} from 'rxjs/operators';
-import {TournamentDTO} from '../model/dto/TournamentDTO';
+import {ExpandedTournamentDTO} from '../model/dto/TournamentDTO';
 
 @Component({
   templateUrl: './protocol.component.html',
@@ -26,7 +26,7 @@ export class ProtocolComponent implements OnInit {
       switchMap(function (params) {
         const tour = +params.get('tour'), table = +params.get('table');
         return self.tournamentService.get(self.tournamentId).pipe(
-          map(function (t: TournamentDTO) {
+          map(function (t: ExpandedTournamentDTO) {
             const match = t.schedule.games.find(g => g.tour === tour && g.table === table);
             if (match)
               return t.protocols.find(p => p.gid === match.id);
