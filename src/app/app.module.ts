@@ -22,8 +22,9 @@ import {HttpTournamentLoader} from './service/tournament-loader.service';
 const appRoutes: Routes = [
   {path: 'tournaments', component: TournamentListComponent},
   {
-    path: 'tournament/:id', component: TournamentDetailsComponent,
+    path: 'tournament/:id',
     children: [
+      {path: '', pathMatch: 'full', component: TournamentDetailsComponent},
       {path: 'players', component: PairsComponent},
       {path: 'games', component: GamesComponent},
       {path: 'protocol/:tour/:table', component: ProtocolComponent},
