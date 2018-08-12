@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {TournamentService} from '../service/tournament.service';
 import {ActivatedRoute} from '@angular/router';
-import {map, switchMap} from 'rxjs/operators';
+import {map, mergeMap} from 'rxjs/operators';
 import {TournamentDTO} from '../model/dto/TournamentDTO';
 import {PlayerDTO} from '../model/dto/PlayerDTO';
 
@@ -22,7 +22,7 @@ export class PairsComponent implements OnInit {
 
   ngOnInit() {
     this.pairs$ = this.route.parent.paramMap.pipe(
-      switchMap(params => this.tournamentService.get(params.get('id'))),
+      mergeMap(params => this.tournamentService.get(params.get('id'))),
       map(function (t: TournamentDTO) {
         return Array(t.schedule.players.length / 2).fill(0).map(function (_, pairIndex): PairDTO {
           return [t.players[pairIndex * 2], t.players[pairIndex * 2 + 1]];
