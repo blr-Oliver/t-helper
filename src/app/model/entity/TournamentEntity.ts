@@ -32,7 +32,7 @@ export class TournamentEntity {
     const slots = data.schedule.players;
     const pairList: PairEntity[] = [];
     for (let i = 0; i < slots.length; i += 2) {
-      const pair = new PairEntity(allPlayers[slots[i]], allPlayers[slots[i] + 1]);
+      const pair = new PairEntity(allPlayers[slots[i]], allPlayers[slots[i + 1]]);
       pairList.push(allPairs[pair.name] = pair);
     }
     return pairList.sort(this.pairSorter);
