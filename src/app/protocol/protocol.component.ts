@@ -12,6 +12,7 @@ import {TournamentDTO} from '../model/dto/TournamentDTO';
 })
 export class ProtocolComponent implements OnInit {
   protocol$: Observable<ProtocolDTO>;
+  private tournamentId: number;
 
   constructor(
     private tournamentService: TournamentService,
@@ -20,10 +21,11 @@ export class ProtocolComponent implements OnInit {
 
   ngOnInit() {
     const self = this;
+    this.route.parent.paramMap.subscribe(params => this.tournamentId = +params.get('id'));
     this.protocol$ = this.route.paramMap.pipe(
       switchMap(function (params) {
         const tour = +params.get('tour'), table = +params.get('table');
-        return self.tournamentService.getTournament(params.get('id')).pipe(
+        return self.tournamentService.get(self.tournamentId).pipe(
           map(function (t: TournamentDTO) {
             const match = t.schedule.games.find(g => g.tour === tour && g.table === table);
             if (match)

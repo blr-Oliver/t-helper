@@ -1,5 +1,5 @@
 import {multicast} from 'rxjs/operators';
-import {Observable, OperatorFunction, Subject, Subscriber} from 'rxjs';
+import {Observable, OperatorFunction, ReplaySubject, Subscriber} from 'rxjs';
 import {StreamSupplier} from './StreamSupplier';
 
 export class PipingStreamSupplier<T, R> implements StreamSupplier<T, R> {
@@ -16,9 +16,9 @@ export class PipingStreamSupplier<T, R> implements StreamSupplier<T, R> {
       this.requestFeed = subscriber;
     });
     const sourceStream = sourceOrigin.pipe(
-      multicast(new Subject())
+      multicast(new ReplaySubject(1))
     );
-    const resultStream = sourceStream.pipe(...operators, multicast(new Subject()));
+    const resultStream = sourceStream.pipe(...operators, multicast(new ReplaySubject(1)));
     sourceStream.connect();
     resultStream.connect();
     this.sourceStream = sourceStream;

@@ -19,7 +19,7 @@ export class GamesComponent implements OnInit {
 
   ngOnInit() {
     this.games$ = this.route.parent.paramMap.pipe(
-      switchMap(params => this.tournamentService.getTournament(params.get('id'))),
+      switchMap(params => this.tournamentService.get(params.get('id'))),
       map(t => t.schedule.games),
       map(function (allGames: GameSlotDTO[]): GameSlotDTO[][] {
         const sparsed = allGames.reduce(function (m: GameSlotDTO[][], game: GameSlotDTO) {

@@ -19,7 +19,7 @@ export class TournamentDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.tournament$ =
       this.route.paramMap.pipe(
-        switchMap(p => this.tournamentService.getTournament(p.get('id')))
+        switchMap(p => this.tournamentService.get(p.get('id')))
       );
   }
 }

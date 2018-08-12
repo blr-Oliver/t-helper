@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TournamentDTO} from '../model/dto/TournamentDTO';
 import {TournamentService} from '../service/tournament.service';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 
 @Component({
   templateUrl: './tournament-list.component.html'
@@ -15,6 +15,7 @@ export class TournamentListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tournaments$ = this.tournamentService.getTournaments();
+    // this.tournaments$ = this.tournamentService.getTournaments();
+    this.tournaments$ = of([]);
   }
 }
