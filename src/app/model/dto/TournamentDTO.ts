@@ -3,7 +3,7 @@ import {ScheduleDTO} from './ScheduleDTO';
 import {PlayerDTO} from './PlayerDTO';
 import {ProtocolDTO} from './ProtocolDTO';
 
-export class TournamentDTO extends DTO {
+export interface TournamentDTO extends DTO {
   sid: number; // schedule id;
   name: string;
   description?: string;
