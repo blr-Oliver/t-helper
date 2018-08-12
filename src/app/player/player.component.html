@@ -1,2 +1,4 @@
-<label [for]="'player-' + player.id + '-name'">{{player.slot}}</label>
-<input [id]="'player-' + player.id + '-name'" [(ngModel)]="player.name"/>
+<div [id]="player.slot">
+  <label [for]="'player-' + player.id + '-name'">{{player.slot}}</label>
+  <input [id]="'player-' + player.id + '-name'" [(ngModel)]="player.name"/>
+</div>

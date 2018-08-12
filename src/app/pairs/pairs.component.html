@@ -1,5 +1,5 @@
 <form class="form">
-  <div *ngFor="let pair of pairs$ | async" class="panel">
+  <div *ngFor="let pair of pairs$ | async">
     <player [player]="pair[0]"></player>
     <player [player]="pair[1]"></player>
   </div>
