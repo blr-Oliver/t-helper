@@ -26,7 +26,8 @@ const appRoutes: Routes = [
     children: [
       {path: 'players', component: PairsComponent},
       {path: 'games', component: GamesComponent},
-      {path: 'protocol/:tour/:table', component: ProtocolComponent}
+      {path: 'protocol/:tour/:table', component: ProtocolComponent},
+      {path: 'protocol', component: ProtocolComponent}
     ]
   },
   {path: '', redirectTo: '/tournaments', pathMatch: 'full'}
