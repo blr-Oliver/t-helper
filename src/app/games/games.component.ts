@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {TournamentService} from '../service/tournament.service';
 import {Observable} from 'rxjs';
 import {GameSlotDTO} from '../model/dto/GameSlotDTO';
-import {map, switchMap} from 'rxjs/operators';
+import {map, mergeMap} from 'rxjs/operators';
 
 @Component({
   templateUrl: './games.component.html',
@@ -19,7 +19,7 @@ export class GamesComponent implements OnInit {
 
   ngOnInit() {
     this.games$ = this.route.parent.paramMap.pipe(
-      switchMap(params => this.tournamentService.get(params.get('id'))),
+      mergeMap(params => this.tournamentService.get(params.get('id'))),
       map(t => t.schedule.games),
       map(function (allGames: GameSlotDTO[]): GameSlotDTO[][] {
         const sparsed = allGames.reduce(function (m: GameSlotDTO[][], game: GameSlotDTO) {
