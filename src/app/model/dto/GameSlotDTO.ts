@@ -1,5 +1,5 @@
 import {PlayerSlot} from './PlayerSlot';
-import {Seating} from '../Game';
+import {Seating} from '../Seating';
 import {Position} from '../Position';
 import {DTO} from './DTO';
 

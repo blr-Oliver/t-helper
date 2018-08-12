@@ -1,9 +1,10 @@
 import {Protocol} from './Protocol';
-import {Game, Seating} from './Game';
+import {Game} from './Game';
 import {Tournament} from './Tournament';
 import {Suit} from './Suit';
 import {PairPosition} from './PairPosition';
 import {Position} from './Position';
+import {Seating} from './Seating';
 
 export interface ProtocolEntity {
   id: number;

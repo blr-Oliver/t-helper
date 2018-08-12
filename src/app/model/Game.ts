@@ -4,13 +4,8 @@ import {Protocol} from './Protocol';
 import {PairPosition} from './PairPosition';
 import {Pair, PairRepository} from './Pair';
 import {Tournament} from './Tournament';
+import {Seating} from './Seating';
 
-export interface Seating<T> {
-  [Position.N]: T;
-  [Position.E]: T;
-  [Position.S]: T;
-  [Position.W]: T;
-}
 export interface GameSchedule {
   tour: number;
   table: number;
