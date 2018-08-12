@@ -20,9 +20,9 @@ import {TournamentDetailsComponent} from './tournaments/tournament-details.compo
 import {HttpTournamentLoader} from './service/tournament-loader.service';
 
 const appRoutes: Routes = [
-  {path: 'tournaments', component: TournamentListComponent},
+  {path: '', pathMatch: 'full', component: TournamentListComponent},
   {
-    path: 'tournament/:id',
+    path: ':id',
     children: [
       {path: '', pathMatch: 'full', component: TournamentDetailsComponent},
       {path: 'players', component: PairsComponent},
@@ -30,8 +30,7 @@ const appRoutes: Routes = [
       {path: 'protocol/:tour/:table', component: ProtocolComponent},
       {path: 'protocol', component: ProtocolComponent}
     ]
-  },
-  {path: '', redirectTo: '/tournaments', pathMatch: 'full'}
+  }
 ];
 
 @NgModule({

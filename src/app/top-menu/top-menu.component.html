@@ -1,9 +1,9 @@
 <ul>
-  <li><a [routerLink]="['/tournaments']">Все турниры</a></li>
+  <li><a [routerLink]="['/']">Все турниры</a></li>
   <ng-container *ngIf="tournamentId$ | async as tid">
-    <li><a [routerLink]="['/tournament', tid]">Обзор</a></li>
-    <li><a [routerLink]="['/tournament', tid, 'players']">Участники</a></li>
-    <li><a [routerLink]="['/tournament', tid, 'games']">Расписание</a></li>
-    <li><a [routerLink]="['/tournament', tid, 'protocol']">Игры</a></li>
+    <li><a [routerLink]="['/', tid]">Обзор</a></li>
+    <li><a [routerLink]="['/', tid, 'players']">Участники</a></li>
+    <li><a [routerLink]="['/', tid, 'games']">Расписание</a></li>
+    <li><a [routerLink]="['/', tid, 'protocol']">Игры</a></li>
   </ng-container>
 </ul>
