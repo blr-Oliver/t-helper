@@ -10,7 +10,7 @@ import {PairsComponent} from './pairs/pairs.component';
 import {ScheduleComponent} from './schedule/schedule.component';
 import {DuelsComponent} from './duels/duels.component';
 import {StandingsComponent} from './standings/standings.component';
-import {PlayerComponent} from './player/player.component';
+import {PlayerComponent} from './pairs/player/player.component';
 import {ProtocolComponent} from './protocol/protocol.component';
 import {ContractComponent} from './protocol/contract/contract.component';
 import {TricksComponent} from './protocol/tricks/tricks.component';

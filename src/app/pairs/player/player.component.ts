@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PlayerDTO} from '../model/dto/PlayerDTO';
+import {PlayerDTO} from '../../model/dto/PlayerDTO';
 
 @Component({
   selector: 'player',
