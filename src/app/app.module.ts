@@ -31,6 +31,7 @@ const appRoutes: Routes = [
       {path: 'protocol/:partial', redirectTo: 'protocol/1/1'},
       {path: 'protocol', redirectTo: 'protocol/1/1'},
       {path: 'duels', component: DuelsComponent},
+      {path: 'standings', component: StandingsComponent},
     ]
   }
 ];
