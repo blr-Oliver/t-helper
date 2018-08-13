@@ -3,19 +3,19 @@
     <div class="protocol-frame">
       <div class="protocol-cell north">
         <div class="position-mark" [ngClass]="{'dealer': game.dealer === 'N'}">N</div>
-        <div class="name-box">{{game.players['N'].name}}</div>
+        <div class="name-box">{{game.players['N'].name || game.players['N'].slot}}</div>
       </div>
       <div class="protocol-cell east">
         <div class="position-mark" [ngClass]="{'dealer': game.dealer === 'E'}">E</div>
-        <div class="name-box">{{game.players['E'].name}}</div>
+        <div class="name-box">{{game.players['E'].name || game.players['E'].slot}}</div>
       </div>
       <div class="protocol-cell south">
         <div class="position-mark" [ngClass]="{'dealer': game.dealer === 'S'}">S</div>
-        <div class="name-box">{{game.players['S'].name}}</div>
+        <div class="name-box">{{game.players['S'].name || game.players['S'].slot}}</div>
       </div>
       <div class="protocol-cell west">
         <div class="position-mark" [ngClass]="{'dealer': game.dealer === 'W'}">W</div>
-        <div class="name-box">{{game.players['W'].name}}</div>
+        <div class="name-box">{{game.players['W'].name || game.players['W'].slot}}</div>
       </div>
       <div class="protocol-cell center legend">
         <div class="header">
