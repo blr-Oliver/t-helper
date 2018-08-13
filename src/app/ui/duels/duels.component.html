@@ -2,15 +2,17 @@
   <thead>
   <tr>
     <th></th>
-    <th *ngFor="let pair of tournament.pairs">{{pair.id}}</th>
+    <th *ngFor="let pair of tournament.pairs">{{pair.name}}</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let pairTotal of tournament.duels; let pairIdx = index">
-    <th>{{tournament.pairs[pairIdx].id}}</th>
-    <td *ngFor="let pairDuels of pairTotal" [ngClass]="{'self': !pairDuels}">
+  <tr *ngFor="let pairTotal of tournament.duels; let i = index">
+    <th>{{tournament.pairs[i].name}}</th>
+    <td *ngFor="let pairDuels of pairTotal" [class.self]="!pairDuels">
       <ul *ngIf="pairDuels">
-        <li *ngFor="let duel of pairDuels">{{duel.deal}}@{{duel.position}}</li>
+        <li *ngFor="let duel of pairDuels">
+          at {{duel.position}} in {{duel.deal}}: {{duel.scores[duel.getPairIndex(tournament.pairs[i])]}}
+        </li>
       </ul>
     </td>
   </tr>
