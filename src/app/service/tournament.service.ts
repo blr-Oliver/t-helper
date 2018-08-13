@@ -4,6 +4,7 @@ import {TournamentLoader} from './tournament-loader.service';
 import {PipingStreamSupplier} from './PipingStreamSupplier';
 import {map, switchMap} from 'rxjs/operators';
 import {Tournament} from '../model/Tournament';
+import {TournamentDTO} from '../model/dto/TournamentDTO';
 
 @Injectable()
 export class TournamentService {
@@ -26,5 +27,9 @@ export class TournamentService {
 
   get(id: number | string): Observable<Tournament> {
     return this.streamSupplier.getResultStream(+id);
+  }
+
+  getAll(): Observable<TournamentDTO[]> {
+    return this.loader.getAll();
   }
 }

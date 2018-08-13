@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {TournamentService} from '../../service/tournament.service';
-import {Observable, of} from 'rxjs';
-import {ExpandedTournamentDTO} from '../../model/dto/TournamentDTO';
+import {Observable} from 'rxjs';
+import {TournamentDTO} from '../../model/dto/TournamentDTO';
 
 @Component({
   templateUrl: './tournament-list.component.html'
 })
 export class TournamentListComponent implements OnInit {
-  tournaments$: Observable<ExpandedTournamentDTO[]>;
+  tournaments$: Observable<TournamentDTO[]>;
 
   constructor(
     private tournamentService: TournamentService
@@ -15,7 +15,6 @@ export class TournamentListComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.tournaments$ = this.tournamentService.getTournaments();
-    this.tournaments$ = of([]);
+    this.tournaments$ = this.tournamentService.getAll();
   }
 }
