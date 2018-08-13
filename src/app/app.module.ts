@@ -28,7 +28,8 @@ const appRoutes: Routes = [
       {path: 'players', component: PairsComponent},
       {path: 'games', component: ScheduleComponent},
       {path: 'protocol/:tour/:table', component: ProtocolComponent},
-      {path: 'protocol', component: ProtocolComponent}
+      {path: 'protocol/:partial', redirectTo: 'protocol/1/1'},
+      {path: 'protocol', redirectTo: 'protocol/1/1'}
     ]
   }
 ];

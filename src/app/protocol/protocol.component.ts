@@ -18,13 +18,17 @@ export class ProtocolComponent implements OnInit {
   }
 
   ngOnInit() {
+    let tour = 1, table = 1;
     this.protocol$ = zip(this.route.parent.paramMap, this.route.paramMap).pipe(
       tap((twoMaps) => this.tournamentService.get(twoMaps[0].get('id'))),
       map(twoMaps => twoMaps[1]),
-      tap(params => this.gameId = `game-${params.get('tour')}-${params.get('table')}`),
-      mergeMap(params => this.tournamentService.getCurrent().pipe(
-        map(t => t.games[+params.get('tour') - 1][+params.get('table') - 1]))
-      )
+      mergeMap(params => {
+        tour = +params.get('tour') || tour;
+        table = +params.get('table') || table;
+        this.gameId = `game-${tour}-${table}`;
+        return this.tournamentService.getCurrent();
+      }),
+      map(t => t.games[tour - 1][table - 1])
     );
   }
 }
