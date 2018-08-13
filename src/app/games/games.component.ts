@@ -6,8 +6,7 @@ import {map, mergeMap} from 'rxjs/operators';
 import {GameEntity} from '../model/entity/GameEntity';
 
 @Component({
-  templateUrl: './games.component.html',
-  styleUrls: ['./games.component.scss']
+  templateUrl: './games.component.html'
 })
 export class GamesComponent implements OnInit {
   games$: Observable<GameEntity[][]>;
