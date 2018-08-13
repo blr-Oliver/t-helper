@@ -16,7 +16,7 @@ export class ProtocolEntity {
   }
 }
 
-class Contract {
+export class Contract {
   private readonly data: ProtocolDTO;
 
   constructor(data: ProtocolDTO) {
@@ -46,7 +46,7 @@ class Contract {
   }
 }
 
-class Tricks {
+export class Tricks {
   private readonly data: ProtocolDTO;
 
   constructor(data: ProtocolDTO) {
