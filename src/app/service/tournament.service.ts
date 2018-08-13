@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 import {TournamentLoader} from './tournament-loader.service';
 import {PipingStreamSupplier} from './PipingStreamSupplier';
 import {map, switchMap} from 'rxjs/operators';
-import {TournamentEntity} from '../model/entity/TournamentEntity';
+import {TournamentEntity} from '../model/TournamentEntity';
 
 @Injectable()
 export class TournamentService {

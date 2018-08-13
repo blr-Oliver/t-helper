@@ -1,7 +1,7 @@
 import {PairPosition} from './PairPosition';
 import {MaxTournamentScoring} from './TournamentScoring';
-import {GameEntity} from './entity/GameEntity';
-import {PairEntity} from './entity/PairEntity';
+import {GameEntity} from './GameEntity';
+import {PairEntity} from './PairEntity';
 
 export class Duel {
   readonly deal: number;

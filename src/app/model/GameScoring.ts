@@ -1,5 +1,5 @@
 import {PairPosition} from './PairPosition';
-import {ProtocolEntity} from './entity/ProtocolEntity';
+import {ProtocolEntity} from './ProtocolEntity';
 
 export interface GameScoring {
   readonly name: string;

@@ -1,5 +1,5 @@
-import {ScheduleDTO} from '../dto/ScheduleDTO';
-import {PlayerSlot} from '../dto/PlayerSlot';
+import {ScheduleDTO} from './dto/ScheduleDTO';
+import {PlayerSlot} from './dto/PlayerSlot';
 
 export class ScheduleEntity {
   readonly data: ScheduleDTO;

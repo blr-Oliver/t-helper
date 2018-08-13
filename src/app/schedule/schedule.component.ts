@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {TournamentService} from '../service/tournament.service';
 import {Observable} from 'rxjs';
 import {map, mergeMap} from 'rxjs/operators';
-import {GameEntity} from '../model/entity/GameEntity';
+import {GameEntity} from '../model/GameEntity';
 
 @Component({
   templateUrl: './schedule.component.html'

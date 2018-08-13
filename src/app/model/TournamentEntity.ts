@@ -1,11 +1,11 @@
-import {ExpandedTournamentDTO} from '../dto/TournamentDTO';
+import {ExpandedTournamentDTO} from './dto/TournamentDTO';
 import {PairEntity} from './PairEntity';
 import {ScheduleEntity} from './ScheduleEntity';
 import {GameEntity, PairMap, PlayerMap} from './GameEntity';
 import {PlayerEntity} from './PlayerEntity';
-import {GameSlotDTO} from '../dto/GameSlotDTO';
-import {Duel} from '../Duel';
-import {PairPosition} from '../PairPosition';
+import {GameSlotDTO} from './dto/GameSlotDTO';
+import {Duel} from './Duel';
+import {PairPosition} from './PairPosition';
 
 export class TournamentEntity {
   readonly data: ExpandedTournamentDTO;

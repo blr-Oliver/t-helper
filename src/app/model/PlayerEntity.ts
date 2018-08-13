@@ -1,5 +1,5 @@
-import {PlayerDTO} from '../dto/PlayerDTO';
-import {PlayerSlot} from '../dto/PlayerSlot';
+import {PlayerDTO} from './dto/PlayerDTO';
+import {PlayerSlot} from './dto/PlayerSlot';
 
 export class PlayerEntity {
   private readonly data: PlayerDTO;

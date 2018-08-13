@@ -1,13 +1,13 @@
-import {GameSlotDTO} from '../dto/GameSlotDTO';
-import {Position} from '../Position';
-import {UnmodifiableSeating} from '../Seating';
-import {PairPosition} from '../PairPosition';
+import {GameSlotDTO} from './dto/GameSlotDTO';
+import {Position} from './Position';
+import {UnmodifiableSeating} from './Seating';
+import {PairPosition} from './PairPosition';
 import {PairEntity} from './PairEntity';
 import {PlayerEntity} from './PlayerEntity';
 import {ProtocolEntity} from './ProtocolEntity';
-import {ProtocolDTO} from '../dto/ProtocolDTO';
-import {PairSeating} from '../PairSeating';
-import {ProgressiveGameScoring} from '../GameScoring';
+import {ProtocolDTO} from './dto/ProtocolDTO';
+import {PairSeating} from './PairSeating';
+import {ProgressiveGameScoring} from './GameScoring';
 
 export type PairMap = {
   [name: string]: PairEntity;

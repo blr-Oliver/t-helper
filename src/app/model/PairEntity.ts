@@ -1,5 +1,5 @@
 import {PlayerEntity} from './PlayerEntity';
-import {PlayerSlot} from '../dto/PlayerSlot';
+import {PlayerSlot} from './dto/PlayerSlot';
 
 export class PairEntity {
   readonly name: string;

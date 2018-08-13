@@ -1,4 +1,4 @@
-import {PairEntity} from './entity/PairEntity';
+import {PairEntity} from './PairEntity';
 
 export interface StandingsRecord {
   pair: PairEntity;

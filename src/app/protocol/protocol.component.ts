@@ -3,7 +3,7 @@ import {Observable, zip} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {TournamentService} from '../service/tournament.service';
 import {map, mergeMap, tap} from 'rxjs/operators';
-import {GameEntity} from '../model/entity/GameEntity';
+import {GameEntity} from '../model/GameEntity';
 
 @Component({
   templateUrl: './protocol.component.html'

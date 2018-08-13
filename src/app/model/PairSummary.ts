@@ -1,8 +1,8 @@
 import {MaxTournamentScoring} from './TournamentScoring';
 import {StandingsRecord} from './Standings';
-import {PairEntity} from './entity/PairEntity';
+import {PairEntity} from './PairEntity';
 import {Duel} from './Duel';
-import {GameEntity} from './entity/GameEntity';
+import {GameEntity} from './GameEntity';
 
 export class PairSummary implements StandingsRecord {
   readonly pair: PairEntity;

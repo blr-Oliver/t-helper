@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TournamentService} from '../service/tournament.service';
 import {ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs';
-import {TournamentEntity} from '../model/entity/TournamentEntity';
+import {TournamentEntity} from '../model/TournamentEntity';
 import {map, mergeMap} from 'rxjs/operators';
 
 @Component({

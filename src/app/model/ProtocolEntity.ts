@@ -1,6 +1,6 @@
-import {ProtocolDTO} from '../dto/ProtocolDTO';
-import {Suit} from '../Suit';
-import {PairPosition} from '../PairPosition';
+import {ProtocolDTO} from './dto/ProtocolDTO';
+import {Suit} from './Suit';
+import {PairPosition} from './PairPosition';
 
 export class ProtocolEntity {
   readonly contract: Contract;

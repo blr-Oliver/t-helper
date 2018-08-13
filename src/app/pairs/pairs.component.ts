@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 import {TournamentService} from '../service/tournament.service';
 import {ActivatedRoute} from '@angular/router';
 import {map, mergeMap} from 'rxjs/operators';
-import {PairEntity} from '../model/entity/PairEntity';
+import {PairEntity} from '../model/PairEntity';
 
 @Component({
   templateUrl: './pairs.component.html',

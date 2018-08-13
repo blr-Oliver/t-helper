@@ -1,8 +1,8 @@
 import {crossPosition} from './PairPosition';
 import {Duel} from './Duel';
-import {PairEntity} from './entity/PairEntity';
-import {GameEntity} from './entity/GameEntity';
-import {ProtocolEntity} from './entity/ProtocolEntity';
+import {PairEntity} from './PairEntity';
+import {GameEntity} from './GameEntity';
+import {ProtocolEntity} from './ProtocolEntity';
 
 export interface TournamentScoring {
   duelScore(duel: Duel, pair: PairEntity): number;

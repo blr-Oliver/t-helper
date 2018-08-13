@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Contract} from '../../model/entity/ProtocolEntity';
+import {Contract} from '../../model/ProtocolEntity';
 
 @Component({
   selector: 'contract',
