@@ -6,6 +6,8 @@ import {Player} from './Player';
 import {GameSlotDTO} from './dto/GameSlotDTO';
 import {Duel} from './Duel';
 import {PairPosition} from './PairPosition';
+import {Standings} from './Standings';
+import {PairSummary} from './PairSummary';
 
 export class Tournament {
   readonly data: ExpandedTournamentDTO;
@@ -13,6 +15,7 @@ export class Tournament {
   readonly schedule: Schedule;
   readonly games: Game[][];
   readonly duels: Duel[][][];
+  readonly standings: Standings;
 
   constructor(data: ExpandedTournamentDTO) {
     this.data = data;
@@ -26,6 +29,9 @@ export class Tournament {
     const allGames: Game[] = data.protocols.map(p => Game.create(allGameSlots[p.gid], p, allPairs, allPlayers));
     this.games = Tournament.asGameTable(allGames);
     this.duels = Tournament.initDuels(allGames, this.pairs);
+    this.standings = new Standings(
+      this.pairs.map((pair, i) => new PairSummary(pair, [].concat(...this.duels[i])))
+    );
   }
 
   get name(): string { return this.data.name; }

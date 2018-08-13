@@ -1,19 +1,21 @@
-<button (click)="standings.recompute()">Обновить</button>
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th>Место</th>
-    <th>Пара</th>
-    <th>Очки дуэлей</th>
-    <th>Бонус</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let record of standings.records">
-    <td>{{record.rank}}</td>
-    <td>{{record.pair.name}}</td>
-    <td>{{record.duelScore}}</td>
-    <td>{{record.bonusScore}}</td>
-  </tr>
-  </tbody>
-</table>
+<ng-container *ngIf="standings$ | async as standings">
+  <button (click)="standings.recompute()">Обновить</button>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Место</th>
+      <th>Пара</th>
+      <th>Очки дуэлей</th>
+      <th>Бонус</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let record of standings.records">
+      <td>{{record.rank}}</td>
+      <td>{{record.pair.name}}</td>
+      <td>{{record.duelScore}}</td>
+      <td>{{record.bonusScore}}</td>
+    </tr>
+    </tbody>
+  </table>
+</ng-container>
