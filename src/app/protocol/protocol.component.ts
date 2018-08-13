@@ -6,8 +6,7 @@ import {map, mergeMap} from 'rxjs/operators';
 import {GameEntity} from '../model/entity/GameEntity';
 
 @Component({
-  templateUrl: './protocol.component.html',
-  styleUrls: ['./protocol.component.scss']
+  templateUrl: './protocol.component.html'
 })
 export class ProtocolComponent implements OnInit {
   protocol$: Observable<GameEntity>;
