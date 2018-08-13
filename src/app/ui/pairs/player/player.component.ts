@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PlayerDTO} from '../../../model/dto/PlayerDTO';
+import {Player} from '../../../model/Player';
 
 @Component({
   selector: 'player',
@@ -7,7 +7,7 @@ import {PlayerDTO} from '../../../model/dto/PlayerDTO';
   styleUrls: ['./player.component.scss']
 })
 export class PlayerComponent implements OnInit {
-  @Input() player: PlayerDTO;
+  @Input() player: Player;
 
   ngOnInit() {
   }
