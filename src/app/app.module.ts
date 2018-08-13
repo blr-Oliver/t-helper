@@ -7,7 +7,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {TopMenuComponent} from './top-menu/top-menu.component';
 import {PairsComponent} from './pairs/pairs.component';
-import {GamesComponent} from './games/games.component';
+import {ScheduleComponent} from './schedule/schedule.component';
 import {DuelsComponent} from './duels/duels.component';
 import {StandingsComponent} from './standings/standings.component';
 import {PlayerComponent} from './player/player.component';
@@ -26,7 +26,7 @@ const appRoutes: Routes = [
     children: [
       {path: '', pathMatch: 'full', component: TournamentDetailsComponent},
       {path: 'players', component: PairsComponent},
-      {path: 'games', component: GamesComponent},
+      {path: 'games', component: ScheduleComponent},
       {path: 'protocol/:tour/:table', component: ProtocolComponent},
       {path: 'protocol', component: ProtocolComponent}
     ]
@@ -40,7 +40,7 @@ const appRoutes: Routes = [
     TournamentListComponent,
     TournamentDetailsComponent,
     PairsComponent,
-    GamesComponent,
+    ScheduleComponent,
     DuelsComponent,
     StandingsComponent,
     PlayerComponent,
