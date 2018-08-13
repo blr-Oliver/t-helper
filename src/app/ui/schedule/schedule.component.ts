@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {TournamentService} from '../service/tournament.service';
+import {TournamentService} from '../../service/tournament.service';
 import {Observable} from 'rxjs';
 import {map, mergeMap} from 'rxjs/operators';
-import {Game} from '../model/Game';
+import {Game} from '../../model/Game';
 
 @Component({
   templateUrl: './schedule.component.html'

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
-import {TournamentService} from '../service/tournament.service';
+import {TournamentService} from '../../service/tournament.service';
 import {ActivatedRoute} from '@angular/router';
 import {map, mergeMap} from 'rxjs/operators';
-import {Pair} from '../model/Pair';
+import {Pair} from '../../model/Pair';
 
 @Component({
   templateUrl: './pairs.component.html',

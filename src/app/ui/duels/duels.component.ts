@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {TournamentService} from '../service/tournament.service';
 import {ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs';
-import {Tournament} from '../model/Tournament';
 import {map, mergeMap} from 'rxjs/operators';
+import {Tournament} from '../../model/Tournament';
+import {TournamentService} from '../../service/tournament.service';
 
 @Component({
   templateUrl: './duels.component.html'

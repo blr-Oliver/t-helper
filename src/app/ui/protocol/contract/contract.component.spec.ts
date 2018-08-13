@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 
 import {ContractComponent} from './contract.component';
-import {Contract} from '../../model/Protocol';
+import {Contract} from '../../../model/Protocol';
 
 describe('ContractComponent', () => {
   let component: ContractComponent;

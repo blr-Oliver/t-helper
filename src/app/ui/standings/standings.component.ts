@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Standings} from '../model/Standings';
+import {Standings} from '../../model/Standings';
 
 @Component({
   selector: '[data-standings]',

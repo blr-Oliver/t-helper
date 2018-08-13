@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TournamentService} from '../service/tournament.service';
+import {TournamentService} from '../../service/tournament.service';
 import {Observable} from 'rxjs';
 
 @Component({

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable, zip} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
-import {TournamentService} from '../service/tournament.service';
+import {TournamentService} from '../../service/tournament.service';
 import {map, mergeMap, tap} from 'rxjs/operators';
-import {Game} from '../model/Game';
+import {Game} from '../../model/Game';
 
 @Component({
   templateUrl: './protocol.component.html'

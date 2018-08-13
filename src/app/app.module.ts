@@ -5,19 +5,19 @@ import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
-import {TopMenuComponent} from './top-menu/top-menu.component';
-import {PairsComponent} from './pairs/pairs.component';
-import {ScheduleComponent} from './schedule/schedule.component';
-import {DuelsComponent} from './duels/duels.component';
-import {StandingsComponent} from './standings/standings.component';
-import {PlayerComponent} from './pairs/player/player.component';
-import {ProtocolComponent} from './protocol/protocol.component';
-import {ContractComponent} from './protocol/contract/contract.component';
-import {TricksComponent} from './protocol/tricks/tricks.component';
-import {TournamentListComponent} from './tournaments/tournament-list.component';
+import {TopMenuComponent} from './ui/top-menu/top-menu.component';
+import {PairsComponent} from './ui/pairs/pairs.component';
+import {ScheduleComponent} from './ui/schedule/schedule.component';
+import {StandingsComponent} from './ui/standings/standings.component';
+import {PlayerComponent} from './ui/pairs/player/player.component';
+import {ProtocolComponent} from './ui/protocol/protocol.component';
+import {ContractComponent} from './ui/protocol/contract/contract.component';
+import {TricksComponent} from './ui/protocol/tricks/tricks.component';
+import {TournamentListComponent} from './ui/tournaments/tournament-list.component';
 import {TournamentService} from './service/tournament.service';
-import {TournamentDetailsComponent} from './tournaments/tournament-details.component';
+import {TournamentDetailsComponent} from './ui/tournaments/tournament-details.component';
 import {HttpTournamentLoader} from './service/tournament-loader.service';
+import {DuelsComponent} from './ui/duels/duels.component';
 
 const appRoutes: Routes = [
   {path: '', pathMatch: 'full', component: TournamentListComponent},
