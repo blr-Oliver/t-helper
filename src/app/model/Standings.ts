@@ -1,7 +1,7 @@
-import {Pair} from './Pair';
+import {PairEntity} from './entity/PairEntity';
 
 export interface StandingsRecord {
-  pair: Pair;
+  pair: PairEntity;
   duelScore: number;
   bonusScore: number;
   rank: number;
@@ -40,16 +40,16 @@ export namespace RecordComparators {
       b.duelScore - a.duelScore;
   };
   export const byDuelScore: RecordComparator = function (a: StandingsRecord, b: StandingsRecord): number {
-    return b.duelScore - a.duelScore || a.pair.idx - b.pair.idx;
+    return b.duelScore - a.duelScore || a.pair.name.localeCompare(b.pair.name);
   };
   export const byBonusScore: RecordComparator = function (a: StandingsRecord, b: StandingsRecord): number {
-    return b.bonusScore - a.bonusScore || a.pair.idx - b.pair.idx;
+    return b.bonusScore - a.bonusScore || a.pair.name.localeCompare(b.pair.name);
   };
   export const byRank: RecordComparator = function (a: StandingsRecord, b: StandingsRecord): number {
-    return a.rank - b.rank || a.pair.idx - b.pair.idx;
+    return a.rank - b.rank || a.pair.name.localeCompare(b.pair.name);
   };
   export const byPair: RecordComparator = function (a: StandingsRecord, b: StandingsRecord): number {
-    return a.pair.idx - b.pair.idx;
+    return a.pair.name.localeCompare(b.pair.name);
   };
   export const by: { [id: string]: RecordComparator } = {
     'score': byScore,
@@ -86,7 +86,7 @@ class CachingPairSummary implements StandingsRecord {
     return this._bonusScore;
   }
 
-  get pair(): Pair {
+  get pair(): PairEntity {
     return this.delegate.pair;
   }
 

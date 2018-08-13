@@ -7,6 +7,7 @@ import {PlayerEntity} from './PlayerEntity';
 import {ProtocolEntity} from './ProtocolEntity';
 import {ProtocolDTO} from '../dto/ProtocolDTO';
 import {PairSeating} from '../PairSeating';
+import {ProgressiveGameScoring} from '../GameScoring';
 
 export type PairMap = {
   [name: string]: PairEntity;
@@ -20,6 +21,7 @@ export class GameEntity {
   readonly pairs: PairSeating<PairEntity>;
   readonly players: UnmodifiableSeating<PlayerEntity>;
   readonly protocol: ProtocolEntity;
+  readonly points: GamePoints;
   private readonly gameSlot: GameSlotDTO;
 
   constructor(
@@ -32,6 +34,7 @@ export class GameEntity {
     this.protocol = new ProtocolEntity(protocol);
     this.pairs = pairs;
     this.players = players;
+    this.points = new GamePoints(this);
   }
 
   get tour(): number { return this.gameSlot.tour; }
@@ -61,5 +64,20 @@ export class GameEntity {
   getPosition(pair: PairEntity): PairPosition {
     if (this.pairs[PairPosition.NS] === pair) return PairPosition.NS;
     if (this.pairs[PairPosition.EW] === pair) return PairPosition.EW;
+  }
+}
+
+export class GamePoints {
+  private readonly _enclosed: GameEntity;
+
+  constructor(enclosed: GameEntity) {
+    this._enclosed = enclosed;
+  }
+
+  get [PairPosition.NS] () {
+    return ProgressiveGameScoring.instance.compute(this._enclosed.protocol, PairPosition.NS);
+  }
+  get [PairPosition.EW] () {
+    return ProgressiveGameScoring.instance.compute(this._enclosed.protocol, PairPosition.EW);
   }
 }

@@ -1,6 +1,4 @@
-import {Protocol} from './Protocol';
-import {Game} from './Game';
-import {Tournament} from './Tournament';
+/*
 import {Suit} from './Suit';
 import {PairPosition} from './PairPosition';
 import {Position} from './Position';
@@ -107,11 +105,9 @@ export class IndexedDBSerializer {
   static createDatabase(event: IDBVersionChangeEvent): IDBDatabase {
     const db: IDBDatabase = (<IDBOpenDBRequest> event.currentTarget).result;
     if (event.oldVersion < 1) {
-      /*const tournamentStore = */
       db.createObjectStore('tournament', {keyPath: 'id', autoIncrement: true});
       const gameStore = db.createObjectStore('game', {keyPath: 'id', autoIncrement: true});
       gameStore.createIndex('tournament-id', 'tid', {unique: false});
-      /*const protocolStore = */
       db.createObjectStore('protocol', {keyPath: 'id', autoIncrement: false});
     }
     return db;
@@ -169,3 +165,4 @@ export class IndexedDBSerializer {
     });
   }
 }
+*/
