@@ -1,4 +1,4 @@
-<div *ngIf="protocol$ | async as game" class="protocol-wrap">
+<div *ngIf="game$ | async as game" class="protocol-wrap">
   <div class="protocol-sizer">
     <div class="protocol-frame">
       <div class="protocol-cell north">
@@ -22,8 +22,8 @@
           <h1><span>Тур {{game.tour}}</span>&nbsp;&nbsp;&nbsp;<span>Стол {{game.table}}</span></h1>
           <h2>Сдача {{game.deal}}</h2>
         </div>
-        <contract [contract]="game.protocol.contract" [gameId]="gameId"></contract>
-        <tricks [tricks]="game.protocol.tricks" [gameId]="gameId"></tricks>
+        <contract [contract]="game.protocol.contract" [gameId]="gameId" (update)="onUpdate(game, $event)"></contract>
+        <tricks [tricks]="game.protocol.tricks" [gameId]="gameId" (update)="onUpdate(game, $event)"></tricks>
       </div>
     </div>
   </div>

@@ -3,10 +3,12 @@ import {Suit} from './Suit';
 import {PairPosition} from './PairPosition';
 
 export class Protocol {
+  readonly data: ProtocolDTO;
   readonly contract: Contract;
   readonly tricks: Tricks;
 
   constructor(data: ProtocolDTO) {
+    this.data = data;
     this.contract = new Contract(data);
     this.tricks = new Tricks(data);
   }
