@@ -1,15 +1,15 @@
 import {MaxTournamentScoring} from './TournamentScoring';
 import {StandingsRecord} from './Standings';
-import {PairEntity} from './PairEntity';
+import {Pair} from './Pair';
 import {Duel} from './Duel';
-import {GameEntity} from './GameEntity';
+import {Game} from './Game';
 
 export class PairSummary implements StandingsRecord {
-  readonly pair: PairEntity;
+  readonly pair: Pair;
   readonly duels: Duel[];
-  readonly games: GameEntity[];
+  readonly games: Game[];
 
-  constructor(pair: PairEntity, duels: Duel[]) {
+  constructor(pair: Pair, duels: Duel[]) {
     this.pair = pair;
     this.duels = duels.filter(d => !!d);
     this.games = this.duels.map(duel => duel.games[duel.getPairIndex(pair)]);

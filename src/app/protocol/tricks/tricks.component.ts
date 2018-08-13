@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Tricks} from '../../model/ProtocolEntity';
+import {Tricks} from '../../model/Protocol';
 
 @Component({
   selector: 'tricks',

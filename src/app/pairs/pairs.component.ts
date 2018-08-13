@@ -3,14 +3,14 @@ import {Observable} from 'rxjs';
 import {TournamentService} from '../service/tournament.service';
 import {ActivatedRoute} from '@angular/router';
 import {map, mergeMap} from 'rxjs/operators';
-import {PairEntity} from '../model/PairEntity';
+import {Pair} from '../model/Pair';
 
 @Component({
   templateUrl: './pairs.component.html',
   styleUrls: ['./pairs.component.scss']
 })
 export class PairsComponent implements OnInit {
-  pairs$: Observable<PairEntity[]>;
+  pairs$: Observable<Pair[]>;
 
   constructor(
     private tournamentService: TournamentService,

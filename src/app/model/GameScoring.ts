@@ -1,16 +1,16 @@
 import {PairPosition} from './PairPosition';
-import {ProtocolEntity} from './ProtocolEntity';
+import {Protocol} from './Protocol';
 
 export interface GameScoring {
   readonly name: string;
-  compute(protocol: ProtocolEntity, owner: PairPosition): number;
+  compute(protocol: Protocol, owner: PairPosition): number;
 }
 
 export class ProgressiveGameScoring implements GameScoring {
   static instance: GameScoring = new ProgressiveGameScoring();
   name: 'Progressive scoring';
 
-  compute(protocol: ProtocolEntity, owner: PairPosition): number {
+  compute(protocol: Protocol, owner: PairPosition): number {
     const contract = protocol.contract;
     const tricks = protocol.tricks;
     if (contract.defined && tricks.defined) {

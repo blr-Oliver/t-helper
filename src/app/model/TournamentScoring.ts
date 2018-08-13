@@ -1,18 +1,18 @@
 import {crossPosition} from './PairPosition';
 import {Duel} from './Duel';
-import {PairEntity} from './PairEntity';
-import {GameEntity} from './GameEntity';
-import {ProtocolEntity} from './ProtocolEntity';
+import {Pair} from './Pair';
+import {Game} from './Game';
+import {Protocol} from './Protocol';
 
 export interface TournamentScoring {
-  duelScore(duel: Duel, pair: PairEntity): number;
-  gameScore(game: GameEntity, pair: PairEntity): number;
+  duelScore(duel: Duel, pair: Pair): number;
+  gameScore(game: Game, pair: Pair): number;
 }
 
 export class MaxTournamentScoring implements TournamentScoring {
   static instance: TournamentScoring = new MaxTournamentScoring();
 
-  duelScore(duel: Duel, pair: PairEntity): number {
+  duelScore(duel: Duel, pair: Pair): number {
     if (duel.defined) {
       const index = duel.getPairIndex(pair);
       const opIndex = 1 - index;
@@ -24,8 +24,8 @@ export class MaxTournamentScoring implements TournamentScoring {
     return 1;
   }
 
-  gameScore(game: GameEntity, pair: PairEntity): number {
-    const protocol: ProtocolEntity = game.protocol;
+  gameScore(game: Game, pair: Pair): number {
+    const protocol: Protocol = game.protocol;
     if (protocol.defined) {
       const position = game.getPosition(pair);
       if (protocol.contract.owner === position && protocol.contract.level >= 6 &&

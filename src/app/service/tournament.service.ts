@@ -3,16 +3,16 @@ import {Observable} from 'rxjs';
 import {TournamentLoader} from './tournament-loader.service';
 import {PipingStreamSupplier} from './PipingStreamSupplier';
 import {map, switchMap} from 'rxjs/operators';
-import {TournamentEntity} from '../model/TournamentEntity';
+import {Tournament} from '../model/Tournament';
 
 @Injectable()
 export class TournamentService {
-  private streamSupplier: PipingStreamSupplier<number, TournamentEntity>;
+  private streamSupplier: PipingStreamSupplier<number, Tournament>;
 
   constructor(@Inject('TournamentLoader') private loader: TournamentLoader) {
     this.streamSupplier = PipingStreamSupplier.create(
       switchMap(id => this.loader.getTournament(id)),
-      map(dto => new TournamentEntity(dto))
+      map(dto => new Tournament(dto))
     );
   }
 
@@ -20,11 +20,11 @@ export class TournamentService {
     return this.streamSupplier.getSourceStream();
   }
 
-  getCurrent(): Observable<TournamentEntity> {
+  getCurrent(): Observable<Tournament> {
     return this.streamSupplier.getResultStream();
   }
 
-  get(id: number | string): Observable<TournamentEntity> {
+  get(id: number | string): Observable<Tournament> {
     return this.streamSupplier.getResultStream(+id);
   }
 }

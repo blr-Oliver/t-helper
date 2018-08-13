@@ -1,7 +1,7 @@
 import {PlayerDTO} from './dto/PlayerDTO';
 import {PlayerSlot} from './dto/PlayerSlot';
 
-export class PlayerEntity {
+export class Player {
   private readonly data: PlayerDTO;
 
   constructor(data: PlayerDTO) {

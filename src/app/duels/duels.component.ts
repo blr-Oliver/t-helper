@@ -2,14 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {TournamentService} from '../service/tournament.service';
 import {ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs';
-import {TournamentEntity} from '../model/TournamentEntity';
+import {Tournament} from '../model/Tournament';
 import {map, mergeMap} from 'rxjs/operators';
 
 @Component({
   templateUrl: './duels.component.html'
 })
 export class DuelsComponent implements OnInit {
-  tournament$: Observable<TournamentEntity>;
+  tournament$: Observable<Tournament>;
 
   constructor(
     private tournamentService: TournamentService,

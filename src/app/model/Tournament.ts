@@ -1,17 +1,17 @@
 import {ExpandedTournamentDTO} from './dto/TournamentDTO';
-import {PairEntity} from './PairEntity';
-import {ScheduleEntity} from './ScheduleEntity';
-import {GameEntity, PairMap, PlayerMap} from './GameEntity';
-import {PlayerEntity} from './PlayerEntity';
+import {Pair} from './Pair';
+import {Schedule} from './Schedule';
+import {Game, PairMap, PlayerMap} from './Game';
+import {Player} from './Player';
 import {GameSlotDTO} from './dto/GameSlotDTO';
 import {Duel} from './Duel';
 import {PairPosition} from './PairPosition';
 
-export class TournamentEntity {
+export class Tournament {
   readonly data: ExpandedTournamentDTO;
-  readonly pairs: PairEntity[];
-  readonly schedule: ScheduleEntity;
-  readonly games: GameEntity[][];
+  readonly pairs: Pair[];
+  readonly schedule: Schedule;
+  readonly games: Game[][];
   readonly duels: Duel[][][];
 
   constructor(data: ExpandedTournamentDTO) {
@@ -20,12 +20,12 @@ export class TournamentEntity {
       allPlayers: PlayerMap = {},
       allPairs: PairMap = {},
       allGameSlots: {[id: number]: GameSlotDTO} = {};
-    this.pairs = TournamentEntity.collectPlayerInfo(data, allPlayers, allPairs);
-    this.schedule = new ScheduleEntity(data.schedule);
+    this.pairs = Tournament.collectPlayerInfo(data, allPlayers, allPairs);
+    this.schedule = new Schedule(data.schedule);
     data.schedule.games.reduce((hash, game) => (hash[game.id] = game, hash), allGameSlots);
-    const allGames: GameEntity[] = data.protocols.map( p => GameEntity.create(allGameSlots[p.gid], p, allPairs, allPlayers));
-    this.games = TournamentEntity.asGameTable(allGames);
-    this.duels = TournamentEntity.initDuels(allGames, this.pairs);
+    const allGames: Game[] = data.protocols.map(p => Game.create(allGameSlots[p.gid], p, allPairs, allPlayers));
+    this.games = Tournament.asGameTable(allGames);
+    this.duels = Tournament.initDuels(allGames, this.pairs);
   }
 
   get name(): string { return this.data.name; }
@@ -39,23 +39,23 @@ export class TournamentEntity {
   get status(): string { return this.data.status; }
   set status(value: string) { this.data.status = value; }
 
-  private static pairSorter = (a: PairEntity, b: PairEntity) => a.name.localeCompare(b.name);
+  private static pairSorter = (a: Pair, b: Pair) => a.name.localeCompare(b.name);
 
-  private static collectPlayerInfo(data: ExpandedTournamentDTO, allPlayers: PlayerMap, allPairs: PairMap): PairEntity[] {
+  private static collectPlayerInfo(data: ExpandedTournamentDTO, allPlayers: PlayerMap, allPairs: PairMap): Pair[] {
     data.players
-      .map(pData => new PlayerEntity(pData))
+      .map(pData => new Player(pData))
       .reduce((hash, player) => (hash[player.slot] = player, hash), allPlayers);
     const slots = data.schedule.players;
-    const pairList: PairEntity[] = [];
+    const pairList: Pair[] = [];
     for (let i = 0; i < slots.length; i += 2) {
-      const pair = new PairEntity(allPlayers[slots[i]], allPlayers[slots[i + 1]]);
+      const pair = new Pair(allPlayers[slots[i]], allPlayers[slots[i + 1]]);
       pairList.push(allPairs[pair.name] = pair);
     }
     return pairList.sort(this.pairSorter);
   }
 
-  private static asGameTable(allGames: GameEntity[]) {
-    const sparsed = allGames.reduce(function (m: GameEntity[][], game: GameEntity) {
+  private static asGameTable(allGames: Game[]) {
+    const sparsed = allGames.reduce(function (m: Game[][], game: Game) {
       const tour = game.tour, table = game.table;
       if (!(tour in m))
         m[tour] = [];
@@ -65,8 +65,8 @@ export class TournamentEntity {
     return sparsed.filter(row => row).map(row => row.filter(game => game));
   }
 
-  private static initDuels(allGames: GameEntity[], allPairs: PairEntity[]): Duel[][][] {
-    const dealMap: GameEntity[][] = allGames.reduce(function (gamesByDeal, game) {
+  private static initDuels(allGames: Game[], allPairs: Pair[]): Duel[][][] {
+    const dealMap: Game[][] = allGames.reduce(function (gamesByDeal, game) {
       if (!(game.deal in gamesByDeal)) {
         gamesByDeal[game.deal] = [];
       }

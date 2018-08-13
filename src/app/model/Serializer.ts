@@ -3,9 +3,9 @@ import {Suit} from './Suit';
 import {PairPosition} from './PairPosition';
 import {Position} from './Position';
 import {Seating} from './Seating';
-import {ProtocolEntity} from './ProtocolEntity';
-import {GameEntity} from './GameEntity';
-import {TournamentEntity} from './TournamentEntity';
+import {Protocol} from './Protocol';
+import {Game} from './Game';
+import {Tournament} from './Tournament';
 
 export interface ProtocolEntityEx {
   id: number;
@@ -32,8 +32,8 @@ export interface Converter<T, D> {
 }
 
 export class IndexedDBSerializer {
-  static PROTOCOL_CONVERTER: Converter<ProtocolEntity, ProtocolEntityEx> = {
-    serialize: function (p: ProtocolEntity): ProtocolEntityEx {
+  static PROTOCOL_CONVERTER: Converter<Protocol, ProtocolEntityEx> = {
+    serialize: function (p: Protocol): ProtocolEntityEx {
       const result: ProtocolEntityEx = {
         id: p.game.id
       };
@@ -48,7 +48,7 @@ export class IndexedDBSerializer {
       return result;
     },
 
-    deserialize: function (entity: ProtocolEntityEx, target?: ProtocolEntity): ProtocolEntity {
+    deserialize: function (entity: ProtocolEntityEx, target?: Protocol): Protocol {
       if ('id' in entity) {
         target.game.id = entity.id;
       }
@@ -68,8 +68,8 @@ export class IndexedDBSerializer {
     }
   };
 
-  static GAME_CONVERTER: Converter<GameEntity, GameEntityEx> = {
-    serialize: function (game: GameEntity): GameEntityEx {
+  static GAME_CONVERTER: Converter<Game, GameEntityEx> = {
+    serialize: function (game: Game): GameEntityEx {
       const result: GameEntityEx = {
         tid: game.tournament.id,
         tour: game.tour,
@@ -92,7 +92,7 @@ export class IndexedDBSerializer {
       return result;
     },
 
-    deserialize: function (entity: GameEntityEx, target?: GameEntity): GameEntity {
+    deserialize: function (entity: GameEntityEx, target?: Game): Game {
       // TODO
       target.id = entity.id;
       return target;
@@ -130,14 +130,14 @@ export class IndexedDBSerializer {
     });
   }
 
-  serializeProtocols(...protocols: ProtocolEntity[]): Promise<ProtocolEntity[]> {
+  serializeProtocols(...protocols: Protocol[]): Promise<Protocol[]> {
     return this.putAll('protocol', IndexedDBSerializer.PROTOCOL_CONVERTER, protocols);
   }
 
-  serializeTournament(tournament: TournamentEntity) {
+  serializeTournament(tournament: Tournament) {
   }
 
-  serializeGames(...games: GameEntity[]): Promise<GameEntity[]> {
+  serializeGames(...games: Game[]): Promise<Game[]> {
     return this.putAll('game', IndexedDBSerializer.GAME_CONVERTER, games);
   }
 

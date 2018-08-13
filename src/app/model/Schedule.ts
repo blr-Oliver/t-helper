@@ -1,7 +1,7 @@
 import {ScheduleDTO} from './dto/ScheduleDTO';
 import {PlayerSlot} from './dto/PlayerSlot';
 
-export class ScheduleEntity {
+export class Schedule {
   readonly data: ScheduleDTO;
 
   constructor(data: ScheduleDTO) {

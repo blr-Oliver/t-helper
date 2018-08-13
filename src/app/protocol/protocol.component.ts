@@ -3,13 +3,13 @@ import {Observable, zip} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {TournamentService} from '../service/tournament.service';
 import {map, mergeMap, tap} from 'rxjs/operators';
-import {GameEntity} from '../model/GameEntity';
+import {Game} from '../model/Game';
 
 @Component({
   templateUrl: './protocol.component.html'
 })
 export class ProtocolComponent implements OnInit {
-  protocol$: Observable<GameEntity>;
+  protocol$: Observable<Game>;
   gameId: string;
 
   constructor(

@@ -2,7 +2,7 @@ import {ProtocolDTO} from './dto/ProtocolDTO';
 import {Suit} from './Suit';
 import {PairPosition} from './PairPosition';
 
-export class ProtocolEntity {
+export class Protocol {
   readonly contract: Contract;
   readonly tricks: Tricks;
 

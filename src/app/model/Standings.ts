@@ -1,7 +1,7 @@
-import {PairEntity} from './PairEntity';
+import {Pair} from './Pair';
 
 export interface StandingsRecord {
-  pair: PairEntity;
+  pair: Pair;
   duelScore: number;
   bonusScore: number;
   rank: number;
@@ -86,7 +86,7 @@ class CachingPairSummary implements StandingsRecord {
     return this._bonusScore;
   }
 
-  get pair(): PairEntity {
+  get pair(): Pair {
     return this.delegate.pair;
   }
 
