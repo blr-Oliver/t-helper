@@ -1,17 +1,26 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Duel} from '../model/Duel';
-import {Pair} from '../model/Pair';
+import {Component, OnInit} from '@angular/core';
+import {TournamentService} from '../service/tournament.service';
+import {ActivatedRoute} from '@angular/router';
+import {Observable} from 'rxjs';
+import {TournamentEntity} from '../model/entity/TournamentEntity';
+import {map, mergeMap} from 'rxjs/operators';
 
 @Component({
-  selector: '[data-duels]',
-  templateUrl: './duels.component.html',
-  styleUrls: ['./duels.component.scss']
+  templateUrl: './duels.component.html'
 })
 export class DuelsComponent implements OnInit {
-  @Input() duels: Duel[][][];
-  @Input() pairs: Pair[];
+  tournament$: Observable<TournamentEntity>;
+
+  constructor(
+    private tournamentService: TournamentService,
+    private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
+    this.tournament$ = this.route.parent.paramMap.pipe(
+      map(params => params.get('id')),
+      mergeMap(id => this.tournamentService.get(id))
+    );
   }
 
 }

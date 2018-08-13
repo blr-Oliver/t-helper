@@ -1,13 +1,13 @@
-<table class="table table-striped">
+<table *ngIf="tournament$ | async as tournament">
   <thead>
   <tr>
     <th></th>
-    <th *ngFor="let pair of pairs">{{pair.id}}</th>
+    <th *ngFor="let pair of tournament.pairs">{{pair.id}}</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let pairTotal of duels; let pairIdx = index">
-    <th>{{pairs[pairIdx].id}}</th>
+  <tr *ngFor="let pairTotal of tournament.duels; let pairIdx = index">
+    <th>{{tournament.pairs[pairIdx].id}}</th>
     <td *ngFor="let pairDuels of pairTotal" [ngClass]="{'self': !pairDuels}">
       <ul *ngIf="pairDuels">
         <li *ngFor="let duel of pairDuels">{{duel.deal}}@{{duel.position}}</li>
