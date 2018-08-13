@@ -3,8 +3,11 @@ import {Suit} from './Suit';
 import {PairPosition} from './PairPosition';
 import {Position} from './Position';
 import {Seating} from './Seating';
+import {ProtocolEntity} from './ProtocolEntity';
+import {GameEntity} from './GameEntity';
+import {TournamentEntity} from './TournamentEntity';
 
-export interface ProtocolEntity {
+export interface ProtocolEntityEx {
   id: number;
   suit?: Suit;
   owner?: PairPosition;
@@ -12,7 +15,7 @@ export interface ProtocolEntity {
   tricks?: number;
 }
 
-export interface GameEntity {
+export interface GameEntityEx {
   id?: number;
   tour: number;
   table: number;
@@ -29,9 +32,9 @@ export interface Converter<T, D> {
 }
 
 export class IndexedDBSerializer {
-  static PROTOCOL_CONVERTER: Converter<Protocol, ProtocolEntity> = {
-    serialize: function (p: Protocol): ProtocolEntity {
-      const result: ProtocolEntity = {
+  static PROTOCOL_CONVERTER: Converter<ProtocolEntity, ProtocolEntityEx> = {
+    serialize: function (p: ProtocolEntity): ProtocolEntityEx {
+      const result: ProtocolEntityEx = {
         id: p.game.id
       };
       if (p.contract.defined) {
@@ -45,7 +48,7 @@ export class IndexedDBSerializer {
       return result;
     },
 
-    deserialize: function (entity: ProtocolEntity, target?: Protocol): Protocol {
+    deserialize: function (entity: ProtocolEntityEx, target?: ProtocolEntity): ProtocolEntity {
       if ('id' in entity) {
         target.game.id = entity.id;
       }
@@ -65,9 +68,9 @@ export class IndexedDBSerializer {
     }
   };
 
-  static GAME_CONVERTER: Converter<Game, GameEntity> = {
-    serialize: function (game: Game): GameEntity {
-      const result: GameEntity = {
+  static GAME_CONVERTER: Converter<GameEntity, GameEntityEx> = {
+    serialize: function (game: GameEntity): GameEntityEx {
+      const result: GameEntityEx = {
         tid: game.tournament.id,
         tour: game.tour,
         table: game.table,
@@ -89,7 +92,7 @@ export class IndexedDBSerializer {
       return result;
     },
 
-    deserialize: function (entity: GameEntity, target?: Game): Game {
+    deserialize: function (entity: GameEntityEx, target?: GameEntity): GameEntity {
       // TODO
       target.id = entity.id;
       return target;
@@ -127,14 +130,14 @@ export class IndexedDBSerializer {
     });
   }
 
-  serializeProtocols(...protocols: Protocol[]): Promise<Protocol[]> {
+  serializeProtocols(...protocols: ProtocolEntity[]): Promise<ProtocolEntity[]> {
     return this.putAll('protocol', IndexedDBSerializer.PROTOCOL_CONVERTER, protocols);
   }
 
-  serializeTournament(tournament: Tournament) {
+  serializeTournament(tournament: TournamentEntity) {
   }
 
-  serializeGames(...games: Game[]): Promise<Game[]> {
+  serializeGames(...games: GameEntity[]): Promise<GameEntity[]> {
     return this.putAll('game', IndexedDBSerializer.GAME_CONVERTER, games);
   }
 
