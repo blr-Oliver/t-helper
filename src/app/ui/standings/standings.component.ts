@@ -3,7 +3,7 @@ import {Standings} from '../../model/Standings';
 import {Observable} from 'rxjs';
 import {TournamentService} from '../../service/tournament.service';
 import {ActivatedRoute} from '@angular/router';
-import {map, mergeMap} from 'rxjs/operators';
+import {map, mergeMap, tap} from 'rxjs/operators';
 
 @Component({
   templateUrl: './standings.component.html',
@@ -21,7 +21,8 @@ export class StandingsComponent implements OnInit {
     this.standings$ = this.route.parent.paramMap.pipe(
       map(params => params.get('id')),
       mergeMap(id => this.tournamentService.get(id)),
-      map(t => t.standings)
+      map(t => t.standings),
+      tap(standings => standings.recompute())
     );
   }
 

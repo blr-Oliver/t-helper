@@ -24,9 +24,7 @@ export class Standings {
   setRanks(): void {
     this.records.sort(RecordComparators.byScore);
     this.records.reduce(function (rank, record, i, all) {
-      if (i && RecordComparators.byScore(record, all[i - 1])) {
-        rank++;
-      }
+      if (i && RecordComparators.byScore(record, all[i - 1])) rank++;
       return record.rank = rank;
     }, 1);
   }
