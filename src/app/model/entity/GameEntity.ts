@@ -57,4 +57,9 @@ export class GameEntity {
     };
     return new GameEntity(gameSlot, protocol, pairs, players);
   }
+
+  getPosition(pair: PairEntity): PairPosition {
+    if (this.pairs[PairPosition.NS] === pair) return PairPosition.NS;
+    if (this.pairs[PairPosition.EW] === pair) return PairPosition.EW;
+  }
 }
