@@ -9,7 +9,7 @@ export class Player {
   }
 
   get name(): string { return this.data.name; }
-  set name(value: string) { this.data.name = name; }
+  set name(value: string) { this.data.name = value; }
 
   get slot(): PlayerSlot { return this.data.slot; }
 
