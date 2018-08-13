@@ -4,12 +4,15 @@ import {ScheduleEntity} from './ScheduleEntity';
 import {GameEntity, PairMap, PlayerMap} from './GameEntity';
 import {PlayerEntity} from './PlayerEntity';
 import {GameSlotDTO} from '../dto/GameSlotDTO';
+import {Duel} from '../Duel';
+import {PairPosition} from '../PairPosition';
 
 export class TournamentEntity {
   readonly data: ExpandedTournamentDTO;
   readonly pairs: PairEntity[];
   readonly schedule: ScheduleEntity;
   readonly games: GameEntity[][];
+  readonly duels: Duel[][][];
 
   constructor(data: ExpandedTournamentDTO) {
     this.data = data;
@@ -22,6 +25,7 @@ export class TournamentEntity {
     data.schedule.games.reduce((hash, game) => (hash[game.id] = game, hash), allGameSlots);
     const allGames: GameEntity[] = data.protocols.map( p => GameEntity.create(allGameSlots[p.gid], p, allPairs, allPlayers));
     this.games = TournamentEntity.asGameTable(allGames);
+    this.duels = TournamentEntity.initDuels(allGames, this.pairs);
   }
 
   get name(): string { return this.data.name; }
@@ -36,6 +40,7 @@ export class TournamentEntity {
   set status(value: string) { this.data.status = value; }
 
   private static pairSorter = (a: PairEntity, b: PairEntity) => a.name.localeCompare(b.name);
+
   private static collectPlayerInfo(data: ExpandedTournamentDTO, allPlayers: PlayerMap, allPairs: PairMap): PairEntity[] {
     data.players
       .map(pData => new PlayerEntity(pData))
@@ -58,5 +63,37 @@ export class TournamentEntity {
       return m;
     }, []);
     return sparsed.filter(row => row).map(row => row.filter(game => game));
+  }
+
+  private static initDuels(allGames: GameEntity[], allPairs: PairEntity[]): Duel[][][] {
+    const dealMap: GameEntity[][] = allGames.reduce(function (gamesByDeal, game) {
+      if (!(game.deal in gamesByDeal)) {
+        gamesByDeal[game.deal] = [];
+      }
+      gamesByDeal[game.deal].push(game);
+      return gamesByDeal;
+    }, []);
+    const allDuels: Duel[] = [];
+    for (const dealGames of dealMap) {
+      if (!dealGames) continue;
+      for (let i = 0; i < dealGames.length; ++i) {
+        for (let j = i + 1; j < dealGames.length; ++j) {
+          allDuels.push(new Duel(dealGames[i], dealGames[j], PairPosition.NS));
+          allDuels.push(new Duel(dealGames[i], dealGames[j], PairPosition.EW));
+        }
+      }
+    }
+    const pairIndex: { [name: string]: number } = allPairs.reduce((hash, pair, i) => (hash[pair.name] = i, hash), {});
+    const pairCount = allPairs.length;
+    const duels: Duel[][][] = Array(...Array(pairCount)).map(() => Array(pairCount));
+    for (let i = 0; i < pairCount; ++i) {
+      for (let j = 0; j < pairCount; ++j) {
+        if (i !== j) duels[i][j] = duels[j][i] = [];
+      }
+    }
+    allDuels.forEach(function (duel) {
+      duels[pairIndex[duel.pairs[0].name]][pairIndex[duel.pairs[1].name]].push(duel);
+    });
+    return duels;
   }
 }
