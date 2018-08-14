@@ -11,7 +11,10 @@
     <tbody>
     <tr *ngFor="let record of standings.records">
       <td>{{record.rank}}</td>
-      <td>{{record.pair.name}}</td>
+      <td>
+        <span>{{record.pair[0].name || record.pair[0].slot}}</span>&nbsp;
+        <span>{{record.pair[1].name || record.pair[1].slot}}</span>
+      </td>
       <td>{{record.duelScore}}</td>
       <td>{{record.bonusScore}}</td>
     </tr>
