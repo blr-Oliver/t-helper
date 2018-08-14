@@ -1,24 +1,20 @@
 import {multicast} from 'rxjs/operators';
-import {Observable, OperatorFunction, ReplaySubject, Subscriber} from 'rxjs';
+import {ConnectableObservable, Observable, OperatorFunction, ReplaySubject, Subject} from 'rxjs';
 import {StreamSupplier} from './StreamSupplier';
 
 export class PipingStreamSupplier<T, R> implements StreamSupplier<T, R> {
 
   private lastRequest: T;
-  private requestFeed: Subscriber<T>;
+  private readonly requestFeed: Subject<T>;
   private readonly sourceStream: Observable<T>;
   private readonly resultStream: Observable<R>;
 
   protected constructor(...operators: OperatorFunction<any, any>[]) {
-    const sourceOrigin = Observable.create(subscriber => {
-      if (this.requestFeed)
-        throw new Error('Only single subscriber allowed for source origin');
-      this.requestFeed = subscriber;
-    });
-    const sourceStream = sourceOrigin.pipe(
+    this.requestFeed = new Subject<T>();
+    const sourceStream = <ConnectableObservable<T>> this.requestFeed.pipe(
       multicast(new ReplaySubject(1))
     );
-    const resultStream = sourceStream.pipe(...operators, multicast(new ReplaySubject(1)));
+    const resultStream = <ConnectableObservable<R>> sourceStream.pipe(...operators, multicast(new ReplaySubject(1)));
     sourceStream.connect();
     resultStream.connect();
     this.sourceStream = sourceStream;
