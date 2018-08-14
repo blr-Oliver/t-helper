@@ -10,7 +10,10 @@ export class UpdateManager {
 
   constructor() {
     this.subject = new Subject<UpdateEvent>();
-    this.stream = <ConnectableObservable<UpdateEvent>> this.subject.pipe(multicast(new Subject<UpdateEvent>()));
+    this.stream = <ConnectableObservable<UpdateEvent>> this.subject.pipe(
+      tap(update => console.log(update)),
+      multicast(new Subject<UpdateEvent>()),
+    );
     this.stream.connect();
   }
 
@@ -19,8 +22,6 @@ export class UpdateManager {
   }
 
   getStream(): Observable<UpdateEvent> {
-    return this.stream.pipe(
-      tap(update => console.log(update))
-    );
+    return this.stream;
   }
 }

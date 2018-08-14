@@ -1,10 +1,11 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable, zip} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {TournamentService} from '../../service/tournament.service';
 import {map, mergeMap, tap} from 'rxjs/operators';
 import {Game} from '../../model/Game';
 import {UpdateEvent} from '../../service/UpdateEvent';
+import {UpdateManager} from '../../service/UpdateManager';
 
 @Component({
   templateUrl: './protocol.component.html'
@@ -12,12 +13,11 @@ import {UpdateEvent} from '../../service/UpdateEvent';
 export class ProtocolComponent implements OnInit {
   game$: Observable<Game>;
   gameId: string;
-  @Output() update: EventEmitter<UpdateEvent>;
 
   constructor(
     private tournamentService: TournamentService,
-    private route: ActivatedRoute) {
-    this.update = new EventEmitter<UpdateEvent>(false);
+    private route: ActivatedRoute,
+    private updateManager: UpdateManager) {
   }
 
   ngOnInit() {
@@ -36,12 +36,11 @@ export class ProtocolComponent implements OnInit {
   }
 
   onUpdate(game: Game, change: UpdateEvent) {
-    const event: UpdateEvent = {
+    this.updateManager.registerUpdate({
       type: 'protocol',
       subject: game.protocol.data,
       property: change.type,
       currentValue: change.currentValue
-    };
-    this.update.emit(event);
+    });
   }
 }

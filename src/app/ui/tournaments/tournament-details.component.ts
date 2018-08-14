@@ -1,22 +1,21 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {TournamentService} from '../../service/tournament.service';
 import {mergeMap} from 'rxjs/operators';
 import {Tournament} from '../../model/Tournament';
-import {UpdateEvent} from '../../service/UpdateEvent';
+import {UpdateManager} from '../../service/UpdateManager';
 
 @Component({
   templateUrl: './tournament-details.component.html'
 })
 export class TournamentDetailsComponent implements OnInit {
   tournament$: Observable<Tournament>;
-  @Output() update: EventEmitter<UpdateEvent>;
 
   constructor(
     private tournamentService: TournamentService,
-    private route: ActivatedRoute) {
-    this.update = new EventEmitter<UpdateEvent>(false);
+    private route: ActivatedRoute,
+    private updateManager: UpdateManager) {
   }
 
   ngOnInit(): void {
@@ -27,7 +26,7 @@ export class TournamentDetailsComponent implements OnInit {
   }
 
   onUpdate(subject: Tournament, property: string, newValue: any) {
-    this.update.emit({
+    this.updateManager.registerUpdate({
       type: 'tournament',
       subject: subject.data,
       property: property,

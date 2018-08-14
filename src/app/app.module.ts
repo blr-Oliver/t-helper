@@ -18,6 +18,7 @@ import {TournamentService} from './service/tournament.service';
 import {TournamentDetailsComponent} from './ui/tournaments/tournament-details.component';
 import {HttpTournamentLoader} from './service/tournament-loader.service';
 import {DuelsComponent} from './ui/duels/duels.component';
+import {UpdateManager} from './service/UpdateManager';
 
 const appRoutes: Routes = [
   {path: '', pathMatch: 'full', component: TournamentListComponent},
@@ -59,7 +60,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     TournamentService,
-    {provide: 'TournamentLoader', useClass: HttpTournamentLoader}
+    {provide: 'TournamentLoader', useClass: HttpTournamentLoader},
+    UpdateManager
   ],
   bootstrap: [AppComponent]
 })
