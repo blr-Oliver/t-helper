@@ -4,8 +4,7 @@ import {Observable} from 'rxjs';
 
 @Component({
   selector: 'top-menu',
-  templateUrl: './top-menu.component.html',
-  styleUrls: ['./top-menu.component.scss']
+  templateUrl: './top-menu.component.html'
 })
 export class TopMenuComponent implements OnInit {
   tournamentId$: Observable<number>;
