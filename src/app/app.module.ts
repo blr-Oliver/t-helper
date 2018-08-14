@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 
-import {AppComponent} from './app.component';
+import {AppComponent} from './ui/app.component';
 import {TopMenuComponent} from './ui/top-menu/top-menu.component';
 import {PairsComponent} from './ui/pairs/pairs.component';
 import {ScheduleComponent} from './ui/schedule/schedule.component';
