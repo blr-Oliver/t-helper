@@ -6,8 +6,7 @@ import {map, mergeMap} from 'rxjs/operators';
 import {Pair} from '../../model/Pair';
 
 @Component({
-  templateUrl: './pairs.component.html',
-  styleUrls: ['./pairs.component.scss']
+  templateUrl: './pairs.component.html'
 })
 export class PairsComponent implements OnInit {
   pairs$: Observable<Pair[]>;
