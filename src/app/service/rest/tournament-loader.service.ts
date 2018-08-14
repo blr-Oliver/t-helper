@@ -3,10 +3,19 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {ExpandedTournamentDTO, TournamentDTO} from '../../model/dto/TournamentDTO';
 import {map} from 'rxjs/operators';
+import {TournamentPatchRequest} from './TournamentPatchRequest';
+import {DTO} from '../../model/dto/DTO';
 
 export interface TournamentLoader {
   getTournament(id: number): Observable<ExpandedTournamentDTO>;
   getAll(): Observable<TournamentDTO[]>;
+}
+
+export interface TournamentSaver {
+  create(data: TournamentDTO): Observable<ExpandedTournamentDTO>;
+  update<T extends DTO>(data: T): Observable<any>;
+  patch(data: TournamentPatchRequest): Observable<any>;
+  remove(id: number, securityToken: any): Observable<any>;
 }
 
 // TODO actually load the data instead of mocking with static json
