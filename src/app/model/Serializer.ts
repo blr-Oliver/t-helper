@@ -1,104 +1,8 @@
-/*
-import {Suit} from './Suit';
-import {PairPosition} from './PairPosition';
-import {Position} from './Position';
-import {Seating} from './Seating';
-import {Protocol} from './Protocol';
-import {Game} from './Game';
-import {Tournament} from './Tournament';
-
-export interface ProtocolEntityEx {
-  id: number;
-  suit?: Suit;
-  owner?: PairPosition;
-  level?: number;
-  tricks?: number;
-}
-
-export interface GameEntityEx {
-  id?: number;
-  tour: number;
-  table: number;
-  deal: number;
-  dealer?: string;
-  players: Seating<string>;
-  tid: number;
-}
-
-export interface Converter<T, D> {
-  serialize(item: T): D;
-
-  deserialize(entity: D, target?: T): T;
-}
+import {DTO} from './dto/DTO';
+import {ProtocolDTO} from './dto/ProtocolDTO';
+import {TournamentDTO} from './dto/TournamentDTO';
 
 export class IndexedDBSerializer {
-  static PROTOCOL_CONVERTER: Converter<Protocol, ProtocolEntityEx> = {
-    serialize: function (p: Protocol): ProtocolEntityEx {
-      const result: ProtocolEntityEx = {
-        id: p.game.id
-      };
-      if (p.contract.defined) {
-        result.suit = p.contract.suit;
-        result.owner = p.contract.owner;
-        result.level = p.contract.level;
-      }
-      if (p.tricks.defined) {
-        result.tricks = p.tricks.NS;
-      }
-      return result;
-    },
-
-    deserialize: function (entity: ProtocolEntityEx, target?: Protocol): Protocol {
-      if ('id' in entity) {
-        target.game.id = entity.id;
-      }
-      if ('suit' in entity) {
-        target.contract.suit = entity.suit;
-      }
-      if ('owner' in entity) {
-        target.contract.owner = entity.owner;
-      }
-      if ('level' in entity) {
-        target.contract.level = entity.level;
-      }
-      if ('tricks' in entity) {
-        target.tricks.NS = entity.tricks;
-      }
-      return target;
-    }
-  };
-
-  static GAME_CONVERTER: Converter<Game, GameEntityEx> = {
-    serialize: function (game: Game): GameEntityEx {
-      const result: GameEntityEx = {
-        tid: game.tournament.id,
-        tour: game.tour,
-        table: game.table,
-        deal: game.deal,
-        players: {
-          [Position.N]: game.players[Position.N].id,
-          [Position.E]: game.players[Position.E].id,
-          [Position.S]: game.players[Position.S].id,
-          [Position.W]: game.players[Position.W].id
-        }
-      };
-      if ('dealer' in game) {
-        result.dealer = game.dealer;
-      }
-      if ('id' in game) {
-        result.id = game.id;
-      }
-
-      return result;
-    },
-
-    deserialize: function (entity: GameEntityEx, target?: Game): Game {
-      // TODO
-      target.id = entity.id;
-      return target;
-    }
-  };
-
   db: IDBDatabase;
 
   constructor() {
@@ -130,18 +34,15 @@ export class IndexedDBSerializer {
     });
   }
 
-  serializeProtocols(...protocols: Protocol[]): Promise<Protocol[]> {
-    return this.putAll('protocol', IndexedDBSerializer.PROTOCOL_CONVERTER, protocols);
+  serializeProtocols(...protocols: ProtocolDTO[]): Promise<ProtocolDTO[]> {
+    return this.putAll('protocol', protocols);
   }
 
-  serializeTournament(tournament: Tournament) {
+  serializeTournament(tournament: TournamentDTO): Promise<TournamentDTO> {
+    return null;
   }
 
-  serializeGames(...games: Game[]): Promise<Game[]> {
-    return this.putAll('game', IndexedDBSerializer.GAME_CONVERTER, games);
-  }
-
-  private putAll<T>(storage: string, converter: Converter<T, any>, items: T[]): Promise<T[]> {
+  private putAll<T extends DTO>(storage: string, items: T[]): Promise<T[]> {
     if (!items || !items.length) {
       return Promise.resolve(items);
     }
@@ -156,10 +57,10 @@ export class IndexedDBSerializer {
 
       function next(event?) {
         if (event && keyPath) {
-          converter.deserialize({[keyPath]: event.currentTarget.result}, items[i]);
+          items[i][keyPath] = event.currentTarget.result;
         }
         if (++i < items.length) {
-          const request = objectStore.put(converter.serialize(items[i]));
+          const request = objectStore.put(items[i]);
           request.onsuccess = next;
         } else {
           resolve(items);
@@ -168,4 +69,3 @@ export class IndexedDBSerializer {
     });
   }
 }
-*/
