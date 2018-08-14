@@ -1,6 +1,6 @@
-import {DTO} from './dto/DTO';
-import {ProtocolDTO} from './dto/ProtocolDTO';
-import {TournamentDTO} from './dto/TournamentDTO';
+import {DTO} from '../../model/dto/DTO';
+import {ProtocolDTO} from '../../model/dto/ProtocolDTO';
+import {TournamentDTO} from '../../model/dto/TournamentDTO';
 
 export class IndexedDBSerializer {
   db: IDBDatabase;
