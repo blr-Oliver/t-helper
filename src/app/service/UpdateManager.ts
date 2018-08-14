@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ConnectableObservable, Observable, Subject} from 'rxjs';
 import {UpdateEvent} from './UpdateEvent';
-import {multicast, tap} from 'rxjs/operators';
+import {multicast} from 'rxjs/operators';
 
 @Injectable()
 export class UpdateManager {
@@ -11,7 +11,6 @@ export class UpdateManager {
   constructor() {
     this.subject = new Subject<UpdateEvent>();
     this.stream = <ConnectableObservable<UpdateEvent>> this.subject.pipe(
-      tap(update => console.log(update)),
       multicast(new Subject<UpdateEvent>()),
     );
     this.stream.connect();
