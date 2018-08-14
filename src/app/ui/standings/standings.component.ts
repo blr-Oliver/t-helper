@@ -6,8 +6,7 @@ import {ActivatedRoute} from '@angular/router';
 import {map, mergeMap, tap} from 'rxjs/operators';
 
 @Component({
-  templateUrl: './standings.component.html',
-  styleUrls: ['./standings.component.scss']
+  templateUrl: './standings.component.html'
 })
 export class StandingsComponent implements OnInit {
   standings$: Observable<Standings>;
