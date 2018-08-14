@@ -1,6 +1,6 @@
 <form class="form">
   <div *ngFor="let pair of pairs$ | async">
-    <player [player]="pair[0]"></player>
-    <player [player]="pair[1]"></player>
+    <player [player]="pair[0]" (update)="onUpdate($event)"></player>
+    <player [player]="pair[1]" (update)="onUpdate($event)"></player>
   </div>
 </form>

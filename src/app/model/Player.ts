@@ -2,7 +2,7 @@ import {PlayerDTO} from './dto/PlayerDTO';
 import {PlayerSlot} from './dto/PlayerSlot';
 
 export class Player {
-  private readonly data: PlayerDTO;
+  readonly data: PlayerDTO;
 
   constructor(data: PlayerDTO) {
     this.data = data;

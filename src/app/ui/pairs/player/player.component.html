@@ -1,4 +1,4 @@
 <div [id]="player.slot">
   <label [for]="'player-' + player.slot + '-name'">{{player.slot}}</label>
-  <input [id]="'player-' + player.slot + '-name'" [(ngModel)]="player.name"/>
+  <input [id]="'player-' + player.slot + '-name'" [(ngModel)]="player.name" (ngModelChange)="onUpdate($event)"/>
 </div>

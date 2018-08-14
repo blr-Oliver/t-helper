@@ -1,10 +1,21 @@
 <div *ngIf="tournament$ | async as tournament">
-  <br/>
-  <input type="text" [(ngModel)]="tournament.name"/>
-  <br/>
-  <textarea [(ngModel)]="tournament.description"></textarea>
-  <br/>
-  {{tournament.status}}
-  <br/>
-  {{tournament.dateCreated | date}}
+  <div>
+    <label for="tournament-name">Имя</label>
+    <input id="tournament-name" type="text"
+           [(ngModel)]="tournament.name" (ngModelChane)="onUpdate(tournament, 'name', $event)"/>
+  </div>
+  <div>
+    <label for="tournament-description">Описание</label>
+    <textarea id="tournament-description"
+              [(ngModel)]="tournament.description"
+              (ngModelChane)="onUpdate(tournament, 'description', $event)"></textarea>
+  </div>
+  <div>
+    <span>Статус: </span>
+    {{tournament.status}}
+  </div>
+  <div>
+    <span>Создан: </span>
+    {{tournament.dateCreated | date}}
+  </div>
 </div>
