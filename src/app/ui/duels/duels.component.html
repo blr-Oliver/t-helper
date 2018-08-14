@@ -11,7 +11,7 @@
     <td *ngFor="let pairDuels of pairTotal" [class.self]="!pairDuels">
       <ul *ngIf="pairDuels">
         <li *ngFor="let duel of pairDuels">
-          at {{duel.position}} in {{duel.deal}}: {{duel.scores[duel.getPairIndex(tournament.pairs[i])]}}
+          на {{duel.deal}} в {{duel.position}} : {{duel.scores[duel.getPairIndex(tournament.pairs[i])]}}
         </li>
       </ul>
     </td>
