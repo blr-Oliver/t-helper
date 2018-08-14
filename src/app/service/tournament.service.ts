@@ -1,6 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {TournamentLoader} from './tournament-loader.service';
+import {TournamentLoader} from './rest/tournament-loader.service';
 import {PipingStreamSupplier} from './PipingStreamSupplier';
 import {map, switchMap} from 'rxjs/operators';
 import {Tournament} from '../model/Tournament';

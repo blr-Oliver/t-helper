@@ -1,7 +1,7 @@
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {ExpandedTournamentDTO, TournamentDTO} from '../model/dto/TournamentDTO';
+import {ExpandedTournamentDTO, TournamentDTO} from '../../model/dto/TournamentDTO';
 import {map} from 'rxjs/operators';
 
 export interface TournamentLoader {
