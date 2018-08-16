@@ -4,6 +4,9 @@
 /dist
 /tmp
 /out-tsc
+/target/
+/build/
+.mvn/
 
 # dependencies
 /node_modules
