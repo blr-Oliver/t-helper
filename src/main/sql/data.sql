@@ -1,4 +1,4 @@
-insert into schedule (id, name, totalPairs, totalTours, totalTables) values (1, 'Короткий турнир для 4 пар', 4, 12, 2);
+insert into schedule (id, name, pairs, tours, tables) values (1, 'Короткий турнир для 4 пар', 4, 12, 2);
 
 insert into game_slot (sid, tour, tbl, deal, dealer, player_N, player_E, player_S, player_W) values
   (1, 1, 1, 1, 'N', 'A', 'B', 'a', 'b'),
