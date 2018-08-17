@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS schedule;
 
 CREATE TABLE schedule (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name NVARCHAR(511) NOT NULL,
+  name VARCHAR(511) NOT NULL,
   totalPairs SMALLINT NOT NULL,
   totalTours SMALLINT NOT NULL,
   totalTables SMALLINT NOT NULL
@@ -16,7 +16,7 @@ CREATE TABLE schedule (
 CREATE TABLE player_slot (
   sid INT NOT NULL,
   idx SMALLINT NOT NULL,
-  value NVARCHAR(127) NOT NULL,
+  value VARCHAR(127) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (sid, idx),
   UNIQUE KEY u_player_slot (sid, value),
   FOREIGN KEY (sid) REFERENCES schedule (id)
@@ -29,10 +29,10 @@ CREATE TABLE game_slot (
   tbl SMALLINT NOT NULL,
   deal SMALLINT NOT NULL,
   dealer NCHAR(1),
-  player_N NVARCHAR(127) NOT NULL,
-  player_E NVARCHAR(127) NOT NULL,
-  player_S NVARCHAR(127) NOT NULL,
-  player_W NVARCHAR(127) NOT NULL,
+  player_N VARCHAR(127) NOT NULL,
+  player_E VARCHAR(127) NOT NULL,
+  player_S VARCHAR(127) NOT NULL,
+  player_W VARCHAR(127) NOT NULL,
   UNIQUE KEY u_game_slot (sid, tour, tbl),
   FOREIGN KEY (sid) REFERENCES schedule (id)
 );
@@ -40,18 +40,18 @@ CREATE TABLE game_slot (
 CREATE TABLE tournament (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   sid INT NOT NULL,
-  name NVARCHAR(511) NOT NULL,
-  description NVARCHAR(2047),
+  name VARCHAR(511) NOT NULL,
+  description VARCHAR(2047),
   date_created TIMESTAMP NOT NULL DEFAULT NOW(),
-  status NVARCHAR(127) NOT NULL DEFAULT 'unknown',
+  status VARCHAR(127) NOT NULL DEFAULT 'unknown',
   FOREIGN KEY (sid) REFERENCES schedule (id)
 );
 
 CREATE TABLE PLAYER (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   tid INT NOT NULL,
-  slot NVARCHAR(127) NOT NULL,
-  name NVARCHAR(255),
+  slot VARCHAR(127) NOT NULL,
+  name VARCHAR(255),
   UNIQUE KEY u_player (tid, slot),
   FOREIGN KEY (tid) REFERENCES tournament (id)
 );
