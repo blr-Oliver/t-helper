@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.oliver.thelper.model">
+  <class name="Schedule" entity-name="Schedule" table="schedule" mutable="false">
+    <id name="id" column="id" unsaved-value="null" access="field">
+      <generator class="identity" />
+    </id>
+    <property name="name" column="name" not-null="true" access="field" length="511" />
+    <property name="totalPairs" column="pairs" not-null="true" access="field" />
+    <property name="totalTours" column="tours" not-null="true" access="field" />
+    <property name="totalTables" column="tables" not-null="true" access="field" />
+  </class>
+</hibernate-mapping>

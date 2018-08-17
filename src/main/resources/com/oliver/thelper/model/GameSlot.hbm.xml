@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.oliver.thelper.model">
+  <class name="GameSlot" entity-name="GameSlot" table="game_slot" mutable="false">
+    <id name="id" column="id" unsaved-value="null" access="field">
+      <generator class="identity" />
+    </id>
+    <property name="sid" column="sid" not-null="true" access="field" />
+    <property name="tour" column="tour" not-null="true" access="field" />
+    <property name="table" column="tbl" not-null="true" access="field" />
+    <property name="deal" column="deal" not-null="true" access="field" />
+    <property name="dealer" column="dealer" not-null="false" access="field" />
+  </class>
+</hibernate-mapping>
