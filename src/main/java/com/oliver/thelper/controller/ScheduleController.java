@@ -18,7 +18,9 @@ public class ScheduleController {
 
   @RequestMapping(method = RequestMethod.GET)
   public List<Schedule> getAll() {
-    return this.scheduleRepo.findAll();
+    List<Schedule> schedules = this.scheduleRepo.findAll();
+    System.out.println(schedules);
+    return schedules;
   }
 
 }

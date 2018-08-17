@@ -10,6 +10,11 @@
     <property name="tour" column="tour" not-null="true" access="field" />
     <property name="table" column="tbl" not-null="true" access="field" />
     <property name="deal" column="deal" not-null="true" access="field" />
-    <property name="dealer" column="dealer" not-null="false" access="field" />
+    <property name="dealer" column="dealer" not-null="false" access="field">
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">com.oliver.thelper.model.Position</param>
+        <param name="useNamed">true</param>
+      </type>
+    </property>
   </class>
 </hibernate-mapping>

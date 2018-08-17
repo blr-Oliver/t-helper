@@ -10,5 +10,10 @@
     <property name="totalPairs" column="pairs" not-null="true" access="field" />
     <property name="totalTours" column="tours" not-null="true" access="field" />
     <property name="totalTables" column="tables" not-null="true" access="field" />
+
+    <set name="games" fetch="join" outer-join="false" lazy="false" access="field">
+      <key column="sid" />
+      <one-to-many entity-name="GameSlot" />
+    </set>
   </class>
 </hibernate-mapping>

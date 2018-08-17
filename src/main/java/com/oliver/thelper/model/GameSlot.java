@@ -1,4 +1,5 @@
 package com.oliver.thelper.model;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class GameSlot {
   private int id;
@@ -6,6 +7,7 @@ public class GameSlot {
   private short tour;
   private short table;
   private short deal;
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private Position dealer;
   private Seating<String> players;
   
