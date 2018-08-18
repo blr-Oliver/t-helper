@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.oliver.thelper.model">
-  <class name="Schedule" entity-name="Schedule" table="schedule" mutable="false">
+  <class name="Schedule" table="schedule" mutable="false">
     <id name="id" column="id" unsaved-value="null" access="field">
       <generator class="identity" />
     </id>
@@ -11,12 +11,12 @@
     <property name="totalTours" column="tours" not-null="true" access="field" />
     <property name="totalTables" column="tables" not-null="true" access="field" />
 
-    <set name="games" fetch="join" outer-join="false" lazy="false" access="field">
+    <set name="games" fetch="select" lazy="true" access="field">
       <key column="sid" />
-      <one-to-many entity-name="GameSlot" />
+      <one-to-many class="GameSlot" />
     </set>
 
-    <array name="players" table="player_slot" fetch="join" outer-join="false" access="field">
+    <array name="players" table="player_slot" fetch="select" access="field">
       <key column="sid" />
       <list-index column="idx" />
       <element column="value" type="string" not-null="true" length="127" />
