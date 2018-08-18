@@ -15,5 +15,11 @@
       <key column="sid" />
       <one-to-many entity-name="GameSlot" />
     </set>
+
+    <array name="players" table="player_slot" fetch="join" outer-join="false" access="field">
+      <key column="sid" />
+      <list-index column="idx" />
+      <element column="value" type="string" not-null="true" length="127" />
+    </array>
   </class>
 </hibernate-mapping>
