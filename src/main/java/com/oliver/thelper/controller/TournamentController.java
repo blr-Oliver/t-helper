@@ -46,9 +46,7 @@ public class TournamentController {
 
   @RequestMapping(value = "/{tid}/games/{tour}/{table}", method = RequestMethod.PUT)
   public ResponseEntity<?> saveProtocol(@PathVariable Integer tid, @PathVariable Short tour, @PathVariable Short table, @RequestBody Protocol protocol) {
-    Tournament tournament = this.tournamentRepo.findById(tid).get();
-    GameSlot game = gameSlotRepo.findInScheduleByTourAndTable(tournament.getSid(), tour, table).get();
-    Protocol saved = protocolRepo.findByTournamentAndGameSlot(tid, game.getId()).get();
+    Protocol saved = protocolRepo.findByTournamentAndGameSlot(tid, protocol.getGid()).get();
 
     saved.setLevel(protocol.getLevel());
     saved.setSuit(protocol.getSuit());
