@@ -50,7 +50,7 @@ CREATE TABLE tournament (
 CREATE TABLE player (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   tid INT NOT NULL,
-  slot VARCHAR(127) NOT NULL,
+  slot VARCHAR(127) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   name VARCHAR(255),
   UNIQUE KEY u_player (tid, slot),
   FOREIGN KEY (tid) REFERENCES tournament (id)
