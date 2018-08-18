@@ -4,4 +4,5 @@ export interface UpdateEvent {
   property?: string;
   oldValue?: any;
   currentValue: any;
+  context?: any;
 }

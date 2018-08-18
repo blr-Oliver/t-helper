@@ -22,7 +22,7 @@ export class Game {
   readonly players: UnmodifiableSeating<Player>;
   readonly protocol: Protocol;
   readonly points: GamePoints;
-  private readonly gameSlot: GameSlotDTO;
+  readonly gameSlot: GameSlotDTO;
 
   constructor(
     gameSlot: GameSlotDTO,

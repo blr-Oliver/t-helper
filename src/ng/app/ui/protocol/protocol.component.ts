@@ -40,7 +40,8 @@ export class ProtocolComponent implements OnInit {
       type: 'protocol',
       subject: game.protocol.data,
       property: change.type,
-      currentValue: change.currentValue
+      currentValue: change.currentValue,
+      context: game.gameSlot
     });
   }
 }
