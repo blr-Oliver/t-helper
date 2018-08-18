@@ -14,7 +14,7 @@ import com.oliver.thelper.model.Schedule;
 import com.oliver.thelper.repository.ScheduleRepository;
 
 @RestController
-@RequestMapping(value = "/api/schedule")
+@RequestMapping(value = "/api/schedules")
 public class ScheduleController {
   @Autowired
   private ScheduleRepository scheduleRepo;
