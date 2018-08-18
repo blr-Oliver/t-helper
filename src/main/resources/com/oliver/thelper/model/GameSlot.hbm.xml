@@ -16,5 +16,11 @@
         <param name="useNamed">true</param>
       </type>
     </property>
+
+    <property name="playerN" column="player_N" not-null="true" length="127" />
+    <property name="playerE" column="player_E" not-null="true" length="127" />
+    <property name="playerS" column="player_S" not-null="true" length="127" />
+    <property name="playerW" column="player_W" not-null="true" length="127" />
+
   </class>
 </hibernate-mapping>
