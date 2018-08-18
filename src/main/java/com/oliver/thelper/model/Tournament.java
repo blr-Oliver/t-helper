@@ -3,13 +3,16 @@ package com.oliver.thelper.model;
 import java.util.Date;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.oliver.thelper.annotation.Views;
+
 public class Tournament {
-  private int id;
-  private int sid;
-  private String name;
-  private String description;
-  private Date dateCreated;
-  private String status;
+  @JsonView(Views.ShortView.class) private int id;
+  @JsonView(Views.ShortView.class) private int sid;
+  @JsonView(Views.ShortView.class) private String name;
+  @JsonView(Views.ShortView.class) private String description;
+  @JsonView(Views.ShortView.class) private Date dateCreated;
+  @JsonView(Views.ShortView.class) private String status;
 
   private Schedule schedule;
   private Set<Player> players;

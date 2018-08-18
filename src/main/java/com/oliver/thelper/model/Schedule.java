@@ -2,12 +2,15 @@ package com.oliver.thelper.model;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.oliver.thelper.annotation.Views;
+
 public class Schedule {
-  private int id;
-  private String name;
-  private short totalPairs;
-  private short totalTours;
-  private short totalTables;
+  @JsonView(Views.ShortView.class) private int id;
+  @JsonView(Views.ShortView.class) private String name;
+  @JsonView(Views.ShortView.class) private short totalPairs;
+  @JsonView(Views.ShortView.class) private short totalTours;
+  @JsonView(Views.ShortView.class) private short totalTables;
 
   private String[] players;
   private Set<GameSlot> games;
