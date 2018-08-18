@@ -6,8 +6,8 @@ public class Protocol {
   private int gid;
   private Suit suit;
   private PairPosition owner;
-  private byte level;
-  private byte tricks;
+  private Integer level;
+  private Integer tricks;
 
   public Protocol() {}
   public Protocol(int tid, int gid) {
@@ -21,11 +21,11 @@ public class Protocol {
 
   public Suit getSuit() { return suit; }
   public PairPosition getOwner() { return owner; }
-  public byte getLevel() { return level; }
-  public byte getTricks() { return tricks; }
+  public Integer getLevel() { return level; }
+  public Integer getTricks() { return tricks; }
 
   public void setSuit(Suit suit) { this.suit = suit; }
   public void setOwner(PairPosition owner) { this.owner = owner; }
-  public void setLevel(int level) { this.level = (byte) level; }
-  public void setTricks(int tricks) { this.tricks = (byte) tricks; }
+  public void setLevel(Integer level) { this.level = level; }
+  public void setTricks(Integer tricks) { this.tricks = tricks; }
 }
