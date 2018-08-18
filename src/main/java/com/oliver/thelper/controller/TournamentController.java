@@ -3,7 +3,9 @@ package com.oliver.thelper.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,5 +42,20 @@ public class TournamentController {
     Tournament tournament = this.tournamentRepo.findById(tid).get();
     GameSlot game = gameSlotRepo.findInScheduleByTourAndTable(tournament.getSid(), tour, table).get();
     return protocolRepo.findByTournamentAndGameSlot(tid, game.getId()).get();
+  }
+
+  @RequestMapping(value = "/{tid}/protocols/{tour}/{table}", method = RequestMethod.PUT)
+  public ResponseEntity<?> saveProtocol(@PathVariable Integer tid, @PathVariable Short tour, @PathVariable Short table, @RequestBody Protocol protocol) {
+    Tournament tournament = this.tournamentRepo.findById(tid).get();
+    GameSlot game = gameSlotRepo.findInScheduleByTourAndTable(tournament.getSid(), tour, table).get();
+    Protocol saved = protocolRepo.findByTournamentAndGameSlot(tid, game.getId()).get();
+    
+    saved.setLevel(protocol.getLevel());
+    saved.setSuit(protocol.getSuit());
+    saved.setOwner(protocol.getOwner());
+    saved.setTricks(protocol.getTricks());
+
+    protocolRepo.save(saved);
+    return ResponseEntity.noContent().build();
   }
 }
