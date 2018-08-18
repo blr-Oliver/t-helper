@@ -1,26 +1,23 @@
-import {Injectable} from '@angular/core';
-import {ConnectableObservable, Observable, Subject} from 'rxjs';
+import {Inject, Injectable} from '@angular/core';
+import {ConnectableObservable, Subject} from 'rxjs';
 import {UpdateEvent} from './UpdateEvent';
-import {multicast} from 'rxjs/operators';
+import {filter, mergeMap, publish} from 'rxjs/operators';
+import {HttpTournamentLoader, TournamentLoader} from './rest/tournament-loader.service';
 
 @Injectable()
 export class UpdateManager {
   private readonly subject: Subject<UpdateEvent>;
-  private readonly stream: ConnectableObservable<UpdateEvent>;
 
-  constructor() {
+  constructor(@Inject('TournamentLoader') private loader: HttpTournamentLoader) {
     this.subject = new Subject<UpdateEvent>();
-    this.stream = <ConnectableObservable<UpdateEvent>> this.subject.pipe(
-      multicast(new Subject<UpdateEvent>()),
-    );
-    this.stream.connect();
+    (<ConnectableObservable<any>>this.subject.pipe(
+      filter(event => event.type === 'protocol'),
+      mergeMap(event => this.loader.saveProtocol(event.context.tour, event.context.table, event.subject)),
+      publish()
+    )).connect();
   }
 
   registerUpdate(event: UpdateEvent) {
-    this.subject.next(event);
-  }
-
-  getStream(): Observable<UpdateEvent> {
-    return this.stream;
+    setTimeout(() => this.subject.next(event), 0);
   }
 }
