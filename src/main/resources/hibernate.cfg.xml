@@ -15,5 +15,8 @@
 
     <mapping resource="com/oliver/thelper/model/GameSlot.hbm.xml" />
     <mapping resource="com/oliver/thelper/model/Schedule.hbm.xml" />
+    <mapping resource="com/oliver/thelper/model/Tournament.hbm.xml" />
+    <mapping resource="com/oliver/thelper/model/Player.hbm.xml" />
+    <mapping resource="com/oliver/thelper/model/Protocol.hbm.xml" />
   </session-factory>
 </hibernate-configuration>

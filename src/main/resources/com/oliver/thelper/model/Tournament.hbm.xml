@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.oliver.thelper.model">
+  <class name="Tournament" entity-name="Tournament" table="tournament">
+    <id name="id" column="id" unsaved-value="null" access="field">
+      <generator class="identity" />
+    </id>
+    <property name="sid" column="sid" not-null="true" access="field" />
+    <property name="name" column="name" not-null="true" access="field" length="511" />
+    <property name="description" column="description" not-null="false" access="field" length="2047" />
+    <property name="dateCreated" column="date_created" not-null="true" insert="false" update="false" access="field" />
+    <property name="status" column="status" not-null="true" access="field" length="127" />
+  </class>
+</hibernate-mapping>
