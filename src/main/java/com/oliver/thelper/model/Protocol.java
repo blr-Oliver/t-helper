@@ -1,12 +1,18 @@
 package com.oliver.thelper.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 public class Protocol {
   private int id;
   private int tid;
   private int gid;
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private Suit suit;
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private PairPosition owner;
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private Integer level;
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private Integer tricks;
 
   public Protocol() {}
