@@ -1,9 +1,12 @@
 package com.oliver.thelper.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 public class Player {
-  private int id;
+  private int id = -1;
   private int tid;
   private String slot;
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private String name;
 
   public Player() {}
