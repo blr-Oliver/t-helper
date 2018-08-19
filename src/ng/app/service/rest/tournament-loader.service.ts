@@ -38,4 +38,14 @@ export class HttpTournamentLoader implements TournamentLoader {
       protocol,
       { observe: 'response' });
   }
+
+  create(tournament: TournamentDTO): Observable<ExpandedTournamentDTO> {
+    return this.http.post<ExpandedTournamentDTO>(
+      '/api/tournaments',
+      {
+        sid: tournament.sid,
+        name: tournament.name,
+        description: tournament.description
+      });
+  }
 }
