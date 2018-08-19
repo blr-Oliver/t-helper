@@ -9,7 +9,7 @@ import {ProtocolDTO} from '../../model/dto/ProtocolDTO';
 export interface TournamentLoader {
   getTournament(id: number): Observable<ExpandedTournamentDTO>;
   getAll(): Observable<TournamentDTO[]>;
-  saveProtocol(tour: number, table: number, protocol: ProtocolDTO): Observable<any>;
+  saveProtocol(protocol: ProtocolDTO): Observable<any>;
 }
 
 export interface TournamentSaver {
@@ -32,12 +32,10 @@ export class HttpTournamentLoader implements TournamentLoader {
     return this.http.get<TournamentDTO[]>('/api/tournaments');
   }
 
-  saveProtocol(tour: number, table: number, protocol: ProtocolDTO): Observable<HttpResponse<any>> {
+  saveProtocol(protocol: ProtocolDTO): Observable<HttpResponse<any>> {
     return this.http.put<HttpResponse<any>>(
-      `/api/tournaments/${protocol.tid}/games/${tour}/${table}`,
+      `/api/protocols/${protocol.id}`,
       protocol,
-      {
-        observe: 'response'
-      });
+      { observe: 'response' });
   }
 }

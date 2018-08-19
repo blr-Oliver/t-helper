@@ -12,7 +12,7 @@ export class UpdateManager {
     this.subject = new Subject<UpdateEvent>();
     (<ConnectableObservable<any>>this.subject.pipe(
       filter(event => event.type === 'protocol'),
-      mergeMap(event => this.loader.saveProtocol(event.context.tour, event.context.table, event.subject)),
+      mergeMap(event => this.loader.saveProtocol(event.subject)),
       publish()
     )).connect();
   }
