@@ -3,7 +3,7 @@
 
 <hibernate-mapping package="com.oliver.thelper.model">
   <class name="Player" table="player">
-    <id name="id" column="id" unsaved-value="null" access="field">
+    <id name="id" column="id" unsaved-value="-1" access="field">
       <generator class="identity" />
     </id>
     <property name="tid" column="tid" not-null="true" access="field" />

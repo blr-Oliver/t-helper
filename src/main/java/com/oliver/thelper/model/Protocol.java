@@ -3,7 +3,7 @@ package com.oliver.thelper.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class Protocol {
-  private int id;
+  private int id = -1;
   private int tid;
   private int gid;
   @JsonInclude(JsonInclude.Include.NON_NULL)
