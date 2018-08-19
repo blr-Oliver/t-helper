@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.oliver.thelper.annotation.Views;
 
 public class Tournament {
-  @JsonView(Views.ShortView.class) private int id;
+  @JsonView(Views.ShortView.class) private int id = -1;
   @JsonView(Views.ShortView.class) private int sid;
   @JsonView(Views.ShortView.class) private String name;
   @JsonView(Views.ShortView.class) private String description;
@@ -36,4 +36,8 @@ public class Tournament {
   public Schedule getSchedule() { return schedule; }
   public Set<Player> getPlayers() { return players; }
   public Set<Protocol> getProtocols() { return protocols; }
+  
+  public void setSchedule(Schedule schedule) { this.schedule = schedule; }
+  public void setPlayers(Set<Player> players) { this.players = players; }
+  public void setProtocols(Set<Protocol> protocols) { this.protocols = protocols; }
 }

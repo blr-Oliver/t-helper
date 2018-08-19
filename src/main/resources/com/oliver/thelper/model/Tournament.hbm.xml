@@ -3,22 +3,22 @@
 
 <hibernate-mapping package="com.oliver.thelper.model">
   <class name="Tournament" table="tournament">
-    <id name="id" column="id" unsaved-value="null" access="field">
+    <id name="id" column="id" unsaved-value="-1" access="field">
       <generator class="identity" />
     </id>
-    <property name="sid" column="sid" not-null="true" access="field" />
-    <property name="name" column="name" not-null="true" access="field" length="511" />
-    <property name="description" column="description" not-null="false" access="field" length="2047" />
+    <property name="sid" column="sid" not-null="true" />
+    <property name="name" column="name" not-null="true" length="511" />
+    <property name="description" column="description" not-null="false" length="2047" />
     <property name="dateCreated" column="date_created" not-null="true" insert="false" update="false" access="field" />
-    <property name="status" column="status" not-null="true" access="field" length="127" />
+    <property name="status" column="status" not-null="true" length="127" />
 
-    <many-to-one name="schedule" column="sid" class="Schedule" fetch="join" insert="false" update="false" access="field" />
+    <many-to-one name="schedule" column="sid" class="Schedule" fetch="join" insert="false" update="false" />
 
-    <set name="players" fetch="select" lazy="true" access="field">
+    <set name="players" fetch="select" lazy="true">
       <key column="tid" />
       <one-to-many class="Player" />
     </set>
-    <set name="protocols" fetch="select" lazy="true" access="field">
+    <set name="protocols" fetch="select" lazy="true">
       <key column="tid" />
       <one-to-many class="Protocol" />
     </set>
