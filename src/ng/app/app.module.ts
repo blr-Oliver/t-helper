@@ -19,9 +19,11 @@ import {TournamentDetailsComponent} from './ui/tournaments/tournament-details.co
 import {HttpTournamentLoader} from './service/rest/tournament-loader.service';
 import {DuelsComponent} from './ui/duels/duels.component';
 import {UpdateManager} from './service/UpdateManager';
+import {NewTournamentComponent} from './ui/tournaments/new-tournament.component';
 
 const appRoutes: Routes = [
   {path: '', pathMatch: 'full', component: TournamentListComponent},
+  {path: 'new', component: NewTournamentComponent},
   {
     path: ':id',
     children: [
@@ -50,7 +52,8 @@ const appRoutes: Routes = [
     PlayerComponent,
     ProtocolComponent,
     ContractComponent,
-    TricksComponent
+    TricksComponent,
+    NewTournamentComponent
   ],
   imports: [
     BrowserModule,
