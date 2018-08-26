@@ -1,3 +1,31 @@
 <div>
   <h1>Новый турнир</h1>
+  <form (submit)="create()">
+    <div>
+      <label for="tournament-name" class="required">Название</label>
+      <input type="text" id="tournament-name" name="name" [(ngModel)]="name" required="required"/>
+    </div>
+    <div>
+      <a *ngIf="!expandDescription; else description_content" (click)="expandDescription = true"
+         href="javascript:void(0)">Добавить описание</a>
+      <ng-template #description_content>
+        <label for="tournament-description">Описание</label>
+        <textarea id="tournament-description" name="description" [(ngModel)]="description"></textarea>
+      </ng-template>
+    </div>
+    <div>
+      <label class="required">Расписание</label>
+      <ng-container *ngIf="schedules as schedules">
+        <div *ngFor="let schedule of schedules">
+          <label><input type="radio" [id]="'schedule-' + schedule.id"
+                   name="tournament-schedule" [value]="schedule.id"
+                   [(ngModel)]="selectedSchedule"/>
+            <span>{{schedule.name}}</span></label>
+        </div>
+      </ng-container>
+    </div>
+    <div>
+      <button type="submit">Создать</button>
+    </div>
+  </form>
 </div>

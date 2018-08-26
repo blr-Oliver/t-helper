@@ -7,6 +7,6 @@ export interface ScheduleDTO extends DTO {
   totalPairs: number;
   totalTours: number;
   totalTables: number;
-  players: PlayerSlot[];
+  players?: PlayerSlot[];
   games?: GameSlotDTO[];
 }
