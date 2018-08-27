@@ -1,37 +1,29 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ScheduleDTO} from '../../model/dto/ScheduleDTO';
+import {RestAPIFacade} from '../../service/api/APIFacade';
+import {Observable} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   templateUrl: './new-tournament.component.html'
 })
-export class NewTournamentComponent {
+export class NewTournamentComponent implements OnInit {
   expandDescription = false;
+  schedules$: Observable<ScheduleDTO[]>;
 
-  schedules: ScheduleDTO[] = [
-    {
-      id: 1,
-      name: 'Короткий турнир на 4 пары',
-      totalPairs: 4,
-      totalTours: 12,
-      totalTables: 2
-    },
-    {
-      id: 2,
-      name: 'Короткий турнир на 5 пар',
-      totalPairs: 5,
-      totalTours: 10,
-      totalTables: 2
-    },
-    {
-      id: 3,
-      name: 'Двойной турнир на 4 пары',
-      totalPairs: 4,
-      totalTours: 24,
-      totalTables: 2
-    }
-  ];
+  constructor(
+    private apiFacade: RestAPIFacade,
+    private router: Router
+  ) {
+  }
+
+  ngOnInit() {
+    this.schedules$ = this.apiFacade.getScheduleList();
+  }
 
   create(data) {
-    console.log(data);
+    this.apiFacade.createTournament(data).subscribe(
+      tournament => this.router.navigate(['/', tournament.id])
+    );
   }
 }

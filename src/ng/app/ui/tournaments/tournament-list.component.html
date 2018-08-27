@@ -1,5 +1,8 @@
-<ul>
-  <li *ngFor="let tournament of tournaments$ | async">
-    <a [routerLink]="['/', tournament.id]">{{tournament.name}}</a>
-  </li>
-</ul>
+<div>
+  <ul>
+    <li *ngFor="let tournament of tournaments$ | async">
+      <a [routerLink]="['/', tournament.id]">{{tournament.name}}</a>
+    </li>
+  </ul>
+  <a routerLink="/new">Создать новый турнир</a>
+</div>

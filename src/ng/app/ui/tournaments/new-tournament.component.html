@@ -36,7 +36,7 @@
            *ngIf="form.controls.sid?.invalid && (form.controls.sid.dirty || form.controls.sid.touched)">
         <p *ngIf="form.controls.sid.errors.required">Нужно выбрать расписание</p>
       </div>
-      <ng-container *ngIf="schedules as schedules">
+      <ng-container *ngIf="schedules$ | async as schedules">
         <div *ngFor="let s of schedules">
           <label><input type="radio" [id]="'schedule-' + s.id" name="sid" [value]="s.id" ngModel required/>
             <span>{{s.name}}</span></label>
