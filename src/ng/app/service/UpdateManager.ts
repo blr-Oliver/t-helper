@@ -1,18 +1,18 @@
-import {Inject, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ConnectableObservable, Subject} from 'rxjs';
 import {UpdateEvent} from './UpdateEvent';
 import {filter, mergeMap, publish} from 'rxjs/operators';
-import {HttpTournamentLoader, TournamentLoader} from './rest/tournament-loader.service';
+import {RestAPIFacade} from './api/APIFacade';
 
 @Injectable()
 export class UpdateManager {
   private readonly subject: Subject<UpdateEvent>;
 
-  constructor(@Inject('TournamentLoader') private loader: HttpTournamentLoader) {
+  constructor(private apiFacade: RestAPIFacade) {
     this.subject = new Subject<UpdateEvent>();
     (<ConnectableObservable<any>>this.subject.pipe(
       filter(event => event.type === 'protocol'),
-      mergeMap(event => this.loader.saveProtocol(event.subject)),
+      mergeMap(event => this.apiFacade.updateProtocol(event.subject)),
       publish()
     )).connect();
   }

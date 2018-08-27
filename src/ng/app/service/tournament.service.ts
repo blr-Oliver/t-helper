@@ -1,18 +1,18 @@
-import {Inject, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {TournamentLoader} from './rest/tournament-loader.service';
 import {PipingStreamSupplier} from './PipingStreamSupplier';
 import {map, switchMap} from 'rxjs/operators';
 import {Tournament} from '../model/Tournament';
 import {TournamentDTO} from '../model/dto/TournamentDTO';
+import {RestAPIFacade} from './api/APIFacade';
 
 @Injectable()
 export class TournamentService {
   private streamSupplier: PipingStreamSupplier<number, Tournament>;
 
-  constructor(@Inject('TournamentLoader') private loader: TournamentLoader) {
+  constructor(private apiFacade: RestAPIFacade) {
     this.streamSupplier = PipingStreamSupplier.create(
-      switchMap(id => this.loader.getTournament(id)),
+      switchMap(id => this.apiFacade.getTournament(id)),
       map(dto => new Tournament(dto))
     );
   }
@@ -30,6 +30,6 @@ export class TournamentService {
   }
 
   getAll(): Observable<TournamentDTO[]> {
-    return this.loader.getAll();
+    return this.apiFacade.getTournamentList();
   }
 }

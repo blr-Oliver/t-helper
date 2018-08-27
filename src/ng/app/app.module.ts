@@ -16,10 +16,10 @@ import {TricksComponent} from './ui/protocol/tricks/tricks.component';
 import {TournamentListComponent} from './ui/tournaments/tournament-list.component';
 import {TournamentService} from './service/tournament.service';
 import {TournamentDetailsComponent} from './ui/tournaments/tournament-details.component';
-import {HttpTournamentLoader} from './service/rest/tournament-loader.service';
 import {DuelsComponent} from './ui/duels/duels.component';
 import {UpdateManager} from './service/UpdateManager';
 import {NewTournamentComponent} from './ui/tournaments/new-tournament.component';
+import {RestAPIFacade} from './service/api/APIFacade';
 
 const appRoutes: Routes = [
   {path: '', pathMatch: 'full', component: TournamentListComponent},
@@ -63,7 +63,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     TournamentService,
-    {provide: 'TournamentLoader', useClass: HttpTournamentLoader},
+    RestAPIFacade,
     UpdateManager
   ],
   bootstrap: [AppComponent]

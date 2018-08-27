@@ -1,13 +1,15 @@
 import {Observable, throwError} from 'rxjs';
 import {ExpandedTournamentDTO, TournamentDTO} from '../../model/dto/TournamentDTO';
 import {ScheduleDTO} from '../../model/dto/ScheduleDTO';
-import {TournamentPatchRequest} from '../rest/TournamentPatchRequest';
+import {TournamentPatchRequest} from './TournamentPatchRequest';
 import {PlayerDTO} from '../../model/dto/PlayerDTO';
 import {ProtocolDTO} from '../../model/dto/ProtocolDTO';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {map} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
 
-export type AuthToken = any;
+export type AuthToken = string;
+
 export interface APIFacade {
   getTournament(id: number): Observable<ExpandedTournamentDTO>;
   getTournamentList(): Observable<TournamentDTO[]>;
@@ -21,6 +23,7 @@ export interface APIFacade {
   deleteTournament(id: number, token?: AuthToken): Observable<void>;
 }
 
+@Injectable()
 export class RestAPIFacade implements APIFacade {
   private static readonly KEYS_TOURNAMENT_CREATE: string[] = ['name', 'description', 'sid'];
   private static readonly KEYS_TOURNAMENT_UPDATE: string[] = ['id', 'name', 'description', 'status'];
