@@ -1,6 +1,9 @@
 package com.oliver.thelper.service;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,8 @@ import com.oliver.thelper.repository.ProtocolRepository;
 import com.oliver.thelper.repository.ScheduleRepository;
 import com.oliver.thelper.repository.TournamentRepository;
 
+// TODO implement token usage
+// TODO implement atomicity 
 @Service
 public class TournamentService {
   @Autowired private TournamentRepository tournamentRepo;
@@ -22,20 +27,48 @@ public class TournamentService {
   @Autowired private PlayerRepository playerRepo;
   @Autowired private ProtocolRepository protocolRepo;
   
-  
-  public Tournament update(int id, Tournament request) {
-    Tournament existing = tournamentRepo.findById(id).get();
-    validateForUpdate(existing, request);
-    
-    existing.setName(request.getName());
-    existing.setDescription(request.getDescription());
-    existing.setStatus(request.getStatus());
+  public Tournament update(int tournamentId, Tournament tournament, List<Player> players, List<Protocol> protocols, String token) {
+    Tournament existingTournament = tournamentRepo.findById(tournamentId).get();
+    validate(existingTournament, tournament, players, protocols, token);
 
-    return tournamentRepo.save(existing);
+    if (tournament != null) {
+      existingTournament.setName(tournament.getName());
+      existingTournament.setDescription(tournament.getDescription());
+      existingTournament.setStatus(tournament.getStatus());
+
+      tournamentRepo.save(existingTournament);
+    }
+
+    if (players != null) {
+      Map<Integer, Player> playerMap = players.stream().collect(Collectors.toMap(Player::getId, Function.identity()));
+      List<Player> existingPlayers = playerRepo.findAllById(playerMap.keySet()).stream().map(player -> {
+        player.setName(playerMap.get(player.getId()).getName());
+        return player;
+      }).collect(Collectors.toList());
+
+      playerRepo.saveAll(existingPlayers);
+    }
+
+    if (protocols != null) {
+      Map<Integer, Protocol> protocolMap = protocols.stream().collect(Collectors.toMap(Protocol::getId, Function.identity()));
+      List<Protocol> existingProtocols = protocolRepo.findAllById(protocolMap.keySet()).stream().map(protocol -> {
+        final Protocol update = protocolMap.get(protocol.getId());
+
+        protocol.setOwner(update.getOwner());
+        protocol.setLevel(update.getLevel());
+        protocol.setSuit(update.getSuit());
+        protocol.setTricks(update.getTricks());
+
+        return protocol;
+      }).collect(Collectors.toList());
+
+      protocolRepo.saveAll(existingProtocols);
+    }
+
+    return tournamentRepo.findById(tournamentId).get();
   }
-  
-  public Tournament create(Tournament request) {
-    // TODO this should be atomic operation (transaction) 
+
+  public Tournament create(Tournament request, String token) {
     Schedule schedule = scheduleRepo.findById(request.getSid()).get();
 
     request.setStatus("unknown");
@@ -52,8 +85,15 @@ public class TournamentService {
 
     return tournamentRepo.findById(id).get();
   }
-  
-  private void validateForUpdate(Tournament existing, Tournament request) {
+
+  public void delete(int tournamentId, String token) {
+    Tournament tournament = tournamentRepo.findById(tournamentId).get();
+    validate(tournament, null, null, null, token);
+
+    tournamentRepo.delete(tournament);
+  }
+
+  private void validate(Tournament existing, Tournament tournament, List<Player> players, List<Protocol> protocols, String token) {
     // TODO check same id, status options and correct schedule id
   }
 }

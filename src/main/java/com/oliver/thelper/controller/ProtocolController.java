@@ -2,11 +2,7 @@ package com.oliver.thelper.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.oliver.thelper.model.Protocol;
 import com.oliver.thelper.repository.ProtocolRepository;
@@ -22,9 +18,12 @@ public class ProtocolController {
   }
 
   @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-  public ResponseEntity<?> saveOne(@PathVariable Integer id, @RequestBody Protocol item) {
+  public ResponseEntity<?> updateOne(
+      @PathVariable Integer id,
+      @RequestBody Protocol item,
+      @RequestHeader(value = Constants.HEADER_TOURNAMENT_TOKEN, required = false) String token) {
     Protocol existing = protocolRepo.findById(id).get();
-    validateProtocol(existing, item);
+    validateProtocol(existing, item, token);
 
     existing.setLevel(item.getLevel());
     existing.setSuit(item.getSuit());
@@ -35,7 +34,7 @@ public class ProtocolController {
     return ResponseEntity.noContent().build();
   }
 
-  private void validateProtocol(Protocol existing, Protocol item) {
+  private void validateProtocol(Protocol existing, Protocol item, String token) {
     // TODO validate for same tournament and game slot
   }
 }
