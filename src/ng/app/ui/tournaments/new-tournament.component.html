@@ -1,31 +1,50 @@
 <div>
   <h1>Новый турнир</h1>
-  <form (submit)="create()">
-    <div>
+  <form (submit)="create(form.value)" #form="ngForm" novalidate>
+    <div [ngClass]="{
+    'has-success': name.valid && (name.dirty || name.touched),
+    'has-danger': name.invalid && (name.dirty || name.touched)}">
       <label for="tournament-name" class="required">Название</label>
-      <input type="text" id="tournament-name" name="name" [(ngModel)]="name" required="required"/>
+      <input type="text" id="tournament-name" name="name" ngModel #name="ngModel"
+             required minlength="3" maxlength="511"/>
+      <div class="form-control-feedback" *ngIf="name.invalid && (name.dirty || name.touched)">
+        <p *ngIf="name.errors.required">Название обязательно</p>
+        <p *ngIf="name.errors.minlength && name.touched">Нужно хотя бы 3 символа</p>
+        <p *ngIf="name.errors.maxlength">Слишком длинная строка</p>
+      </div>
     </div>
-    <div>
+    <div [ngClass]="{
+    'has-success': description?.valid && (description.dirty || description.touched),
+    'has-danger': description?.invalid && (description.dirty || description.touched)}">
       <a *ngIf="!expandDescription; else description_content" (click)="expandDescription = true"
          href="javascript:void(0)">Добавить описание</a>
       <ng-template #description_content>
         <label for="tournament-description">Описание</label>
-        <textarea id="tournament-description" name="description" [(ngModel)]="description"></textarea>
+        <textarea id="tournament-description" name="description" ngModel #description="ngModel"
+                  maxlength="2047"></textarea>
+        <div class="form-control-feedback" *ngIf="description?.invalid && (description.dirty || description.touched)">
+          <p *ngIf="description.errors.maxlength">Слишком много текста</p>
+        </div>
       </ng-template>
     </div>
-    <div>
+    <div [ngClass]="{
+    'has-success': form.controls.sid?.valid && (form.controls.sid.dirty || form.controls.sid.touched),
+    'has-danger': form.controls.sid?.invalid && (form.controls.sid.dirty || form.controls.sid.touched)}">
       <label class="required">Расписание</label>
+      <div class="help-text">Расписание нельзя будет изменить после создания</div>
+      <div class="form-control-feedback"
+           *ngIf="form.controls.sid?.invalid && (form.controls.sid.dirty || form.controls.sid.touched)">
+        <p *ngIf="form.controls.sid.errors.required">Нужно выбрать расписание</p>
+      </div>
       <ng-container *ngIf="schedules as schedules">
-        <div *ngFor="let schedule of schedules">
-          <label><input type="radio" [id]="'schedule-' + schedule.id"
-                   name="tournament-schedule" [value]="schedule.id"
-                   [(ngModel)]="selectedSchedule"/>
-            <span>{{schedule.name}}</span></label>
+        <div *ngFor="let s of schedules">
+          <label><input type="radio" [id]="'schedule-' + s.id" name="sid" [value]="s.id" ngModel required/>
+            <span>{{s.name}}</span></label>
         </div>
       </ng-container>
     </div>
     <div>
-      <button type="submit">Создать</button>
+      <button type="submit" [disabled]="form.invalid">Создать</button>
     </div>
   </form>
 </div>

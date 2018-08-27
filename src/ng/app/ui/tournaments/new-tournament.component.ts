@@ -6,9 +6,6 @@ import {ScheduleDTO} from '../../model/dto/ScheduleDTO';
 })
 export class NewTournamentComponent {
   expandDescription = false;
-  name: string;
-  description: string;
-  selectedSchedule: number;
 
   schedules: ScheduleDTO[] = [
     {
@@ -34,7 +31,7 @@ export class NewTournamentComponent {
     }
   ];
 
-  create() {
-    console.log('Creating!');
+  create(data) {
+    console.log(data);
   }
 }
