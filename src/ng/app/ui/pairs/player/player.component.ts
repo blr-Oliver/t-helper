@@ -1,21 +1,33 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Player} from '../../../model/Player';
-import {UpdateEvent} from '../../../service/UpdateEvent';
+import {UpdateManager} from '../../../service/UpdateManager';
+import {UpdateEventDebounceBarrier} from '../../../service/DebounceBarrier';
+import {PlayerDTO} from '../../../model/dto/PlayerDTO';
 
 @Component({
   selector: 'player',
   templateUrl: './player.component.html'
 })
-export class PlayerComponent {
+export class PlayerComponent implements OnInit {
   @Input() player: Player;
-  @Output() update: EventEmitter<UpdateEvent>;
+  private debounceBarrier: UpdateEventDebounceBarrier<PlayerDTO>;
 
-  constructor() {
-    this.update = new EventEmitter<UpdateEvent>(false);
+  constructor(
+    private updateManager: UpdateManager
+  ) {
+    this.debounceBarrier = new UpdateEventDebounceBarrier<PlayerDTO>(
+      600,
+      ['name'],
+      event => this.updateManager.registerUpdate(event)
+    );
+  }
+
+  ngOnInit() {
+    this.debounceBarrier.init(this.player.data);
   }
 
   onUpdate(newValue) {
-    this.update.emit({
+    this.debounceBarrier.next({
       type: 'player',
       subject: this.player.data,
       property: 'name',
