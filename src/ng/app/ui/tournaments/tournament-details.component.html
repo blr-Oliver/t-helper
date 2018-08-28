@@ -2,13 +2,13 @@
   <div>
     <label for="tournament-name">Имя</label>
     <input id="tournament-name" type="text"
-           [(ngModel)]="tournament.name" (ngModelChane)="onUpdate(tournament, 'name', $event)"/>
+           [(ngModel)]="tournament.name" (ngModelChange)="onUpdate(tournament, 'name', $event)"/>
   </div>
   <div>
     <label for="tournament-description">Описание</label>
     <textarea id="tournament-description"
               [(ngModel)]="tournament.description"
-              (ngModelChane)="onUpdate(tournament, 'description', $event)"></textarea>
+              (ngModelChange)="onUpdate(tournament, 'description', $event)"></textarea>
   </div>
   <div>
     <span>Статус: </span>
