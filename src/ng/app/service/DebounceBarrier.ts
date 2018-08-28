@@ -26,14 +26,18 @@ export class DebounceBarrier<C/*context*/, E/*event*/> {
       subject.pipe(
         debounceTime(this.settings.delay),
         distinctUntilChanged(null, this.settings.selector),
-        skipWhile(e => this.settings.selector(e) !== initial)
+        skipWhile(e => this.settings.selector(e) === initial)
       ).subscribe(this.settings.handler);
       return hash;
     }, {});
   }
 
   next(event: E) {
-    this.barriers[this.settings.denominator(event)].next(event);
+    const category = this.settings.denominator(event);
+    if (category in this.barriers)
+      this.barriers[category].next(event);
+    else
+      this.settings.handler(event);
   }
 }
 
