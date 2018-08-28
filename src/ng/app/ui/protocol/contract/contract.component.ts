@@ -18,7 +18,7 @@ export class ContractComponent {
 
   onUpdate(property, newValue) {
     this.update.emit({
-      type: 'property',
+      type: property,
       currentValue: newValue
     });
   }
