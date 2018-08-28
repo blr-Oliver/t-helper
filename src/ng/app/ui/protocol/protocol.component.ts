@@ -44,12 +44,12 @@ export class ProtocolComponent implements OnInit {
     );
   }
 
-  onUpdate(game: Game, change: UpdateEvent) {
+  onUpdate(game: Game, event: UpdateEvent) {
     this.debounceBarrier.next({
       type: 'protocol',
       subject: game.protocol.data,
-      property: change.type,
-      currentValue: change.currentValue
+      property: event.type,
+      currentValue: event.currentValue
     });
   }
 }
