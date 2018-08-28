@@ -6,6 +6,8 @@ import {map, mergeMap, tap} from 'rxjs/operators';
 import {Game} from '../../model/Game';
 import {UpdateEvent} from '../../service/UpdateEvent';
 import {UpdateManager} from '../../service/UpdateManager';
+import {UpdateEventDebounceBarrier} from '../../service/DebounceBarrier';
+import {ProtocolDTO} from '../../model/dto/ProtocolDTO';
 
 @Component({
   templateUrl: './protocol.component.html'
@@ -13,11 +15,17 @@ import {UpdateManager} from '../../service/UpdateManager';
 export class ProtocolComponent implements OnInit {
   game$: Observable<Game>;
   gameId: string;
+  private debounceBarrier: UpdateEventDebounceBarrier<ProtocolDTO>;
 
   constructor(
     private tournamentService: TournamentService,
     private route: ActivatedRoute,
     private updateManager: UpdateManager) {
+    this.debounceBarrier = new UpdateEventDebounceBarrier<ProtocolDTO>(
+      600,
+      ['tricks', 'level'],
+      event => this.updateManager.registerUpdate(event)
+    );
   }
 
   ngOnInit() {
@@ -31,17 +39,17 @@ export class ProtocolComponent implements OnInit {
         this.gameId = `game-${tour}-${table}`;
         return this.tournamentService.getCurrent();
       }),
-      map(t => t.games[tour - 1][table - 1])
+      map(t => t.games[tour - 1][table - 1]),
+      tap(game => this.debounceBarrier.init(game.protocol.data))
     );
   }
 
   onUpdate(game: Game, change: UpdateEvent) {
-    this.updateManager.registerUpdate({
+    this.debounceBarrier.next({
       type: 'protocol',
       subject: game.protocol.data,
       property: change.type,
-      currentValue: change.currentValue,
-      context: game.gameSlot
+      currentValue: change.currentValue
     });
   }
 }
