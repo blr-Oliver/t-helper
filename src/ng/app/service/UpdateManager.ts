@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {ConnectableObservable, Subject} from 'rxjs';
+import {ConnectableObservable, Observable, Subject} from 'rxjs';
 import {UpdateEvent} from './UpdateEvent';
-import {filter, mergeMap, publish} from 'rxjs/operators';
 import {RestAPIFacade} from './api/APIFacade';
+import {mergeMap, publish} from 'rxjs/operators';
 
 @Injectable()
 export class UpdateManager {
@@ -10,11 +10,19 @@ export class UpdateManager {
 
   constructor(private apiFacade: RestAPIFacade) {
     this.subject = new Subject<UpdateEvent>();
-    (<ConnectableObservable<any>>this.subject.pipe(
-      filter(event => event.type === 'protocol'),
-      mergeMap(event => this.apiFacade.updateProtocol(event.subject)),
+    (<ConnectableObservable<any>> this.subject.pipe(
+      mergeMap(event => this.processUpdate(event)),
       publish()
     )).connect();
+  }
+
+  private processUpdate(event: UpdateEvent): Observable<void> {
+    switch (event.type) {
+      case 'tournament':  return this.apiFacade.updateTournament(event.subject);
+      case 'player':      return this.apiFacade.updatePlayer(event.subject);
+      case 'protocol':    return this.apiFacade.updateProtocol(event.subject);
+      default:            console.warn(`unknown update type: "${event.type}"`);
+    }
   }
 
   registerUpdate(event: UpdateEvent) {
