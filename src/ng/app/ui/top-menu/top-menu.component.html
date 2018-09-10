@@ -1,4 +1,4 @@
-<ul>
+<ul class="no-print">
   <li><a [routerLink]="['/']">Все турниры</a></li>
   <ng-container *ngIf="tournamentId$ | async as tid">
     <li><a [routerLink]="['/', tid]">Обзор</a></li>

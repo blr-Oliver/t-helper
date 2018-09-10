@@ -1,0 +1,14 @@
+@media print {
+  .printable ~ :not(.printable), .no-print:not(.printable) {
+    display: none;
+  }
+}
+
+@page {
+  size: A4 portrait;
+  margin: 10mm;
+}
+
+tr {
+  page-break-inside: avoid;
+}

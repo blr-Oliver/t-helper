@@ -27,7 +27,8 @@
               "src/ng/assets"
             ],
             "styles": [
-              "src/ng/styles.scss"
+              "src/ng/styles.scss",
+              "src/ng/print.scss"
             ],
             "scripts": []
           },

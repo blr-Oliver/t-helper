@@ -1,0 +1,11 @@
+.protocol-list {
+  width: 99%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  td.protocol-box {
+    position: relative;
+    box-sizing: border-box;
+    border: 0.1mm dotted black;
+    padding-bottom: 72%;
+  }
+}
