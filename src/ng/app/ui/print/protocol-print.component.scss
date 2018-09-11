@@ -6,7 +6,7 @@
   bottom: 0;
   z-index: 1;
   background-color: transparent;
-  padding: 3mm;
+  padding: 2mm 1mm;
 }
 
 .frame-background {
@@ -39,12 +39,56 @@
   }
 }
 
+.player-seat {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 30%;
+  & > * {
+    flex: 0 0 auto;
+  }
+  &.north {
+    flex-direction: column;
+  }
+  &.east {
+    flex-direction: row-reverse;
+  }
+  &.south {
+    flex-direction: column-reverse;
+  }
+  &.west {
+    flex-direction: row;
+  }
+}
+
+.seat-marker {
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-align: center;
+  font-family: Georgia, monospace;
+  font-size: 24pt;
+  font-weight: bold;
+}
+
 .player-name {
-  width: 25%;
-  height: auto;
+  height: 45pt;
+  flex-grow: 1;
   font-family: "Palatino Linotype", sans-serif;
   font-size: 20pt;
   text-align: center;
-  line-height: 1.2;
-  background-color: #fdd;
+  line-height: 1.1;
+  color: #b81;
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+  }
+  > * {
+    display: inline-block;
+    vertical-align: middle;
+  }
 }
