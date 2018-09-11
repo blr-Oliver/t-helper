@@ -4,12 +4,21 @@
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: 1;
-  background-color: transparent;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-between;
   padding: 2mm 1mm;
+  background-color: transparent;
+  z-index: 1;
 }
 
 .frame-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
   & > * {
     position: absolute;
     width: 25%;
@@ -17,6 +26,7 @@
     transform-origin: center center;
     background-image: radial-gradient(farthest-corner at bottom right, transparent 70%, rgba(0, 0, 0, 0.3));
     z-index: 0;
+    pointer-events: none;
   }
   .north-west {
     left: 0;
@@ -44,10 +54,7 @@
   flex-wrap: nowrap;
   align-items: center;
   justify-content: flex-start;
-  max-width: 30%;
-  & > * {
-    flex: 0 0 auto;
-  }
+  width: 30%;
   &.north {
     flex-direction: column;
   }
@@ -65,6 +72,7 @@
 .seat-marker {
   width: 1em;
   height: 1em;
+  flex: 0 0 auto;
   line-height: 1;
   text-align: center;
   font-family: Georgia, monospace;
@@ -74,7 +82,7 @@
 
 .player-name {
   height: 45pt;
-  flex-grow: 1;
+  flex: 1 0 auto;
   font-family: "Palatino Linotype", sans-serif;
   font-size: 20pt;
   text-align: center;
@@ -91,4 +99,12 @@
     display: inline-block;
     vertical-align: middle;
   }
+}
+
+.mid-row {
+  align-self: stretch;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
 }
