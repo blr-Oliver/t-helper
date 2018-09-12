@@ -1,3 +1,8 @@
+$protocol-header-size: 20pt;
+$protocol-marker-size: $protocol-header-size * 1.2;
+$protocol-player-size: $protocol-header-size;
+$protocol-suit-size: $protocol-header-size * 1.3;
+
 .protocol {
   position: absolute;
   left: 0;
@@ -70,21 +75,43 @@
 }
 
 .seat-marker {
+  position: relative;
   width: 1em;
   height: 1em;
+  box-sizing: content-box;
   flex: 0 0 auto;
   line-height: 1;
   text-align: center;
   font-family: Georgia, monospace;
-  font-size: 24pt;
+  font-size: $protocol-marker-size;
   font-weight: bold;
+  &.dealer::after {
+    content: 'D';
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    text-align: center;
+    font-size: $protocol-marker-size * 0.6;
+    border-radius: 50%;
+    border: 1pt dashed;
+    line-height: $protocol-marker-size * 0.8;
+    color: green;
+  }
+  .north &.dealer::after, .south &.dealer::after {
+    top: 10%;
+    left: 125%;
+  }
+  .west &.dealer::after, .east &.dealer::after {
+    top: 125%;
+    left: 10%;
+  }
 }
 
 .player-name {
-  height: 45pt;
+  height: 2.3em;
   flex: 1 0 auto;
   font-family: "Palatino Linotype", sans-serif;
-  font-size: 20pt;
+  font-size: $protocol-player-size;
   text-align: center;
   line-height: 1.1;
   color: #b81;
@@ -107,4 +134,58 @@
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
+}
+
+.mid-area {
+  text-align: center;
+  h2 {
+    font-size: $protocol-header-size;
+  }
+  h4 {
+    font-size: $protocol-header-size * 0.6;
+  }
+  .spacer {
+    display: inline-block;
+    width: 1em;
+  }
+  .input-layout {
+    margin: 0.5em auto 0 $protocol-suit-size;
+    border-collapse: collapse;
+    border: none;
+    font-size: $protocol-header-size * 0.7;
+    .teams {
+      font-size: $protocol-header-size;
+    }
+    td {
+      vertical-align: middle;
+    }
+    .legend-top {
+      vertical-align: bottom;
+      padding-bottom: 0.2em;
+    }
+    .legend-bottom {
+      vertical-align: top;
+      padding-top: 0.2em;
+    }
+  }
+  .input {
+    width: 2.5em;
+    height: 1.5em;
+    background-color: #fff;
+    border: 0.2pt solid black;
+    font-size: $protocol-header-size;
+  }
+  .suit-list {
+    list-style: none;
+    font-size: $protocol-suit-size;
+    li {
+      width: 1em;
+      height: 1em;
+      line-height: 1;
+      color: #000;
+    }
+    .red-suit {
+      color: #d00;
+    }
+  }
 }
