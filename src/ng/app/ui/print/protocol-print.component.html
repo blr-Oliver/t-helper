@@ -1,16 +1,10 @@
 <div class="protocol">
-  <div class="player-seat north">
-    <div class="seat-marker dealer">N</div>
-    <div class="player-name"><span>Василий<br/>Лясковский</span></div>
-  </div>
+  <protocol-player [game]="game" position="N"></protocol-player>
   <div class="mid-row">
-    <div class="player-seat west">
-      <div class="seat-marker dealer">W</div>
-      <div class="player-name"><span>Василий<br/>Лясковский</span></div>
-    </div>
+    <protocol-player [game]="game" position="W"></protocol-player>
     <div class="mid-area">
-      <h2><span>Тур 3</span><span class="spacer">&nbsp;</span><span>Стол 1</span></h2>
-      <h5>Сдача 3</h5>
+      <h2><span>Тур {{game.tour}}</span><span class="spacer">&nbsp;</span><span>Стол {{game.table}}</span></h2>
+      <h5>Сдача {{game.deal}}</h5>
       <table class="input-layout">
         <tr>
           <td colspan="2" class="legend-top">контракт</td>
@@ -40,19 +34,15 @@
         </tr>
       </table>
     </div>
-    <div class="player-seat east">
-      <div class="seat-marker dealer">E</div>
-      <div class="player-name"><span>Василий<br/>Лясковский</span></div>
-    </div>
+    <protocol-player [game]="game" position="E"></protocol-player>
   </div>
-  <div class="player-seat south">
-    <div class="seat-marker dealer">S</div>
-    <div class="player-name"><span>Василий<br/>Лясковский</span></div>
-  </div>
+  <protocol-player [game]="game" position="S"></protocol-player>
+  <!--
   <div class="frame-background" role="presentation">
     <div class="north-west"></div>
     <div class="north-east"></div>
     <div class="south-east"></div>
     <div class="south-west"></div>
   </div>
+  -->
 </div>

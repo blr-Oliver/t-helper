@@ -22,6 +22,7 @@ import {NewTournamentComponent} from './ui/tournaments/new-tournament.component'
 import {RestAPIFacade} from './service/api/APIFacade';
 import {ProtocolPrintComponent} from './ui/print/protocol-print.component';
 import {ProtocolListComponent} from './ui/print/protocol-list.component';
+import {ProtocolPlayerComponent} from './ui/print/protocol-player.component';
 
 const appRoutes: Routes = [
   {path: '', pathMatch: 'full', component: TournamentListComponent},
@@ -58,7 +59,8 @@ const appRoutes: Routes = [
     TricksComponent,
     NewTournamentComponent,
     ProtocolListComponent,
-    ProtocolPrintComponent
+    ProtocolPrintComponent,
+    ProtocolPlayerComponent
   ],
   imports: [
     BrowserModule,

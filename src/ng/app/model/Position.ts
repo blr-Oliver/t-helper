@@ -10,3 +10,12 @@ export function opposite(position: Position): Position {
     case Position.W: return Position.E;
   }
 }
+
+export function classAlias(position: Position): string {
+  switch (position) {
+    case Position.N: return 'north';
+    case Position.E: return 'east';
+    case Position.S: return 'south';
+    case Position.W: return 'west';
+  }
+}
