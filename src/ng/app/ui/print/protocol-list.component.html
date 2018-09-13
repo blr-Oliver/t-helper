@@ -1,4 +1,4 @@
-<table *ngIf="games$ | async as games" class="protocol-list printable">
+<table *ngIf="games$ | async as games" class="protocol-list printable print-only">
   <tr *ngFor="let game of games">
     <td class="protocol-box">
       <protocol-print [game]="game"></protocol-print>
