@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Game} from '../../model/Game';
 
 @Component({
   selector: 'protocol-print',
@@ -6,5 +7,5 @@ import {Component} from '@angular/core';
   styleUrls: ['./protocol-print.component.scss']
 })
 export class ProtocolPrintComponent {
-
+  @Input() game: Game;
 }

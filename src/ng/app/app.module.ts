@@ -25,12 +25,12 @@ import {ProtocolListComponent} from './ui/print/protocol-list.component';
 
 const appRoutes: Routes = [
   {path: '', pathMatch: 'full', component: TournamentListComponent},
-  {path: 'print', component: ProtocolListComponent},
   {path: 'new', component: NewTournamentComponent},
   {
     path: ':id',
     children: [
       {path: '', pathMatch: 'full', component: TournamentDetailsComponent},
+      {path: 'print', component: ProtocolListComponent},
       {path: 'players', component: PairsComponent},
       {path: 'games', component: ScheduleComponent},
       {path: 'protocol/:tour/:table', component: ProtocolComponent},

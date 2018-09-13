@@ -1,32 +1,7 @@
-<table class="protocol-list printable">
-  <tr>
+<table *ngIf="games$ | async as games" class="protocol-list printable">
+  <tr *ngFor="let game of games">
     <td class="protocol-box">
-      <protocol-print></protocol-print>
-    </td>
-  </tr>
-  <tr>
-    <td class="protocol-box">
-      <protocol-print></protocol-print>
-    </td>
-  </tr>
-  <tr>
-    <td class="protocol-box">
-      <protocol-print></protocol-print>
-    </td>
-  </tr>
-  <tr>
-    <td class="protocol-box">
-      <protocol-print></protocol-print>
-    </td>
-  </tr>
-  <tr>
-    <td class="protocol-box">
-      <protocol-print></protocol-print>
-    </td>
-  </tr>
-  <tr>
-    <td class="protocol-box">
-      <protocol-print></protocol-print>
+      <protocol-print [game]="game"></protocol-print>
     </td>
   </tr>
 </table>
