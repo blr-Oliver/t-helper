@@ -3,6 +3,7 @@
   <ng-container *ngIf="tournamentId$ | async as tid">
     <li><a [routerLink]="['/', tid]">Обзор</a></li>
     <li><a [routerLink]="['/', tid, 'players']">Участники</a></li>
+    <li><a [routerLink]="['/', tid, 'print']">Материалы</a></li>
     <li><a [routerLink]="['/', tid, 'games']">Расписание</a></li>
     <li><a [routerLink]="['/', tid, 'protocol']">Игры</a></li>
     <li><a [routerLink]="['/', tid, 'duels']">Дуэли</a></li>
