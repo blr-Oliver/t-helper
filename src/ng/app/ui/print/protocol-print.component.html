@@ -1,7 +1,7 @@
 <div class="protocol">
-  <protocol-player [game]="game" position="N"></protocol-player>
+  <div class="player-seat north" [game]="game" position="N"></div>
   <div class="mid-row">
-    <protocol-player [game]="game" position="W"></protocol-player>
+    <div class="player-seat west" [game]="game" position="W"></div>
     <div class="mid-area">
       <h2><span>Тур {{game.tour}}</span><span class="spacer">&nbsp;</span><span>Стол {{game.table}}</span></h2>
       <h5>Сдача {{game.deal}}</h5>
@@ -34,9 +34,9 @@
         </tr>
       </table>
     </div>
-    <protocol-player [game]="game" position="E"></protocol-player>
+    <div class="player-seat east" [game]="game" position="E"></div>
   </div>
-  <protocol-player [game]="game" position="S"></protocol-player>
+  <div class="player-seat south" [game]="game" position="S"></div>
   <!--
   <div class="frame-background" role="presentation">
     <div class="north-west"></div>
