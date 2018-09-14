@@ -3,3 +3,11 @@
   margin: 0;
   padding: 0;
 }
+
+label.required {
+  &::before {
+    content: '*';
+    font-size: 120%;
+    color: var(--danger);
+  }
+}

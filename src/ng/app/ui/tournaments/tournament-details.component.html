@@ -1,15 +1,31 @@
 <div *ngIf="tournament$ | async as tournament" class="col form">
   <div class="form-group">
-    <label for="tournament-name" class="font-weight-bold">Название</label>
-    <input id="tournament-name" type="text" class="form-control"
-           [(ngModel)]="tournament.name" (ngModelChange)="onUpdate(tournament, 'name', $event)"/>
+    <label for="tournament-name" class="required font-weight-bold">Название</label>
+    <input id="tournament-name" type="text" class="form-control" name="name"
+           #name="ngModel" [(ngModel)]="tournament.name"
+           (ngModelChange)="onUpdate(tournament, name, 'name')"
+           minlength="3" maxlength="511" required
+           [ngClass]="{
+            'is-valid': name.valid && (name.dirty || name.touched),
+            'is-invalid': name.invalid && (name.dirty || name.touched)}"/>
+    <div class="invalid-feedback" *ngIf="name.invalid && (name.dirty || name.touched)">
+      <p *ngIf="name.errors.required">Название обязательно</p>
+      <p *ngIf="name.errors.minlength && name.touched">Нужно хотя бы 3 символа</p>
+      <p *ngIf="name.errors.maxlength">Слишком длинная строка</p>
+    </div>
   </div>
   <div class="form-group">
     <label for="tournament-description" class="font-weight-bold">Описание</label>
     <textarea id="tournament-description" class="form-control"
               style="min-height: 3em"
-              [(ngModel)]="tournament.description"
-              (ngModelChange)="onUpdate(tournament, 'description', $event)"></textarea>
+              #description="ngModel" [(ngModel)]="tournament.description"
+              (ngModelChange)="onUpdate(tournament, description, 'description')"
+              [ngClass]="{
+                'is-valid': description?.valid && (description.dirty || description.touched),
+                'is-invalid': description?.invalid && (description.dirty || description.touched)}"></textarea>
+    <div class="invalid-feedback" *ngIf="description?.invalid && (description.dirty || description.touched)">
+      <p *ngIf="description.errors.maxlength">Слишком много текста</p>
+    </div>
   </div>
   <div class="form-group mb-0">
     <span class="form-control-plaintext">Статус: {{tournament.status}}</span>
