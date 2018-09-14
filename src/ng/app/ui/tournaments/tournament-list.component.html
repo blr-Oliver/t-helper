@@ -1,8 +1,14 @@
-<div>
-  <ul>
-    <li *ngFor="let tournament of tournaments$ | async">
-      <a [routerLink]="['/', tournament.id]">{{tournament.name}}</a>
-    </li>
-  </ul>
-  <a routerLink="/new">Создать новый турнир</a>
+<div class="row no-gutters">
+  <div class="col">
+    <ul class="list-group">
+      <li *ngFor="let tournament of tournaments$ | async" class="list-group-item"
+          routerLinkActive="active">
+        <a [routerLink]="['/', tournament.id]">{{tournament.name}}</a>
+        <small class="text-secondary float-right">{{tournament.dateCreated | date}}</small>
+      </li>
+    </ul>
+    <div class="text-center mt-3">
+      <a routerLink="/new" class="btn btn-success">Создать новый турнир</a>
+    </div>
+  </div>
 </div>
