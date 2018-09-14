@@ -3,7 +3,7 @@
   <div class="mid-row">
     <div class="player-seat west" [game]="game" position="W"></div>
     <div class="mid-area">
-      <h2><span>Тур {{game.tour}}</span><span class="spacer">&nbsp;</span><span>Стол {{game.table}}</span></h2>
+      <h2><span>Тур {{game.tour}}</span><span class="spacer">&nbsp;</span><span>Стол {{game.table | roman}}</span></h2>
       <h5>Сдача {{game.deal}}</h5>
       <table class="input-layout">
         <tr>

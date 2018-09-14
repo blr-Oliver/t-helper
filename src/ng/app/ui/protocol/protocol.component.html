@@ -19,7 +19,7 @@
       </div>
       <div class="protocol-cell center legend">
         <div class="header">
-          <h1><span>Тур {{game.tour}}</span>&nbsp;&nbsp;&nbsp;<span>Стол {{game.table}}</span></h1>
+          <h1><span>Тур {{game.tour}}</span>&nbsp;&nbsp;&nbsp;<span>Стол {{game.table | roman}}</span></h1>
           <h2>Сдача {{game.deal}}</h2>
         </div>
         <contract [contract]="game.protocol.contract" [gameId]="gameId" (update)="onUpdate(game, $event)"></contract>

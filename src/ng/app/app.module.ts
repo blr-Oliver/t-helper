@@ -23,6 +23,7 @@ import {RestAPIFacade} from './service/api/APIFacade';
 import {ProtocolPrintComponent} from './ui/print/protocol-print.component';
 import {ProtocolListComponent} from './ui/print/protocol-list.component';
 import {ProtocolPlayerComponent} from './ui/print/protocol-player.component';
+import {RomanPipe} from './util/roman.pipe';
 
 const appRoutes: Routes = [
   {path: '', pathMatch: 'full', component: TournamentListComponent},
@@ -60,7 +61,8 @@ const appRoutes: Routes = [
     NewTournamentComponent,
     ProtocolListComponent,
     ProtocolPrintComponent,
-    ProtocolPlayerComponent
+    ProtocolPlayerComponent,
+    RomanPipe
   ],
   imports: [
     BrowserModule,
