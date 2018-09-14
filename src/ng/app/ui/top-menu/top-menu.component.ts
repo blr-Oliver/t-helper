@@ -8,6 +8,7 @@ import {Observable} from 'rxjs';
 })
 export class TopMenuComponent implements OnInit {
   tournamentId$: Observable<number>;
+  expanded = false;
 
   constructor(private tournamentService: TournamentService) {
   }
