@@ -1,50 +1,53 @@
-<div>
-  <h1>Новый турнир</h1>
-  <form (submit)="create(form.value)" #form="ngForm" novalidate>
-    <div [ngClass]="{
-    'has-success': name.valid && (name.dirty || name.touched),
-    'has-danger': name.invalid && (name.dirty || name.touched)}">
-      <label for="tournament-name" class="required">Название</label>
-      <input type="text" id="tournament-name" name="name" ngModel #name="ngModel"
-             required minlength="3" maxlength="511"/>
-      <div class="form-control-feedback" *ngIf="name.invalid && (name.dirty || name.touched)">
-        <p *ngIf="name.errors.required">Название обязательно</p>
-        <p *ngIf="name.errors.minlength && name.touched">Нужно хотя бы 3 символа</p>
-        <p *ngIf="name.errors.maxlength">Слишком длинная строка</p>
+<form class="col" (submit)="create(form.value)" #form="ngForm" novalidate>
+  <div class="form-group">
+    <label for="tournament-name" class="font-weight-bold required">Название</label>
+    <input type="text" id="tournament-name" name="name" class="form-control" ngModel #name="ngModel"
+           required minlength="3" maxlength="511"
+           [ngClass]="{
+            'is-valid': name.valid && (name.dirty || name.touched),
+            'is-invalid': name.invalid && (name.dirty || name.touched)}"/>
+    <div class="invalid-feedback" *ngIf="name.invalid && (name.dirty || name.touched)">
+      <p *ngIf="name.errors.required">Название обязательно</p>
+      <p *ngIf="name.errors.minlength && name.touched">Нужно хотя бы 3 символа</p>
+      <p *ngIf="name.errors.maxlength">Слишком длинная строка</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <a *ngIf="!expandDescription; else description_content" (click)="expandDescription = true"
+       href="javascript:void(0)" class="pl-2"><span class="font-weight-bold">+</span><span>Добавить описание</span></a>
+    <ng-template #description_content>
+      <label for="tournament-description" class="font-weight-bold">Описание</label>
+      <textarea id="tournament-description" name="description" class="form-control"
+                ngModel #description="ngModel"
+                maxlength="2047"
+                [ngClass]="{
+                  'is-valid': description?.valid && (description.dirty || description.touched),
+                  'is-invalid': description?.invalid && (description.dirty || description.touched)}"></textarea>
+      <div class="invalid-feedback" *ngIf="description?.invalid && (description.dirty || description.touched)">
+        <p *ngIf="description.errors.maxlength">Слишком много текста</p>
       </div>
+    </ng-template>
+  </div>
+  <div class="form-group">
+    <label class="required font-weight-bold" title="Расписание нельзя будет изменить после создания">Расписание</label>
+    <!-- next input exclusively for bootstrap validation classes -->
+    <input type="hidden" class="form-control" [ngClass]="{
+        'is-valid': form.controls.sid?.valid && (form.controls.sid.dirty || form.controls.sid.touched),
+        'is-invalid': form.controls.sid?.invalid && (form.controls.sid.dirty || form.controls.sid.touched)}"/>
+    <div class="invalid-feedback"
+         *ngIf="form.controls.sid?.invalid && (form.controls.sid.dirty || form.controls.sid.touched)">
+      <p *ngIf="form.controls.sid.errors.required">Нужно выбрать расписание</p>
     </div>
-    <div [ngClass]="{
-    'has-success': description?.valid && (description.dirty || description.touched),
-    'has-danger': description?.invalid && (description.dirty || description.touched)}">
-      <a *ngIf="!expandDescription; else description_content" (click)="expandDescription = true"
-         href="javascript:void(0)">Добавить описание</a>
-      <ng-template #description_content>
-        <label for="tournament-description">Описание</label>
-        <textarea id="tournament-description" name="description" ngModel #description="ngModel"
-                  maxlength="2047"></textarea>
-        <div class="form-control-feedback" *ngIf="description?.invalid && (description.dirty || description.touched)">
-          <p *ngIf="description.errors.maxlength">Слишком много текста</p>
-        </div>
-      </ng-template>
-    </div>
-    <div [ngClass]="{
-    'has-success': form.controls.sid?.valid && (form.controls.sid.dirty || form.controls.sid.touched),
-    'has-danger': form.controls.sid?.invalid && (form.controls.sid.dirty || form.controls.sid.touched)}">
-      <label class="required">Расписание</label>
-      <div class="help-text">Расписание нельзя будет изменить после создания</div>
-      <div class="form-control-feedback"
-           *ngIf="form.controls.sid?.invalid && (form.controls.sid.dirty || form.controls.sid.touched)">
-        <p *ngIf="form.controls.sid.errors.required">Нужно выбрать расписание</p>
+    <ng-container *ngIf="schedules$ | async as schedules">
+      <div class="form-check" *ngFor="let s of schedules">
+        <input type="radio" class="form-check-input" [id]="'schedule-' + s.id" name="sid"
+               [value]="s.id" ngModel required/>
+        <label class="form-check-label" [for]="'schedule-' + s.id"><span>{{s.name}}</span></label>
       </div>
-      <ng-container *ngIf="schedules$ | async as schedules">
-        <div *ngFor="let s of schedules">
-          <label><input type="radio" [id]="'schedule-' + s.id" name="sid" [value]="s.id" ngModel required/>
-            <span>{{s.name}}</span></label>
-        </div>
-      </ng-container>
-    </div>
-    <div>
-      <button type="submit" [disabled]="form.invalid">Создать</button>
-    </div>
-  </form>
-</div>
+    </ng-container>
+  </div>
+  <div class="form-group text-center">
+    <button type="submit" class="btn btn-success" [disabled]="form.invalid">Создать</button>
+  </div>
+</form>
+
