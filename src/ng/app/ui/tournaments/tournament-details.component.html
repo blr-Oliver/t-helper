@@ -1,20 +1,20 @@
 <div *ngIf="tournament$ | async as tournament" class="col form">
   <div class="form-group">
-    <label for="tournament-name">Название</label>
+    <label for="tournament-name" class="font-weight-bold">Название</label>
     <input id="tournament-name" type="text" class="form-control"
            [(ngModel)]="tournament.name" (ngModelChange)="onUpdate(tournament, 'name', $event)"/>
   </div>
   <div class="form-group">
-    <label for="tournament-description">Описание</label>
+    <label for="tournament-description" class="font-weight-bold">Описание</label>
     <textarea id="tournament-description" class="form-control"
               style="min-height: 3em"
               [(ngModel)]="tournament.description"
               (ngModelChange)="onUpdate(tournament, 'description', $event)"></textarea>
   </div>
-  <div class="form-group">
+  <div class="form-group mb-0">
     <span class="form-control-plaintext">Статус: {{tournament.status}}</span>
   </div>
-  <div class="form-group">
+  <div class="form-group mb-0">
     <span class="form-control-plaintext">Создан: {{tournament.dateCreated | date}}</span>
   </div>
 </div>
