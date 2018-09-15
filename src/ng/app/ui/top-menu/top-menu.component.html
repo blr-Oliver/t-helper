@@ -9,6 +9,7 @@
           routerLinkActive="active"
           [routerLinkActiveOptions]="{exact: true}"><a class="nav-link" [routerLink]="['/']">Все турниры</a></li>
       <ng-container *ngIf="tournamentId$ | async as tid">
+        <li class="nav-item dropdown-divider"></li>
         <li class="nav-item"
             routerLinkActive="active"
             [routerLinkActiveOptions]="{exact: true}"><a class="nav-link" [routerLink]="['/', tid]">Обзор</a></li>
