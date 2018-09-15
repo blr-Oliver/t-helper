@@ -2,21 +2,25 @@
   <table class="table table-striped">
     <thead>
     <tr>
-      <th>Место</th>
-      <th>Пара</th>
-      <th>Очки дуэлей</th>
-      <th>Бонус</th>
+      <th class="text-center">Место</th>
+      <th class="text-center">Пара</th>
+      <th class="text-center">Очки дуэлей</th>
+      <th class="text-center">Бонус</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let record of standings.records">
-      <td>{{record.rank}}</td>
-      <td>
-        <span>{{record.pair[0].name || record.pair[0].slot}}</span>&nbsp;
-        <span>{{record.pair[1].name || record.pair[1].slot}}</span>
+      <td class="text-center align-middle">{{record.rank}}</td>
+      <td class="text-center align-middle">
+        <span *ngIf="!record.pair.defined; else names">{{record.pair.name}}</span>
+        <ng-template #names>
+          <span>{{record.pair[0].name}}</span>
+          <br/>
+          <span>{{record.pair[1].name}}</span>
+        </ng-template>
       </td>
-      <td>{{record.duelScore}}</td>
-      <td>{{record.bonusScore}}</td>
+      <td class="text-center align-middle">{{record.duelScore}}</td>
+      <td class="text-center align-middle">{{record.bonusScore}}</td>
     </tr>
     </tbody>
   </table>
