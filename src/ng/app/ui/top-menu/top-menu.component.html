@@ -3,6 +3,9 @@
           aria-label="Toggle navigation" (click)="expanded = !expanded">
     <span class="navbar-toggler-icon"></span>
   </button>
+  <div class="flex-grow-1 pl-3 d-lg-none navbar-nav">
+      <span class="navbar-text">{{nameTracker.name}}</span>
+  </div>
   <div class="collapse navbar-collapse" id="navbarContent" [class.show]="expanded" (click)="expanded = false">
     <ul class="navbar-nav">
       <li class="nav-item"

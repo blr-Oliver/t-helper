@@ -24,22 +24,32 @@ import {ProtocolPrintComponent} from './ui/print/protocol-print.component';
 import {ProtocolListComponent} from './ui/print/protocol-list.component';
 import {ProtocolPlayerComponent} from './ui/print/protocol-player.component';
 import {RomanPipe} from './util/roman.pipe';
+import {RouteNameTracker} from './service/RouteNameTracker';
 
 const appRoutes: Routes = [
-  {path: '', pathMatch: 'full', component: TournamentListComponent},
-  {path: 'new', component: NewTournamentComponent},
+  {path: '', pathMatch: 'full', component: TournamentListComponent,
+    resolve: { state: RouteNameTracker }, data: { name: 'home' }},
+  {path: 'new', component: NewTournamentComponent,
+    resolve: { state: RouteNameTracker }, data: { name: 'new' }},
   {
     path: ':id',
     children: [
-      {path: '', pathMatch: 'full', component: TournamentDetailsComponent},
-      {path: 'print', component: ProtocolListComponent},
-      {path: 'players', component: PairsComponent},
-      {path: 'games', component: ScheduleComponent},
-      {path: 'protocol/:tour/:table', component: ProtocolComponent},
+      {path: '', pathMatch: 'full', component: TournamentDetailsComponent,
+        resolve: { state: RouteNameTracker }, data: { name: 'details' }},
+      {path: 'print', component: ProtocolListComponent,
+        resolve: { state: RouteNameTracker }, data: { name: 'print' }},
+      {path: 'players', component: PairsComponent,
+        resolve: { state: RouteNameTracker }, data: { name: 'players' }},
+      {path: 'games', component: ScheduleComponent,
+        resolve: { state: RouteNameTracker }, data: { name: 'schedule' }},
+      {path: 'protocol/:tour/:table', component: ProtocolComponent,
+        resolve: { state: RouteNameTracker }, data: { name: 'game' }},
       {path: 'protocol/:partial', redirectTo: 'protocol/1/1'},
       {path: 'protocol', redirectTo: 'protocol/1/1'},
-      {path: 'duels', component: DuelsComponent},
-      {path: 'standings', component: StandingsComponent},
+      {path: 'duels', component: DuelsComponent,
+        resolve: { state: RouteNameTracker }, data: { name: 'duels' }},
+      {path: 'standings', component: StandingsComponent,
+        resolve: { state: RouteNameTracker }, data: { name: 'standings' }},
     ]
   }
 ];
@@ -73,7 +83,8 @@ const appRoutes: Routes = [
   providers: [
     TournamentService,
     RestAPIFacade,
-    UpdateManager
+    UpdateManager,
+    RouteNameTracker
   ],
   bootstrap: [AppComponent]
 })
