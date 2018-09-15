@@ -12,16 +12,20 @@
     <th scope="row" class="text-right align-middle"
         (click)="selectedRow = i">{{tournament.pairs[i].name}}
     </th>
-    <td class="text-center" *ngFor="let pairDuels of pairTotal; let j = index" [class.self]="!pairDuels"
+    <td class="text-center align-middle"
+        *ngFor="let pairDuels of pairTotal; let j = index" [class.self]="!pairDuels"
         (click)="selectedRow = i; selectedColumn = j">
       <div class="expandable-content"
            [class.wide]="j === selectedColumn"
-           [style.height.em]="i === selectedRow ? cellHeight : 0">
-        <ul class="list-unstyled m-0" *ngIf="pairDuels && i === selectedRow && j === selectedColumn">
-          <li class="duel-details" *ngFor="let duel of pairDuels">
-            на {{duel.deal}} в {{duel.position}} : {{duel.scores[duel.getPairIndex(tournament.pairs[i])]}}
-          </li>
-        </ul>
+           [style.height.em]="i === selectedRow && (i === j || j === selectedColumn) ? cellHeight : duelHeight">
+        <ng-container *ngIf="pairDuels">
+          <ul class="list-unstyled m-0" *ngIf="i === selectedRow && j === selectedColumn; else summary">
+            <li class="duel-details" *ngFor="let duel of pairDuels">
+              на {{duel.deal}} в {{duel.position}} : {{duel.scores[duel.getPairIndex(tournament.pairs[i])]}}
+            </li>
+          </ul>
+          <ng-template #summary>{{duelTotals[i][j]}}</ng-template>
+        </ng-container>
       </div>
     </td>
   </tr>
