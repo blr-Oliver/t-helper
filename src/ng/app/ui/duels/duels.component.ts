@@ -6,7 +6,8 @@ import {Tournament} from '../../model/Tournament';
 import {TournamentService} from '../../service/tournament.service';
 
 @Component({
-  templateUrl: './duels.component.html'
+  templateUrl: './duels.component.html',
+  styleUrls: ['./duels.component.scss']
 })
 export class DuelsComponent implements OnInit {
   tournament$: Observable<Tournament>;
