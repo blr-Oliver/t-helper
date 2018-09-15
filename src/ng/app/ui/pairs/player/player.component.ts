@@ -6,7 +6,17 @@ import {PlayerDTO} from '../../../model/dto/PlayerDTO';
 
 @Component({
   selector: 'player',
-  templateUrl: './player.component.html'
+  templateUrl: './player.component.html',
+  styles: [`
+    .player-label {
+      margin: 0;
+      padding-right: 0;
+      flex: 0 0 1em;
+      align-self: center;
+      text-align: right;
+      font-weight: bold;
+    }
+  `]
 })
 export class PlayerComponent implements OnInit {
   @Input() player: Player;

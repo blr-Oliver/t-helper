@@ -1,6 +1,9 @@
-<form class="form">
-  <div *ngFor="let pair of pairs$ | async">
-    <player [player]="pair[0]"></player>
-    <player [player]="pair[1]"></player>
+<form class="col">
+  <div *ngFor="let pair of pairs$ | async" class="card mb-3">
+    <div class="card-body">
+      <player [player]="pair[0]"></player>
+      <div class="mb-3"></div>
+      <player [player]="pair[1]"></player>
+    </div>
   </div>
 </form>
