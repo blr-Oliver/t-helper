@@ -1,4 +1,4 @@
-<table class="table table-striped" *ngIf="games$ | async as games">
+<table class="table table-striped table-sm" *ngIf="games$ | async as games">
   <colgroup>
     <col width="10%"/>
     <col *ngFor="let _ of games[0]"/>
@@ -6,18 +6,18 @@
   <thead>
   <tr>
     <th></th>
-    <th *ngFor="let game of games[0]">{{game.table | roman}}</th>
+    <th class="text-center" *ngFor="let game of games[0]">{{game.table | roman}}</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let tourGames of games">
-    <th>{{tourGames[0].tour}}</th>
-    <td *ngFor="let game of tourGames">
+    <th class="text-right">{{tourGames[0].tour}}</th>
+    <td class="text-center" *ngFor="let game of tourGames">
       <a [routerLink]="['..', 'protocol', game.tour, game.table]">
         <span>{{game.pairs['NS'].name}}</span> vs.
         <span>{{game.pairs['EW'].name}}</span>
       </a>
-      in {{game.deal}}
+      ({{game.deal}})
     </td>
   </tr>
   </tbody>
