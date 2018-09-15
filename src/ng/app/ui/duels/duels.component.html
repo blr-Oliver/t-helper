@@ -1,20 +1,28 @@
-<table class="table table-striped table-sm" *ngIf="tournament$ | async as tournament">
+<table class="table table-sm table-bordered" *ngIf="tournament$ | async as tournament">
   <thead>
   <tr>
-    <th></th>
-    <th class="text-center" style="min-width: 7em;"
-        *ngFor="let pair of tournament.pairs">{{pair.name}}</th>
+    <th scope="row" class="self"></th>
+    <th scope="col" class="text-center" *ngFor="let pair of tournament.pairs; let j = index"
+        (click)="selectedColumn = j">{{pair.name}}
+    </th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let pairTotal of tournament.duels; let i = index">
-    <th class="text-right align-middle">{{tournament.pairs[i].name}}</th>
-    <td class="py-2" *ngFor="let pairDuels of pairTotal" [class.self]="!pairDuels">
-      <ul class="list-unstyled m-0" *ngIf="pairDuels">
-        <li *ngFor="let duel of pairDuels">
-          на {{duel.deal}} в {{duel.position}} : {{duel.scores[duel.getPairIndex(tournament.pairs[i])]}}
-        </li>
-      </ul>
+    <th scope="row" class="text-right align-middle"
+        (click)="selectedRow = i">{{tournament.pairs[i].name}}
+    </th>
+    <td class="text-center" *ngFor="let pairDuels of pairTotal; let j = index" [class.self]="!pairDuels"
+        (click)="selectedRow = i; selectedColumn = j">
+      <div class="expandable-content"
+           [class.wide]="j === selectedColumn"
+           [style.height.em]="i === selectedRow ? cellHeight : 0">
+        <ul class="list-unstyled m-0" *ngIf="pairDuels && i === selectedRow && j === selectedColumn">
+          <li class="duel-details" *ngFor="let duel of pairDuels">
+            на {{duel.deal}} в {{duel.position}} : {{duel.scores[duel.getPairIndex(tournament.pairs[i])]}}
+          </li>
+        </ul>
+      </div>
     </td>
   </tr>
   </tbody>

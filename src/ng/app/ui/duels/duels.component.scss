@@ -1,6 +1,30 @@
+$duel-height: 1.2;
+
 .self {
   background-image: repeating-linear-gradient(-45deg, black 0, black 0.2em, transparent 0.2em, transparent 1em);
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: top left;
+}
+
+th[scope="row"] {
+  width: 2.5em;
+}
+
+.expandable-content {
+  width: 2em;
+  min-height: $duel-height * 1em;
+  margin: 0 auto;
+  transition-property: width, height;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  overflow: hidden;
+  &.wide {
+    width: 8em;
+  }
+}
+
+.duel-details {
+  height: $duel-height * 1em;
+  line-height: $duel-height;
 }
