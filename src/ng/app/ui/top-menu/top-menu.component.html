@@ -3,8 +3,18 @@
           aria-label="Toggle navigation" (click)="expanded = !expanded">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="flex-grow-1 pl-3 d-lg-none navbar-nav">
-      <span class="navbar-text">{{nameTracker.name}}</span>
+  <div class="flex-grow-1 pl-3 d-lg-none">
+      <span class="navbar-text" [ngSwitch]="nameTracker.name">
+        <ng-container *ngSwitchCase="'home'">Все турниры</ng-container>
+        <ng-container *ngSwitchCase="'new'">Создать турнир</ng-container>
+        <ng-container *ngSwitchCase="'details'">Обзор</ng-container>
+        <ng-container *ngSwitchCase="'players'">Участники</ng-container>
+        <ng-container *ngSwitchCase="'print'">Материалы</ng-container>
+        <ng-container *ngSwitchCase="'schedule'">Расписание</ng-container>
+        <ng-container *ngSwitchCase="'game'">Игры</ng-container>
+        <ng-container *ngSwitchCase="'duels'">Дуэли</ng-container>
+        <ng-container *ngSwitchCase="'standings'">Результаты</ng-container>
+      </span>
   </div>
   <div class="collapse navbar-collapse" id="navbarContent" [class.show]="expanded" (click)="expanded = false">
     <ul class="navbar-nav">
