@@ -13,11 +13,11 @@
   </select><span *ngIf="contract.level > 0">&nbsp;<select
   [name]="gameId + '-suit'" [id]="gameId + '-suit'"
   [(ngModel)]="contract.suit" (ngModelChange)="onUpdate('suit', $event)">
-    <option value="C">♣</option>
-    <option value="D">♦</option>
-    <option value="H">♥</option>
-    <option value="S">♠</option>
-    <option value="NT">БК</option>
+    <option value="C">&clubs;</option>
+    <option value="D">&diams;</option>
+    <option value="H">&hearts;</option>
+    <option value="S">&spades;</option>
+    <option value="N">&mdash;</option>
   </select> от&nbsp;<select
   [name]="gameId + '-owner'" [id]="gameId + '-owner'"
   [(ngModel)]="contract.owner" (ngModelChange)="onUpdate('owner', $event)">
