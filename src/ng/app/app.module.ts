@@ -20,7 +20,7 @@ import {DuelsComponent} from './ui/duels/duels.component';
 import {UpdateManager} from './service/UpdateManager';
 import {NewTournamentComponent} from './ui/tournaments/new-tournament.component';
 import {RestAPIFacade} from './service/api/APIFacade';
-import {ProtocolPrintComponent} from './ui/print/protocol-print.component';
+import {ProtocolTemplateComponent} from './ui/print/protocol-template.component';
 import {ProtocolListComponent} from './ui/print/protocol-list.component';
 import {ProtocolPlayerComponent} from './ui/print/protocol-player.component';
 import {RomanPipe} from './util/roman.pipe';
@@ -71,7 +71,7 @@ const appRoutes: Routes = [
     TricksComponent,
     NewTournamentComponent,
     ProtocolListComponent,
-    ProtocolPrintComponent,
+    ProtocolTemplateComponent,
     ProtocolPlayerComponent,
     ProtocolPrintCenterComponent,
     RomanPipe

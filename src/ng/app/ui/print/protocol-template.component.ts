@@ -2,11 +2,11 @@ import {Component, Input, ViewEncapsulation} from '@angular/core';
 import {Game} from '../../model/Game';
 
 @Component({
-  selector: 'protocol-print',
-  templateUrl: './protocol-print.component.html',
-  styleUrls: ['./protocol-print.component.scss'],
+  selector: 'protocol-template',
+  templateUrl: './protocol-template.component.html',
+  styleUrls: ['./protocol-template.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ProtocolPrintComponent {
+export class ProtocolTemplateComponent {
   @Input() game: Game;
 }
