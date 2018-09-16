@@ -6,11 +6,11 @@ import {map, mergeMap} from 'rxjs/operators';
 import {TournamentService} from '../../service/tournament.service';
 
 @Component({
-  templateUrl: './protocol-list.component.html',
-  styleUrls: ['./protocol-list.component.scss'],
+  templateUrl: './protocol-printer.component.html',
+  styleUrls: ['./protocol-printer.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ProtocolListComponent implements OnInit {
+export class ProtocolPrinterComponent implements OnInit {
   games$: Observable<Game[]>;
 
   constructor(

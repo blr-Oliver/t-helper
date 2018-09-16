@@ -21,7 +21,7 @@ import {UpdateManager} from './service/UpdateManager';
 import {NewTournamentComponent} from './ui/tournaments/new-tournament.component';
 import {RestAPIFacade} from './service/api/APIFacade';
 import {ProtocolTemplateComponent} from './ui/print/protocol-template.component';
-import {ProtocolListComponent} from './ui/print/protocol-list.component';
+import {ProtocolPrinterComponent} from './ui/print/protocol-printer.component';
 import {ProtocolPlayerComponent} from './ui/print/protocol-player.component';
 import {RomanPipe} from './util/roman.pipe';
 import {RouteNameTracker} from './service/RouteNameTracker';
@@ -37,7 +37,7 @@ const appRoutes: Routes = [
     children: [
       {path: '', pathMatch: 'full', component: TournamentDetailsComponent,
         resolve: { state: RouteNameTracker }, data: { name: 'details' }},
-      {path: 'print', component: ProtocolListComponent,
+      {path: 'print', component: ProtocolPrinterComponent,
         resolve: { state: RouteNameTracker }, data: { name: 'print' }},
       {path: 'players', component: PairsComponent,
         resolve: { state: RouteNameTracker }, data: { name: 'players' }},
@@ -70,7 +70,7 @@ const appRoutes: Routes = [
     ContractComponent,
     TricksComponent,
     NewTournamentComponent,
-    ProtocolListComponent,
+    ProtocolPrinterComponent,
     ProtocolTemplateComponent,
     ProtocolPlayerComponent,
     ProtocolPrintCenterComponent,
