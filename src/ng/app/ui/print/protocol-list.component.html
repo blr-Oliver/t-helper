@@ -1,7 +1,9 @@
-<table *ngIf="games$ | async as games" class="protocol-list printable print-only">
+<table *ngIf="games$ | async as games" class="protocol-list printable _print-only">
   <tr *ngFor="let game of games">
     <td class="protocol-box">
-      <protocol-print [game]="game"></protocol-print>
+      <protocol-print [game]="game">
+        <protocol-print-center [game]="game"></protocol-print-center>
+      </protocol-print>
     </td>
   </tr>
 </table>

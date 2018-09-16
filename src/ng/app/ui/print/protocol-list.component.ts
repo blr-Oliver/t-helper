@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Game} from '../../model/Game';
 import {ActivatedRoute} from '@angular/router';
@@ -7,7 +7,8 @@ import {TournamentService} from '../../service/tournament.service';
 
 @Component({
   templateUrl: './protocol-list.component.html',
-  styleUrls: ['./protocol-list.component.scss']
+  styleUrls: ['./protocol-list.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProtocolListComponent implements OnInit {
   games$: Observable<Game[]>;
