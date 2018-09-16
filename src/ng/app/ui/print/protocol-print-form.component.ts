@@ -3,9 +3,9 @@ import {Game} from '../../model/Game';
 
 @Component({
   selector: 'protocol-print-center',
-  templateUrl: './protocol-print-center.component.html',
+  templateUrl: './protocol-print-form.component.html',
   encapsulation: ViewEncapsulation.None
 })
-export class ProtocolPrintCenterComponent {
+export class ProtocolPrintFormComponent {
   @Input() game: Game;
 }
