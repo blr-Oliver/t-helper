@@ -1,13 +1,13 @@
 <div class="protocol">
-  <div class="player-seat north" [game]="game" position="N"></div>
+  <div class="player-seat north" [game]="game" data-position="N"></div>
   <div class="mid-row">
-    <div class="player-seat west" [game]="game" position="W"></div>
+    <div class="player-seat west" [game]="game" data-position="W"></div>
     <div class="mid-area">
       <ng-content></ng-content>
     </div>
-    <div class="player-seat east" [game]="game" position="E"></div>
+    <div class="player-seat east" [game]="game" data-position="E"></div>
   </div>
-  <div class="player-seat south" [game]="game" position="S"></div>
+  <div class="player-seat south" [game]="game" data-position="S"></div>
   <!--
   <div class="frame-background" role="presentation">
     <div class="north-west"></div>
