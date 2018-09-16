@@ -10,9 +10,9 @@ import {UpdateEventDebounceBarrier} from '../../service/DebounceBarrier';
 import {ProtocolDTO} from '../../model/dto/ProtocolDTO';
 
 @Component({
-  templateUrl: './protocol.component.html'
+  templateUrl: './protocol-editor.component.html'
 })
-export class ProtocolComponent implements OnInit {
+export class ProtocolEditorComponent implements OnInit {
   game$: Observable<Game>;
   gameId: string;
   private debounceBarrier: UpdateEventDebounceBarrier<ProtocolDTO>;

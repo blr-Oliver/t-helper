@@ -10,7 +10,7 @@ import {PairsComponent} from './ui/pairs/pairs.component';
 import {ScheduleComponent} from './ui/schedule/schedule.component';
 import {StandingsComponent} from './ui/standings/standings.component';
 import {PlayerComponent} from './ui/pairs/player/player.component';
-import {ProtocolComponent} from './ui/protocol/protocol.component';
+import {ProtocolEditorComponent} from './ui/protocol/protocol-editor.component';
 import {ContractComponent} from './ui/protocol/contract/contract.component';
 import {TricksComponent} from './ui/protocol/tricks/tricks.component';
 import {TournamentListComponent} from './ui/tournaments/tournament-list.component';
@@ -43,7 +43,7 @@ const appRoutes: Routes = [
         resolve: { state: RouteNameTracker }, data: { name: 'players' }},
       {path: 'games', component: ScheduleComponent,
         resolve: { state: RouteNameTracker }, data: { name: 'schedule' }},
-      {path: 'protocol/:tour/:table', component: ProtocolComponent,
+      {path: 'protocol/:tour/:table', component: ProtocolEditorComponent,
         resolve: { state: RouteNameTracker }, data: { name: 'game' }},
       {path: 'protocol/:partial', redirectTo: 'protocol/1/1'},
       {path: 'protocol', redirectTo: 'protocol/1/1'},
@@ -66,7 +66,7 @@ const appRoutes: Routes = [
     DuelsComponent,
     StandingsComponent,
     PlayerComponent,
-    ProtocolComponent,
+    ProtocolEditorComponent,
     ContractComponent,
     TricksComponent,
     NewTournamentComponent,
