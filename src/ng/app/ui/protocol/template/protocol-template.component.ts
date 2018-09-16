@@ -1,5 +1,5 @@
 import {Component, Input, ViewEncapsulation} from '@angular/core';
-import {Game} from '../../model/Game';
+import {Game} from '../../../model/Game';
 
 @Component({
   selector: 'protocol-template',

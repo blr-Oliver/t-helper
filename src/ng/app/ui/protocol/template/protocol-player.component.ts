@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Player} from '../../model/Player';
-import {Position} from '../../model/Position';
-import {Game} from '../../model/Game';
+import {Game} from '../../../model/Game';
+import {Player} from '../../../model/Player';
+import {Position} from '../../../model/Position';
 
 @Component({
   selector: '.player-seat',
