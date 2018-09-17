@@ -1,10 +1,12 @@
-<div *ngIf="game$ | async as game" class="protocol-wrap">
-  <protocol-template [game]="game">
-    <div class="header">
-      <h1><span>Тур {{game.tour}}</span>&nbsp;&nbsp;&nbsp;<span>Стол {{game.table | roman}}</span></h1>
-      <h2>Сдача {{game.deal}}</h2>
-    </div>
-    <contract [contract]="game.protocol.contract" [gameId]="gameId" (update)="onUpdate(game, $event)"></contract>
-    <tricks [tricks]="game.protocol.tricks" [gameId]="gameId" (update)="onUpdate(game, $event)"></tricks>
-  </protocol-template>
+<div *ngIf="game$ | async as game">
+  <div class="card mt-3">
+    <protocol-template [game]="game">
+      <div class="header">
+        <h1><span>Тур {{game.tour}}</span>&nbsp;&nbsp;&nbsp;<span>Стол {{game.table | roman}}</span></h1>
+        <h2>Сдача {{game.deal}}</h2>
+      </div>
+      <contract [contract]="game.protocol.contract" [gameId]="gameId" (update)="onUpdate(game, $event)"></contract>
+      <tricks [tricks]="game.protocol.tricks" [gameId]="gameId" (update)="onUpdate(game, $event)"></tricks>
+    </protocol-template>
+  </div>
 </div>

@@ -3,6 +3,14 @@ $protocol-marker-size: $protocol-header-size * 1.2;
 $protocol-player-size: $protocol-header-size;
 $protocol-suit-size: $protocol-header-size * 1.3;
 
+.protocol-wrap {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 0 0 72.5%;
+  margin: 0;
+}
+
 .protocol {
   position: absolute;
   left: 0;
