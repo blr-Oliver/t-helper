@@ -2,7 +2,7 @@ import {Component, Input, ViewEncapsulation} from '@angular/core';
 import {Game} from '../../model/Game';
 
 @Component({
-  selector: 'protocol-print-center',
+  selector: 'protocol-print-form',
   templateUrl: './protocol-print-form.component.html',
   encapsulation: ViewEncapsulation.None
 })
