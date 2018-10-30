@@ -1,2 +1,2 @@
 <div class="seat-marker" [class.dealer]="dealer">{{position}}</div>
-<div class="player-name" [ngClass]="{'empty': !player.name}"><span>{{player.name}}</span></div>
+<div class="player-name" [ngClass]="{'empty': !player?.name}"><span>{{player?.name}}</span></div>

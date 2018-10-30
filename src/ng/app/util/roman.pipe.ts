@@ -20,6 +20,7 @@ export class RomanPipe implements PipeTransform {
   ];
 
   transform(value: number): string {
+    if (value == null) return '';
     value = ~~+value; // stripe off decimal part
     if (value === 0) return '0';
     let i;

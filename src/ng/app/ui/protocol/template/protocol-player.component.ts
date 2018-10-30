@@ -16,7 +16,7 @@ export class ProtocolPlayerComponent implements OnInit {
   dealer: boolean;
 
   ngOnInit() {
-    this.player = this.game.players[this.position];
-    this.dealer = this.game.gameSlot.dealer === this.position;
+    this.player = this.game ? this.game.players[this.position] : null;
+    this.dealer = this.game ? this.game.gameSlot.dealer === this.position : false;
   }
 }

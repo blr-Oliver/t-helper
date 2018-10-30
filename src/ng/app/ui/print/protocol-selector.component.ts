@@ -10,7 +10,8 @@ import {Observable} from 'rxjs';
 })
 export class ProtocolSelectorComponent implements OnInit {
   games$: Observable<Game[][]>;
-  mode: 'all' | 'choose' = 'choose';
+  mode: 'all' | 'type' | 'choose' = 'all';
+  typedSelection: string;
   selectedGames: boolean[][];
   printBlanks = false;
   blanks = 1;
