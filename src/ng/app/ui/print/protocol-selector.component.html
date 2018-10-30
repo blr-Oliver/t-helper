@@ -14,7 +14,7 @@
       <div class="mb-3">
         <div *ngFor="let tour of games" class="form-row justify-content-center">
           <div *ngFor="let game of tour" class="form-check text-center col"
-               [ngClass]="{'text-muted': mode !== 'choose'}"
+               [class.text-muted]="mode !== 'choose'"
                style="max-width: 7em">
             <input type="checkbox" id="print-{{game.tour}}-{{game.table}}" class="form-check-input"
                    [(ngModel)]="selectedGames[game.tour - 1][game.table - 1]"
