@@ -26,6 +26,7 @@ import {ProtocolPlayerComponent} from './ui/protocol/template/protocol-player.co
 import {RomanPipe} from './util/roman.pipe';
 import {RouteNameTracker} from './service/RouteNameTracker';
 import {ProtocolPrintFormComponent} from './ui/print/protocol-print-form.component';
+import {ProtocolSelectorComponent} from './ui/print/protocol-selector.component';
 
 const appRoutes: Routes = [
   {path: '', pathMatch: 'full', component: TournamentListComponent,
@@ -37,7 +38,7 @@ const appRoutes: Routes = [
     children: [
       {path: '', pathMatch: 'full', component: TournamentDetailsComponent,
         resolve: { state: RouteNameTracker }, data: { name: 'details' }},
-      {path: 'print', component: ProtocolPrinterComponent,
+      {path: 'print', component: ProtocolSelectorComponent,
         resolve: { state: RouteNameTracker }, data: { name: 'print' }},
       {path: 'players', component: PairsComponent,
         resolve: { state: RouteNameTracker }, data: { name: 'players' }},
@@ -74,6 +75,7 @@ const appRoutes: Routes = [
     ProtocolTemplateComponent,
     ProtocolPlayerComponent,
     ProtocolPrintFormComponent,
+    ProtocolSelectorComponent,
     RomanPipe
   ],
   imports: [

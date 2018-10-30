@@ -1,0 +1,37 @@
+<ng-container *ngIf="games$ | async as games">
+  <div class="form col-auto mt-3">
+    <div class="form-row justify-content-center mb-3">
+      <div class="form-check form-check-inline text-right pr-2">
+        <input type="radio" id="mode-all" name="mode" class="form-check-input" value="all" [(ngModel)]="mode"/>
+        <label for="mode-all" class="form-check-label">Все</label>
+      </div>
+      <div class="form-check form-check-inline text-left pl-2">
+        <input type="radio" id="mode-choose" name="mode" class="form-check-input" value="choose" [(ngModel)]="mode"/>
+        <label for="mode-choose" class="form-check-label">Выбрать</label>
+      </div>
+    </div>
+    <div class="mb-3">
+      <div *ngFor="let tour of games" class="form-row justify-content-center">
+        <div *ngFor="let game of tour" class="form-check text-center col"
+             [ngClass]="{'text-muted': mode !== 'choose'}"
+             style="max-width: 7em">
+          <input type="checkbox" id="print-{{game.tour}}-{{game.table}}" class="form-check-input"
+                 [disabled]="mode !== 'choose'"/>
+          <label for="print-{{game.tour}}-{{game.table}}">{{game.tour}}-{{game.table | roman}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-row justify-content-center mb-3">
+      <div class="form-check">
+        <input type="checkbox" id="print-blank" [(ngModel)]="printBlanks"/>
+        <label for="print-blank" class="form-check-label pr-3">&nbsp;Добавить пустые</label>
+        <input type="number" class="form-control d-inline" style="width: 4em"
+               [disabled]="!printBlanks"
+               [(ngModel)]="blanks" min="1" [max]="games.length * games[0].length"/>
+      </div>
+    </div>
+    <div class="form-group text-center">
+      <button class="btn btn-primary" onclick="window.print()">Печать</button>
+    </div>
+  </div>
+</ng-container>
