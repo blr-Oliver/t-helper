@@ -13,7 +13,8 @@
             Задать
             <input type="text" class="form-control d-inline-block"
                    style="width: auto"
-                   [(ngModel)]="typedSelection" [disabled]="mode !== 'type'"/>
+                   #typedSelection
+                   (input)="onSelectionTyped(typedSelection.value)" [disabled]="mode !== 'type'"/>
           </label>
         </div>
         <div class="form-check form-check-inline col-9 col-sm-auto">
@@ -37,7 +38,7 @@
         <div class="form-check">
           <input type="checkbox" id="print-blank" [(ngModel)]="printBlanks"/>
           <label for="print-blank" class="form-check-label pr-3">&nbsp;Добавить пустые</label>
-          <input type="number" class="form-control d-inline" style="width: 4em"
+          <input type="number" class="form-control d-inline" style="width: auto"
                  [disabled]="!printBlanks"
                  [(ngModel)]="blanks" min="1" [max]="games.length * games[0].length"/>
         </div>

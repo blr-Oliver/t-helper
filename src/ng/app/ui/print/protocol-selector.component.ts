@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {TournamentService} from '../../service/tournament.service';
 import {Game} from '../../model/Game';
-import {map, mergeMap, tap} from 'rxjs/operators';
-import {Observable} from 'rxjs';
+import {debounceTime, distinctUntilChanged, map, mergeMap, skipWhile, tap} from 'rxjs/operators';
+import {Observable, Subject} from 'rxjs';
 
 @Component({
   templateUrl: './protocol-selector.component.html'
@@ -11,14 +11,21 @@ import {Observable} from 'rxjs';
 export class ProtocolSelectorComponent implements OnInit {
   games$: Observable<Game[][]>;
   mode: 'all' | 'type' | 'choose' = 'all';
-  typedSelection: string;
   selectedGames: boolean[][];
   printBlanks = false;
   blanks = 1;
 
+  private debounceBarrier: Subject<string>;
+
   constructor(
     private tournamentService: TournamentService,
     private route: ActivatedRoute) {
+    this.debounceBarrier = new Subject<string>();
+    this.debounceBarrier.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      skipWhile(x => typeof(x) !== 'string' || !x.trim())
+    ).subscribe(value => this.parseTypedSelection(value));
   }
 
   ngOnInit(): void {
@@ -27,5 +34,13 @@ export class ProtocolSelectorComponent implements OnInit {
       map(t => t.games),
       tap(games => this.selectedGames = games.map(tour => Array(tour.length).fill(true)))
     );
+  }
+
+  onSelectionTyped(value: string) {
+    this.debounceBarrier.next(value);
+  }
+
+  private parseTypedSelection(value: string) {
+    console.log(value);
   }
 }
