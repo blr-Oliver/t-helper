@@ -1,6 +1,7 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
+  pure: false,
   name: 'flat'
 })
 export class FlatPipe implements PipeTransform {
