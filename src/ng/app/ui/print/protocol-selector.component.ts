@@ -4,13 +4,14 @@ import {TournamentService} from '../../service/tournament.service';
 import {Game} from '../../model/Game';
 import {debounceTime, distinctUntilChanged, map, mergeMap, skipWhile, tap} from 'rxjs/operators';
 import {Observable, Subject} from 'rxjs';
+import {ProtocolSelectionParserService} from '../../service/protocol-selection-parser.service';
 
 @Component({
   templateUrl: './protocol-selector.component.html'
 })
 export class ProtocolSelectorComponent implements OnInit {
   games$: Observable<Game[][]>;
-  mode: 'all' | 'type' | 'choose' = 'all';
+  mode: 'all' | 'type' | 'choose' = 'type';
   selectedGames: boolean[][];
   printBlanks = false;
   blanks = 1;
@@ -19,7 +20,8 @@ export class ProtocolSelectorComponent implements OnInit {
 
   constructor(
     private tournamentService: TournamentService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private parser: ProtocolSelectionParserService) {
     this.debounceBarrier = new Subject<string>();
     this.debounceBarrier.pipe(
       debounceTime(500),
@@ -41,6 +43,6 @@ export class ProtocolSelectorComponent implements OnInit {
   }
 
   private parseTypedSelection(value: string) {
-    console.log(value);
+    this.parser.parse(value, this.selectedGames);
   }
 }

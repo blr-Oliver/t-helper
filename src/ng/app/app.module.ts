@@ -29,6 +29,7 @@ import {ProtocolPrintFormComponent} from './ui/print/protocol-print-form.compone
 import {ProtocolSelectorComponent} from './ui/print/protocol-selector.component';
 import {SequencePipe} from './util/sequence.pipe';
 import {FlatPipe} from './util/flat.pipe';
+import {ProtocolSelectionParserService} from './service/protocol-selection-parser.service';
 
 const appRoutes: Routes = [
   {path: '', pathMatch: 'full', component: TournamentListComponent,
@@ -90,6 +91,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     TournamentService,
+    ProtocolSelectionParserService,
     RestAPIFacade,
     UpdateManager,
     RouteNameTracker
