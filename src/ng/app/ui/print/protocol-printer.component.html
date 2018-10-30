@@ -6,4 +6,13 @@
       </protocol-template>
     </td>
   </tr>
+  <ng-container *ngIf="blanks > 0">
+    <tr *ngFor="let game of blanks | seq">
+      <td class="protocol-box">
+        <protocol-template [game]="null">
+          <protocol-print-form [game]="null"></protocol-print-form>
+        </protocol-template>
+      </td>
+    </tr>
+  </ng-container>
 </table>

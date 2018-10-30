@@ -24,7 +24,7 @@ export class ProtocolSelectorComponent implements OnInit {
     this.games$ = this.route.parent.paramMap.pipe(
       mergeMap(params => this.tournamentService.get(params.get('id'))),
       map(t => t.games),
-      tap(games => this.selectedGames = games.map(tour => Array(tour.length).fill(true)))
+      tap(games => this.selectedGames = games.map(tour => Array(tour.length).fill(false)))
     );
   }
 }

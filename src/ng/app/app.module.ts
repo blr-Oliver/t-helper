@@ -27,6 +27,8 @@ import {RomanPipe} from './util/roman.pipe';
 import {RouteNameTracker} from './service/RouteNameTracker';
 import {ProtocolPrintFormComponent} from './ui/print/protocol-print-form.component';
 import {ProtocolSelectorComponent} from './ui/print/protocol-selector.component';
+import {SequencePipe} from './util/sequence.pipe';
+import {FlatPipe} from './util/flat.pipe';
 
 const appRoutes: Routes = [
   {path: '', pathMatch: 'full', component: TournamentListComponent,
@@ -76,7 +78,9 @@ const appRoutes: Routes = [
     ProtocolPlayerComponent,
     ProtocolPrintFormComponent,
     ProtocolSelectorComponent,
-    RomanPipe
+    RomanPipe,
+    FlatPipe,
+    SequencePipe,
   ],
   imports: [
     BrowserModule,

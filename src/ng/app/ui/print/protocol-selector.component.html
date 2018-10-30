@@ -37,7 +37,8 @@
       </div>
     </div>
   </div>
-  <div class="print-only">
-    <protocol-printer [games]="[].concat.apply([], games)" [blanks]="printBlanks ? blanks : 0"></protocol-printer>
+  <div class="_print-only" [ngSwitch]="mode">
+    <protocol-printer *ngSwitchCase="'all'" [games]="games | flat" [blanks]="printBlanks ? blanks : 0"></protocol-printer>
+    <protocol-printer *ngSwitchCase="'choose'" [games]="games | flat : selectedGames" [blanks]="printBlanks ? blanks : 0"></protocol-printer>
   </div>
 </ng-container>
