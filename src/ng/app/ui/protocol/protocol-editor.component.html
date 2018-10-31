@@ -1,6 +1,6 @@
-<div *ngIf="game$ | async as game">
+<ng-container *ngIf="game$ | async as game">
   <protocol-template [game]="game">
     <contract [contract]="game.protocol.contract" [gameId]="gameId" (update)="onUpdate(game, $event)"></contract>
     <tricks [tricks]="game.protocol.tricks" [gameId]="gameId" (update)="onUpdate(game, $event)"></tricks>
   </protocol-template>
-</div>
+</ng-container>

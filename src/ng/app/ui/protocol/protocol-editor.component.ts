@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Observable, zip} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {TournamentService} from '../../service/tournament.service';
@@ -10,7 +10,9 @@ import {UpdateEventDebounceBarrier} from '../../service/DebounceBarrier';
 import {ProtocolDTO} from '../../model/dto/ProtocolDTO';
 
 @Component({
-  templateUrl: './protocol-editor.component.html'
+  templateUrl: './protocol-editor.component.html',
+  styleUrls: ['./protocol-editor.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ProtocolEditorComponent implements OnInit {
   game$: Observable<Game>;
@@ -23,7 +25,7 @@ export class ProtocolEditorComponent implements OnInit {
     private updateManager: UpdateManager) {
     this.debounceBarrier = new UpdateEventDebounceBarrier<ProtocolDTO>(
       600,
-      ['tricks', 'level'],
+      ['tricks', 'level', 'suit', 'owner'],
       event => this.updateManager.registerUpdate(event)
     );
   }
