@@ -1,29 +1,30 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {TournamentService} from '../../service/tournament.service';
 import {Game} from '../../model/Game';
 import {debounceTime, distinctUntilChanged, map, mergeMap, skipWhile, tap} from 'rxjs/operators';
-import {Observable, Subject} from 'rxjs';
+import {Observable, Subject, Subscription} from 'rxjs';
 import {ProtocolSelectionParserService} from '../../service/protocol-selection-parser.service';
 
 @Component({
   templateUrl: './protocol-selector.component.html'
 })
-export class ProtocolSelectorComponent implements OnInit {
+export class ProtocolSelectorComponent implements OnInit, OnDestroy {
   games$: Observable<Game[][]>;
-  mode: 'all' | 'type' | 'choose' = 'type';
+  mode: 'all' | 'type' | 'choose' = 'all';
   selectedGames: boolean[][];
   printBlanks = false;
   blanks = 1;
 
   private debounceBarrier: Subject<string>;
+  private debounceSubscription: Subscription;
 
   constructor(
     private tournamentService: TournamentService,
     private route: ActivatedRoute,
     private parser: ProtocolSelectionParserService) {
     this.debounceBarrier = new Subject<string>();
-    this.debounceBarrier.pipe(
+    this.debounceSubscription = this.debounceBarrier.pipe(
       debounceTime(500),
       distinctUntilChanged(),
       skipWhile(x => typeof(x) !== 'string' || !x.trim())
@@ -38,6 +39,10 @@ export class ProtocolSelectorComponent implements OnInit {
     );
   }
 
+  ngOnDestroy(): void {
+    this.debounceSubscription.unsubscribe();
+  }
+
   onSelectionTyped(value: string) {
     this.debounceBarrier.next(value);
   }
@@ -45,4 +50,5 @@ export class ProtocolSelectorComponent implements OnInit {
   private parseTypedSelection(value: string) {
     this.parser.parse(value, this.selectedGames);
   }
+
 }
