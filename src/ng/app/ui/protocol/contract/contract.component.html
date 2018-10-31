@@ -1,5 +1,5 @@
 <div class="contract">
-  <div class="btn-group btn-group-toggle mb-1">
+  <div class="btn-group btn-group-toggle d-block mx-auto mb-1">
     <label class="btn btn-sm btn-outline-dark py-0"
            [class.active]="contract.suit === 'S'" [class.disabled]="contract.level === -1">
       <input type="radio" name="suit" [disabled]="contract.level === -1" value="S"
@@ -28,7 +28,7 @@
              [(ngModel)]="contract.suit" (ngModelChange)="onUpdate('suit', $event)"/>&mdash;
     </label>
   </div>
-  <div class="btn-group btn-group-toggle mb-1">
+  <div class="btn-group btn-group-toggle d-block mx-auto mb-1">
     <label class="btn btn-sm btn-outline-dark py-0" [class.active]="contract.level === -1">
       <input type="radio" name="level" value="-1"
              [(ngModel)]="contract.level" (ngModelChange)="onUpdate('level', $event)"/>&mdash;
@@ -38,7 +38,7 @@
       <input type="radio" name="level" [value]="level"
              [(ngModel)]="contract.level" (ngModelChange)="onUpdate('level', $event)"/>{{level}}</label>
   </div>
-  <div class="btn-group btn-group-toggle mb-1">
+  <div class="btn-group btn-group-toggle d-block mx-auto mb-1">
     <label class="btn py-0"
            [class.active]="contract.owner === 'NS'" [class.disabled]="contract.level === -1"
            [class.btn-primary]="contract.owner === 'NS'" [class.btn-outline-primary]="contract.owner !== 'NS'">
