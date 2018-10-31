@@ -1,9 +1,9 @@
-<div class="tricks">
-  <span>{{tricks.defined ? tricks['NS'] : '?'}}</span>&nbsp;NS&nbsp;<input
-    type="range"
-    [name]="gameId + '-tricks'"
-    min="0" max="13"
-    [(ngModel)]="tricks['NS']"
-    (ngModelChange)="onUpdate($event)"
-/>&nbsp;EW&nbsp;<span>{{tricks.defined ? tricks['EW'] : '?'}}</span>
+<div class="tricks text-nowrap">
+  <input type="number" class="form-control form-control-sm d-inline-block align-middle py-0" min="0" max="13" style="width: 3em"
+         [(ngModel)]="tricks['NS']" (ngModelChange)="onUpdate($event)"/>
+  <input type="range" class="form-control-range d-inline-block align-middle mx-2"
+         [name]="gameId + '-tricks'" min="0" max="13" style="width: auto"
+         [(ngModel)]="tricks['NS']" (ngModelChange)="onUpdate($event)"/>
+  <input type="number" class="form-control form-control-sm d-inline-block align-middle py-0" min="0" max="13" style="width: 3em"
+         [(ngModel)]="tricks['EW']" (ngModelChange)="onUpdate($event)"/>
 </div>
