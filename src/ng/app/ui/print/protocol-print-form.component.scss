@@ -1,0 +1,54 @@
+@import '../protocol/template/protocol';
+
+.mid-area {
+  h2 {
+    font-size: $protocol-header-size;
+  }
+  h3 {
+    font-size: $protocol-header-size * 0.6;
+  }
+  .spacer {
+    display: inline-block;
+    width: 1em;
+  }
+  .input-layout {
+    margin: 0.5em auto 0 $protocol-suit-size;
+    border-collapse: collapse;
+    border: none;
+    font-size: $protocol-header-size * 0.7;
+    .teams {
+      font-size: $protocol-header-size;
+    }
+    td {
+      vertical-align: middle;
+    }
+    .legend-top {
+      vertical-align: bottom;
+      padding-bottom: 0.2em;
+    }
+    .legend-bottom {
+      vertical-align: top;
+      padding-top: 0.2em;
+    }
+  }
+  .input {
+    width: 2.5em;
+    height: 1.5em;
+    background-color: #fff;
+    border: 0.2pt solid black;
+    font-size: $protocol-header-size;
+  }
+  .suit-list {
+    list-style: none;
+    font-size: $protocol-suit-size;
+    li {
+      width: 1em;
+      height: 1em;
+      line-height: 1;
+      color: #000;
+    }
+    .red-suit {
+      color: #d00;
+    }
+  }
+}
