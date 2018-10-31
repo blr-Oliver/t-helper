@@ -133,6 +133,7 @@
   text-align: center;
   line-height: 1.1;
   color: #b81;
+  white-space: nowrap;
   .north &, .south & {
     width: 100%;
     flex-grow: 0;
@@ -151,6 +152,7 @@
   > * {
     display: inline-block;
     vertical-align: middle;
+    white-space: normal;
   }
 }
 
@@ -164,4 +166,5 @@
 
 .mid-area {
   text-align: center;
+  margin: 0.5em;
 }
