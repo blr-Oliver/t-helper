@@ -1,0 +1,13 @@
+.seat-marker {
+  font-size: calc(12px + 2.4vw);
+}
+
+.player-name {
+  font-size: calc(10px + 2vw);
+}
+
+@media screen {
+  .mid-area {
+    padding: 0.5em;
+  }
+}
