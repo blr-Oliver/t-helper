@@ -7,12 +7,13 @@
   .protocol {
     padding: 2mm 1mm;
   }
-
   .seat-marker {
     font-size: $protocol-marker-size;
   }
-
   .player-name {
     font-size: $protocol-player-size;
+  }
+  .mid-area {
+    font-size: $protocol-header-size;
   }
 }

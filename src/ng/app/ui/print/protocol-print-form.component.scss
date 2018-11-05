@@ -2,22 +2,22 @@
 
 .mid-area {
   h2 {
-    font-size: $protocol-header-size;
+    font-size: 100%;
   }
   h3 {
-    font-size: $protocol-header-size * 0.6;
+    font-size: 60%;
   }
   .spacer {
     display: inline-block;
     width: 1em;
   }
   .input-layout {
-    margin: 0.5em auto 0 $protocol-suit-size;
+    margin: 0.5em auto 0 2em;
     border-collapse: collapse;
     border: none;
-    font-size: $protocol-header-size * 0.7;
+    font-size: 70%;
     .teams {
-      font-size: $protocol-header-size;
+      font-size: 140%;
     }
     td {
       vertical-align: middle;
@@ -36,11 +36,12 @@
     height: 1.5em;
     background-color: #fff;
     border: 0.2pt solid black;
-    font-size: $protocol-header-size;
+    font-size: 140%;
   }
   .suit-list {
     list-style: none;
-    font-size: $protocol-suit-size;
+    margin: 0 0 0.2em;
+    font-size: 200%;
     li {
       width: 1em;
       height: 1em;
