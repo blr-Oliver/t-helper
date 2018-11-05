@@ -89,6 +89,8 @@
   }
 }
 
+$protocol-dealer-box-ratio: 0.8;
+
 .seat-marker {
   position: relative;
   width: 1em;
@@ -102,10 +104,22 @@
   &.dealer::after {
     content: 'D';
     position: absolute;
+    width: $protocol-dealer-box-ratio * 100%;
+    height: $protocol-dealer-box-ratio * 100%;
     text-align: center;
+    font-size: $protocol-dealer-box-ratio * 75%;
+    line-height: 1.2;
     border-radius: 50%;
     border: 1pt dashed;
     color: green;
+  }
+  .north &.dealer::after, .south &.dealer::after {
+    top: (1 - $protocol-dealer-box-ratio) * 50%;
+    left: (2 - $protocol-dealer-box-ratio) * 100%;
+  }
+  .west &.dealer::after, .east &.dealer::after {
+    top: (2 - $protocol-dealer-box-ratio) * 100%;
+    left: (1 - $protocol-dealer-box-ratio) * 50%;
   }
 }
 

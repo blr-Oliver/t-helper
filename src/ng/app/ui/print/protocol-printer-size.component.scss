@@ -1,7 +1,5 @@
 @import '../protocol/template/protocol';
 
-$protocol-dealer-box-ratio: 0.8;
-
 @media print {
   .protocol-wrap {
     padding: 0 0 72.5%;
@@ -12,20 +10,6 @@ $protocol-dealer-box-ratio: 0.8;
 
   .seat-marker {
     font-size: $protocol-marker-size;
-    &.dealer::after {
-      width: $protocol-dealer-box-ratio * 100%;
-      height: $protocol-dealer-box-ratio * 100%;
-      font-size: $protocol-dealer-box-ratio * 75%;
-      line-height: $protocol-marker-size * $protocol-dealer-box-ratio;
-    }
-    .north &.dealer::after, .south &.dealer::after {
-      top: (1 - $protocol-dealer-box-ratio) * 50%;
-      left: (2 - $protocol-dealer-box-ratio) * 100%;
-    }
-    .west &.dealer::after, .east &.dealer::after {
-      top: (2 - $protocol-dealer-box-ratio) * 100%;
-      left: (1 - $protocol-dealer-box-ratio) * 50%;
-    }
   }
 
   .player-name {
