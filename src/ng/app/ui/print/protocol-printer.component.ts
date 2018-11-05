@@ -4,7 +4,7 @@ import {Game} from '../../model/Game';
 @Component({
   selector: 'protocol-printer',
   templateUrl: './protocol-printer.component.html',
-  styleUrls: ['./protocol-printer.component.scss'],
+  styleUrls: ['./protocol-printer.component.scss', './protocol-printer-size.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class ProtocolPrinterComponent {
