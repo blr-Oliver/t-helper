@@ -1,6 +1,7 @@
 .mid-area {
   h2 {
     font-size: 100%;
+    white-space: nowrap;
   }
   h3 {
     font-size: 60%;
@@ -10,7 +11,9 @@
     width: 1em;
   }
   .input-layout {
-    margin: 0.5em auto 0 2em;
+    position: relative;
+    left: 1em;
+    margin: 0.5em auto 0;
     border-collapse: collapse;
     border: none;
     font-size: 70%;

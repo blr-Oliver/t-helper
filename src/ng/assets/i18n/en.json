@@ -43,5 +43,21 @@
     "new": {
       "create": "Create"
     }
+  },
+  "print": {
+    "mode": {
+      "all": "All",
+      "type": "Type in",
+      "choose": "Choose"
+    },
+    "addBlanks": "Add blanks",
+    "print": "Print",
+    "form": {
+      "table": "Table",
+      "tour": "Tour",
+      "deal": "Deal",
+      "contract": "contract",
+      "tricks": "tricks"
+    }
   }
 }

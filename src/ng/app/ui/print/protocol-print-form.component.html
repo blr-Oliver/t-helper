@@ -1,8 +1,8 @@
-<h2><span>Тур {{game?.tour}}</span><span class="spacer">&nbsp;</span><span>Стол {{game?.table | roman}}</span></h2>
-<h3>Сдача {{game?.deal}}</h3>
+<h2><span>{{'print.form.tour' | translate}}&nbsp;{{game?.tour}}</span><span class="spacer">&nbsp;</span><span>{{'print.form.table' | translate}}&nbsp;{{game?.table | roman}}</span></h2>
+<h3>{{'print.form.deal' | translate}}&nbsp;{{game?.deal}}</h3>
 <table class="input-layout">
   <tr>
-    <td colspan="2" class="legend-top">контракт</td>
+    <td colspan="2" class="legend-top" translate>print.form.contract</td>
     <td rowspan="5">
       <ul class="suit-list">
         <li class="red-suit">&hearts;</li>
@@ -25,6 +25,6 @@
     <td class="input"></td>
   </tr>
   <tr>
-    <td colspan="2" class="legend-bottom">взятки</td>
+    <td colspan="2" class="legend-bottom" translate>print.form.tricks</td>
   </tr>
 </table>

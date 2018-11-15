@@ -4,13 +4,12 @@
       <div class="form-row justify-content-center mb-3">
         <div class="form-check form-check-inline col-9 col-sm-auto">
           <input type="radio" id="mode-all" name="mode" class="form-check-input" value="all" [(ngModel)]="mode"/>
-          <label for="mode-all" class="form-check-label">Все</label>
+          <label for="mode-all" class="form-check-label" translate>print.mode.all</label>
         </div>
         <div class="form-check form-check-inline col-9 col-sm-auto text-nowrap">
           <input type="radio" id="mode-type" name="mode" class="form-check-input align-bottom" value="type"
                  [(ngModel)]="mode"/>
-          <label for="mode-type" class="form-check-label align-middle">
-            Задать
+          <label for="mode-type" class="form-check-label align-middle" (click)="mode = 'type'">
             <input type="text" class="form-control d-inline-block"
                    style="width: auto"
                    #typedSelection
@@ -19,7 +18,7 @@
         </div>
         <div class="form-check form-check-inline col-9 col-sm-auto">
           <input type="radio" id="mode-choose" name="mode" class="form-check-input" value="choose" [(ngModel)]="mode"/>
-          <label for="mode-choose" class="form-check-label">Выбрать</label>
+          <label for="mode-choose" class="form-check-label" translate>print.mode.choose</label>
         </div>
       </div>
       <div class="mb-3">
@@ -37,21 +36,21 @@
       <div class="form-row justify-content-center mb-3">
         <div class="form-check form-check-inline text-nowrap">
           <input type="checkbox" id="print-blank" [(ngModel)]="printBlanks"/>
-          <label for="print-blank" class="form-check-label pr-3">&nbsp;Добавить пустые</label>
+          &nbsp;<label for="print-blank" class="form-check-label pr-3" translate>print.addBlanks</label>
           <input type="number" class="form-control d-inline-block" style="width: auto"
                  [disabled]="!printBlanks"
                  [(ngModel)]="blanks" min="1" [max]="games.length * games[0].length"/>
         </div>
       </div>
       <div class="form-group text-center">
-        <button class="btn btn-primary" onclick="window.print()">Печать</button>
+        <button class="btn btn-primary" onclick="window.print()" translate>print.print</button>
       </div>
     </div>
   </div>
   <div class="print-only" [ngSwitch]="mode">
     <protocol-printer *ngSwitchCase="'all'" [games]="games | flat"
                       [blanks]="printBlanks ? blanks : 0"></protocol-printer>
-    <protocol-printer *ngSwitchCase="'type'" [games]="games | flat"
+    <protocol-printer *ngSwitchCase="'type'" [games]="games | flat : selectedGames"
                       [blanks]="printBlanks ? blanks : 0"></protocol-printer>
     <protocol-printer *ngSwitchCase="'choose'" [games]="games | flat : selectedGames"
                       [blanks]="printBlanks ? blanks : 0"></protocol-printer>
