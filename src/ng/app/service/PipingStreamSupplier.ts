@@ -14,7 +14,7 @@ export class PipingStreamSupplier<T, R> implements StreamSupplier<T, R> {
     const sourceStream = <ConnectableObservable<T>> this.requestFeed.pipe(
       multicast(new ReplaySubject(1))
     );
-    const resultStream = <ConnectableObservable<R>> sourceStream.pipe(...operators, multicast(new ReplaySubject(1)));
+    const resultStream = <ConnectableObservable<R>> (sourceStream as any).pipe(...operators, multicast(new ReplaySubject(1)));
     sourceStream.connect();
     resultStream.connect();
     this.sourceStream = sourceStream;

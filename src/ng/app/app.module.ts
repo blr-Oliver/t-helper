@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './ui/app.component';
 import {TopMenuComponent} from './ui/top-menu/top-menu.component';
@@ -30,31 +30,51 @@ import {ProtocolSelectorComponent} from './ui/print/protocol-selector.component'
 import {SequencePipe} from './util/sequence.pipe';
 import {FlatPipe} from './util/flat.pipe';
 import {ProtocolSelectionParserService} from './service/protocol-selection-parser.service';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 const appRoutes: Routes = [
-  {path: '', pathMatch: 'full', component: TournamentListComponent,
-    resolve: { state: RouteNameTracker }, data: { name: 'home' }},
-  {path: 'new', component: NewTournamentComponent,
-    resolve: { state: RouteNameTracker }, data: { name: 'new' }},
+  {
+    path: '', pathMatch: 'full', component: TournamentListComponent,
+    resolve: {state: RouteNameTracker}, data: {name: 'home'}
+  },
+  {
+    path: 'new', component: NewTournamentComponent,
+    resolve: {state: RouteNameTracker}, data: {name: 'new'}
+  },
   {
     path: ':id',
     children: [
-      {path: '', pathMatch: 'full', component: TournamentDetailsComponent,
-        resolve: { state: RouteNameTracker }, data: { name: 'details' }},
-      {path: 'print', component: ProtocolSelectorComponent,
-        resolve: { state: RouteNameTracker }, data: { name: 'print' }},
-      {path: 'players', component: PairsComponent,
-        resolve: { state: RouteNameTracker }, data: { name: 'players' }},
-      {path: 'games', component: ScheduleComponent,
-        resolve: { state: RouteNameTracker }, data: { name: 'schedule' }},
-      {path: 'protocol/:tour/:table', component: ProtocolEditorComponent,
-        resolve: { state: RouteNameTracker }, data: { name: 'game' }},
+      {
+        path: '', pathMatch: 'full', component: TournamentDetailsComponent,
+        resolve: {state: RouteNameTracker}, data: {name: 'details'}
+      },
+      {
+        path: 'print', component: ProtocolSelectorComponent,
+        resolve: {state: RouteNameTracker}, data: {name: 'print'}
+      },
+      {
+        path: 'players', component: PairsComponent,
+        resolve: {state: RouteNameTracker}, data: {name: 'players'}
+      },
+      {
+        path: 'games', component: ScheduleComponent,
+        resolve: {state: RouteNameTracker}, data: {name: 'schedule'}
+      },
+      {
+        path: 'protocol/:tour/:table', component: ProtocolEditorComponent,
+        resolve: {state: RouteNameTracker}, data: {name: 'game'}
+      },
       {path: 'protocol/:partial', redirectTo: 'protocol/1/1'},
       {path: 'protocol', redirectTo: 'protocol/1/1'},
-      {path: 'duels', component: DuelsComponent,
-        resolve: { state: RouteNameTracker }, data: { name: 'duels' }},
-      {path: 'standings', component: StandingsComponent,
-        resolve: { state: RouteNameTracker }, data: { name: 'standings' }},
+      {
+        path: 'duels', component: DuelsComponent,
+        resolve: {state: RouteNameTracker}, data: {name: 'duels'}
+      },
+      {
+        path: 'standings', component: StandingsComponent,
+        resolve: {state: RouteNameTracker}, data: {name: 'standings'}
+      },
     ]
   }
 ];
@@ -87,7 +107,14 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes, {enableTracing: false})
+    RouterModule.forRoot(appRoutes, {enableTracing: false}),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: http => new TranslateHttpLoader(http),
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     TournamentService,
