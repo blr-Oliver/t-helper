@@ -11,6 +11,8 @@
       <li class="nav-item"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{exact: true}"><a class="nav-link" [routerLink]="['/']" translate>menu.home</a></li>
+      <li *ngIf="nameTracker.name === 'new'" class="nav-item"
+          routerLinkActive="active"><a class="nav-link" [routerLink]="['/', 'new']" translate>menu.new</a></li>
       <ng-container *ngIf="tournamentId$ | async as tid">
         <li class="nav-item dropdown-divider"></li>
         <li class="nav-item"
