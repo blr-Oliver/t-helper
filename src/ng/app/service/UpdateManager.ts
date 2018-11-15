@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ConnectableObservable, Observable, Subject} from 'rxjs';
 import {UpdateEvent} from './UpdateEvent';
-import {RestAPIFacade} from './api/APIFacade';
+import {RestAPIFacade} from './api/RestAPIFacade';
 import {mergeMap, publish} from 'rxjs/operators';
 
 @Injectable()

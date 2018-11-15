@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ScheduleDTO} from '../../model/dto/ScheduleDTO';
-import {RestAPIFacade} from '../../service/api/APIFacade';
+import {RestAPIFacade} from '../../service/api/RestAPIFacade';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 
