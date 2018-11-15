@@ -10,24 +10,24 @@
     <ul class="navbar-nav">
       <li class="nav-item"
           routerLinkActive="active"
-          [routerLinkActiveOptions]="{exact: true}"><a class="nav-link" [routerLink]="['/']">{{'menu.home' | translate}}</a></li>
+          [routerLinkActiveOptions]="{exact: true}"><a class="nav-link" [routerLink]="['/']" translate>menu.home</a></li>
       <ng-container *ngIf="tournamentId$ | async as tid">
         <li class="nav-item dropdown-divider"></li>
         <li class="nav-item"
             routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact: true}"><a class="nav-link" [routerLink]="['/', tid]">{{'menu.details' | translate}}</a></li>
+            [routerLinkActiveOptions]="{exact: true}"><a class="nav-link" [routerLink]="['/', tid]" translate>menu.details</a></li>
         <li class="nav-item"
-            routerLinkActive="active"><a class="nav-link" [routerLink]="['/', tid, 'players']">{{'menu.players' | translate}}</a></li>
+            routerLinkActive="active"><a class="nav-link" [routerLink]="['/', tid, 'players']" translate>menu.players</a></li>
         <li class="nav-item"
-            routerLinkActive="active"><a class="nav-link" [routerLink]="['/', tid, 'print']">{{'menu.print' | translate}}</a></li>
+            routerLinkActive="active"><a class="nav-link" [routerLink]="['/', tid, 'print']" translate>menu.print</a></li>
         <li class="nav-item"
-            routerLinkActive="active"><a class="nav-link" [routerLink]="['/', tid, 'games']">{{'menu.schedule' | translate}}</a></li>
+            routerLinkActive="active"><a class="nav-link" [routerLink]="['/', tid, 'games']" translate>menu.schedule</a></li>
         <li class="nav-item"
-            routerLinkActive="active"><a class="nav-link" [routerLink]="['/', tid, 'protocol']">{{'menu.games' | translate}}</a></li>
+            routerLinkActive="active"><a class="nav-link" [routerLink]="['/', tid, 'protocol']" translate>menu.games</a></li>
         <li class="nav-item"
-            routerLinkActive="active"><a class="nav-link" [routerLink]="['/', tid, 'duels']">{{'menu.duels' | translate}}</a></li>
+            routerLinkActive="active"><a class="nav-link" [routerLink]="['/', tid, 'duels']" translate>menu.duels</a></li>
         <li class="nav-item"
-            routerLinkActive="active"><a class="nav-link" [routerLink]="['/', tid, 'standings']">{{'menu.standings' | translate}}</a></li>
+            routerLinkActive="active"><a class="nav-link" [routerLink]="['/', tid, 'standings']" translate>menu.standings</a></li>
       </ng-container>
     </ul>
   </div>
