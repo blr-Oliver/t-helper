@@ -33,4 +33,14 @@
       </ng-container>
     </ul>
   </div>
+  <ul class="navbar-nav pull-right">
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" (click)="showLangList()">{{translateService.currentLang | uppercase}}</a>
+      <div class="dropdown-menu position-absolute" [class.show]="langExpanded" [class.dropdown-menu-right]="!expanded">
+        <a *ngFor="let lang of translateService.getLangs()" class="dropdown-item"
+           [class.active]="lang === translateService.currentLang"
+           (click)="useLang(lang)">{{lang | uppercase}}</a>
+      </div>
+    </li>
+  </ul>
 </nav>
