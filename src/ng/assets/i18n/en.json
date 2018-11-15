@@ -1,5 +1,13 @@
 {
-  "common": {
-    "test": "translation test"
+  "menu": {
+    "home": "Tournaments",
+    "new": "Create tournament",
+    "details": "Overview",
+    "players": "Players",
+    "print": "Printout",
+    "schedule": "Schedule",
+    "games": "Games",
+    "duels": "Duels",
+    "standings": "Standings"
   }
 }

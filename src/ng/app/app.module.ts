@@ -63,7 +63,7 @@ const appRoutes: Routes = [
       },
       {
         path: 'protocol/:tour/:table', component: ProtocolEditorComponent,
-        resolve: {state: RouteNameTracker}, data: {name: 'game'}
+        resolve: {state: RouteNameTracker}, data: {name: 'games'}
       },
       {path: 'protocol/:partial', redirectTo: 'protocol/1/1'},
       {path: 'protocol', redirectTo: 'protocol/1/1'},
