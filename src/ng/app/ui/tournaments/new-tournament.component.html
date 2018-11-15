@@ -1,22 +1,23 @@
 <form class="col" (submit)="create(form.value)" #form="ngForm" novalidate>
   <div class="form-group">
-    <label for="tournament-name" class="font-weight-bold required">Название</label>
+    <label for="tournament-name" class="font-weight-bold required" translate>tournament.details.name.label</label>
     <input type="text" id="tournament-name" name="name" class="form-control" ngModel #name="ngModel"
            required minlength="3" maxlength="511"
            [ngClass]="{
             'is-valid': name.valid && (name.dirty || name.touched),
             'is-invalid': name.invalid && (name.dirty || name.touched)}"/>
     <div class="invalid-feedback" *ngIf="name.invalid && (name.dirty || name.touched)">
-      <p *ngIf="name.errors.required">Название обязательно</p>
-      <p *ngIf="name.errors.minlength && name.touched">Нужно хотя бы 3 символа</p>
-      <p *ngIf="name.errors.maxlength">Слишком длинная строка</p>
+      <p *ngIf="name.errors.required" translate>tournament.details.name.errors.required</p>
+      <p *ngIf="name.errors.minlength && name.touched" translate>tournament.details.name.errors.minlength</p>
+      <p *ngIf="name.errors.maxlength" translate>tournament.details.name.errors.maxlength</p>
     </div>
   </div>
   <div class="form-group">
-    <a *ngIf="!expandDescription; else description_content" (click)="expandDescription = true"
-       href="javascript:void(0)" class="pl-2"><span class="font-weight-bold">+</span><span>Добавить описание</span></a>
+    <a *ngIf="!expandDescription; else description_content" (click)="expandDescription = true" href="javascript:void(0)"
+       class="pl-2"><span class="font-weight-bold">+</span><span translate>tournament.details.description.add</span></a>
     <ng-template #description_content>
-      <label for="tournament-description" class="font-weight-bold">Описание</label>
+      <label for="tournament-description" class="font-weight-bold"
+             translate>tournament.details.description.label</label>
       <textarea id="tournament-description" name="description" class="form-control"
                 ngModel #description="ngModel"
                 maxlength="2047"
@@ -24,19 +25,19 @@
                   'is-valid': description?.valid && (description.dirty || description.touched),
                   'is-invalid': description?.invalid && (description.dirty || description.touched)}"></textarea>
       <div class="invalid-feedback" *ngIf="description?.invalid && (description.dirty || description.touched)">
-        <p *ngIf="description.errors.maxlength">Слишком много текста</p>
+        <p *ngIf="description.errors.maxlength" translate>tournament.details.description.errors.maxlength</p>
       </div>
     </ng-template>
   </div>
   <div class="form-group">
-    <label class="required font-weight-bold" title="Расписание нельзя будет изменить после создания">Расписание</label>
+    <label class="required font-weight-bold" [title]="'tournament.details.schedule.title' | translate" translate>tournament.details.schedule.label</label>
     <!-- next input exclusively for bootstrap validation classes -->
     <input type="hidden" class="form-control" [ngClass]="{
         'is-valid': form.controls.sid?.valid && (form.controls.sid.dirty || form.controls.sid.touched),
         'is-invalid': form.controls.sid?.invalid && (form.controls.sid.dirty || form.controls.sid.touched)}"/>
     <div class="invalid-feedback"
          *ngIf="form.controls.sid?.invalid && (form.controls.sid.dirty || form.controls.sid.touched)">
-      <p *ngIf="form.controls.sid.errors.required">Нужно выбрать расписание</p>
+      <p *ngIf="form.controls.sid.errors.required" translate>tournament.details.schedule.errors.required</p>
     </div>
     <ng-container *ngIf="schedules$ | async as schedules">
       <div class="form-check" *ngFor="let s of schedules">
@@ -47,7 +48,7 @@
     </ng-container>
   </div>
   <div class="form-group text-center">
-    <button type="submit" class="btn btn-success" [disabled]="form.invalid">Создать</button>
+    <button type="submit" class="btn btn-success" [disabled]="form.invalid" translate>tournament.new.create</button>
   </div>
 </form>
 

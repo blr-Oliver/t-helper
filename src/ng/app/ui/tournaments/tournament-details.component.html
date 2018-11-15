@@ -1,6 +1,6 @@
 <div *ngIf="tournament$ | async as tournament" class="col form">
   <div class="form-group">
-    <label for="tournament-name" class="required font-weight-bold">Название</label>
+    <label for="tournament-name" class="required font-weight-bold" translate>tournament.details.name.label</label>
     <input id="tournament-name" type="text" class="form-control" name="name"
            #name="ngModel" [(ngModel)]="tournament.name"
            (ngModelChange)="onUpdate(tournament, name, 'name')"
@@ -9,13 +9,13 @@
             'is-valid': name.valid && (name.dirty || name.touched),
             'is-invalid': name.invalid && (name.dirty || name.touched)}"/>
     <div class="invalid-feedback" *ngIf="name.invalid && (name.dirty || name.touched)">
-      <p *ngIf="name.errors.required">Название обязательно</p>
-      <p *ngIf="name.errors.minlength && name.touched">Нужно хотя бы 3 символа</p>
-      <p *ngIf="name.errors.maxlength">Слишком длинная строка</p>
+      <p *ngIf="name.errors.required" translate>tournament.details.name.errors.required</p>
+      <p *ngIf="name.errors.minlength && name.touched" translate>tournament.details.name.errors.minlength</p>
+      <p *ngIf="name.errors.maxlength" translate>tournament.details.name.errors.maxlength</p>
     </div>
   </div>
   <div class="form-group">
-    <label for="tournament-description" class="font-weight-bold">Описание</label>
+    <label for="tournament-description" class="font-weight-bold" translate>tournament.details.description.label</label>
     <textarea id="tournament-description" class="form-control"
               style="min-height: 3em"
               #description="ngModel" [(ngModel)]="tournament.description"
@@ -24,13 +24,13 @@
                 'is-valid': description?.valid && (description.dirty || description.touched),
                 'is-invalid': description?.invalid && (description.dirty || description.touched)}"></textarea>
     <div class="invalid-feedback" *ngIf="description?.invalid && (description.dirty || description.touched)">
-      <p *ngIf="description.errors.maxlength">Слишком много текста</p>
+      <p *ngIf="description.errors.maxlength" translate>tournament.details.description.errors.maxlength</p>
     </div>
   </div>
   <div class="form-group mb-0">
-    <span class="form-control-plaintext">Статус: {{tournament.status}}</span>
+    <span class="form-control-plaintext">{{'tournament.details.status' | translate}}: {{tournament.status}}</span>
   </div>
   <div class="form-group mb-0">
-    <span class="form-control-plaintext">Создан: {{tournament.dateCreated | date}}</span>
+    <span class="form-control-plaintext">{{'tournament.details.dateCreated' | translate}}: {{tournament.dateCreated | date}}</span>
   </div>
 </div>

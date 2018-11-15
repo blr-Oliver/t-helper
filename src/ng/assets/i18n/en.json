@@ -9,5 +9,39 @@
     "games": "Games",
     "duels": "Duels",
     "standings": "Standings"
+  },
+  "tournament": {
+    "list": {
+      "new": "Create new tournament"
+    },
+    "details": {
+      "name": {
+        "label": "Name",
+        "errors": {
+          "required": "Name is required",
+          "minlength": "At least 3 symbols required",
+          "maxlength": "String is too long"
+        }
+      },
+      "description": {
+        "label": "Description",
+        "add": "Add description",
+        "errors": {
+          "maxlength": "Too much text"
+        }
+      },
+      "schedule": {
+        "label": "Schedule",
+        "title": "Schedule cannot be changed after creation",
+        "errors": {
+          "required": "You must choose schedule"
+        }
+      },
+      "status": "Status",
+      "dateCreated": "Created"
+    },
+    "new": {
+      "create": "Create"
+    }
   }
 }
