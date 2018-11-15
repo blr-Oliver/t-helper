@@ -21,7 +21,7 @@
         <ng-container *ngIf="pairDuels">
           <ul class="list-unstyled m-0" *ngIf="i === selectedRow && j === selectedColumn; else summary">
             <li class="duel-details" *ngFor="let duel of pairDuels">
-              сдача {{duel.deal}} / {{duel.position}} : {{duel.scores[duel.getPairIndex(tournament.pairs[i])]}}
+              {{'duels.deal' | translate}} {{duel.deal}} / {{duel.position}} : {{duel.scores[duel.getPairIndex(tournament.pairs[i])]}}
             </li>
           </ul>
           <ng-template #summary>{{duelTotals[i][j]}}</ng-template>

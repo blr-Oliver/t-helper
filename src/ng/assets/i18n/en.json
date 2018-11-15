@@ -59,5 +59,13 @@
       "contract": "contract",
       "tricks": "tricks"
     }
+  },
+  "duels": {
+    "deal": "deal"
+  },
+  "standings": {
+    "pair": "Pair",
+    "score": "Score",
+    "bonus": "Bonus"
   }
 }

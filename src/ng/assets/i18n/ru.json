@@ -59,5 +59,13 @@
       "contract": "контракт",
       "tricks": "взятки"
     }
+  },
+  "duels": {
+    "deal": "сдача"
+  },
+  "standings": {
+    "pair": "Пара",
+    "score": "Очки",
+    "bonus": "Бонус"
   }
 }
