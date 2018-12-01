@@ -19,7 +19,6 @@ import {TournamentDetailsComponent} from './ui/tournaments/tournament-details.co
 import {DuelsComponent} from './ui/duels/duels.component';
 import {UpdateManager} from './service/UpdateManager';
 import {NewTournamentComponent} from './ui/tournaments/new-tournament.component';
-import {RestAPIFacade} from './service/api/RestAPIFacade';
 import {ProtocolTemplateComponent} from './ui/protocol/template/protocol-template.component';
 import {ProtocolPrinterComponent} from './ui/print/protocol-printer.component';
 import {ProtocolPlayerComponent} from './ui/protocol/template/protocol-player.component';
@@ -32,6 +31,8 @@ import {FlatPipe} from './util/flat.pipe';
 import {ProtocolSelectionParserService} from './service/protocol-selection-parser.service';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {IndexedDBPersister} from './service/api/IndexedDBPersister';
+import {IndexedDBProvider} from './service/IndexedDBProvider';
 
 const appRoutes: Routes = [
   {
@@ -119,7 +120,8 @@ const appRoutes: Routes = [
   providers: [
     TournamentService,
     ProtocolSelectionParserService,
-    RestAPIFacade,
+    {provide: 'Persister', useClass: IndexedDBPersister},
+    IndexedDBProvider,
     UpdateManager,
     RouteNameTracker
   ],

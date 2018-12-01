@@ -1,4 +1,3 @@
-import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {ExpandedTournamentDTO, TournamentDTO} from '../../model/dto/TournamentDTO';
@@ -7,10 +6,11 @@ import {PlayerDTO} from '../../model/dto/PlayerDTO';
 import {ProtocolDTO} from '../../model/dto/ProtocolDTO';
 import {TournamentPatchRequest} from './TournamentPatchRequest';
 import {map} from 'rxjs/operators';
-import {APIFacade, AuthToken} from './APIFacade';
+import {AuthToken, Persister} from './Persister';
+import {Injectable} from '@angular/core';
 
 @Injectable()
-export class RestAPIFacade implements APIFacade {
+export class RestPersister implements Persister {
   private static readonly KEYS_TOURNAMENT_CREATE: string[] = ['name', 'description', 'sid'];
   private static readonly KEYS_TOURNAMENT_UPDATE: string[] = ['id', 'name', 'description', 'status'];
   private static readonly KEYS_PLAYER_UPDATE: string[] = ['id', 'name'];
@@ -50,21 +50,21 @@ export class RestAPIFacade implements APIFacade {
 
   createTournament(data: TournamentDTO, token?: AuthToken): Observable<ExpandedTournamentDTO> {
     return this.http.post<ExpandedTournamentDTO>(`/api/tournaments`,
-      RestAPIFacade.filterProperties(data, RestAPIFacade.KEYS_TOURNAMENT_CREATE),
-      {headers: RestAPIFacade.constructHeaders(token)}
+      RestPersister.filterProperties(data, RestPersister.KEYS_TOURNAMENT_CREATE),
+      {headers: RestPersister.constructHeaders(token)}
     );
   }
 
   updateTournament(data: TournamentDTO, token?: AuthToken): Observable<void> {
-    return this.putResource('/api/tournaments', data, RestAPIFacade.KEYS_TOURNAMENT_UPDATE, token);
+    return this.putResource('/api/tournaments', data, RestPersister.KEYS_TOURNAMENT_UPDATE, token);
   }
 
   updatePlayer(data: PlayerDTO, token?: AuthToken): Observable<void> {
-    return this.putResource('/api/players', data, RestAPIFacade.KEYS_PLAYER_UPDATE, token);
+    return this.putResource('/api/players', data, RestPersister.KEYS_PLAYER_UPDATE, token);
   }
 
   updateProtocol(data: ProtocolDTO, token?: AuthToken): Observable<void> {
-    return this.putResource('/api/protocols', data, RestAPIFacade.KEYS_PROTOCOL_UPDATE, token);
+    return this.putResource('/api/protocols', data, RestPersister.KEYS_PROTOCOL_UPDATE, token);
   }
 
   batchUpdateTournament(data: TournamentPatchRequest, token?: AuthToken): Observable<ExpandedTournamentDTO> {
@@ -74,20 +74,20 @@ export class RestAPIFacade implements APIFacade {
     };
     if (data.update) {
       if (data.update.tournament)
-        filteredData.update.tournament = RestAPIFacade.filterProperties(data.update.tournament, RestAPIFacade.KEYS_TOURNAMENT_UPDATE);
+        filteredData.update.tournament = RestPersister.filterProperties(data.update.tournament, RestPersister.KEYS_TOURNAMENT_UPDATE);
       if (data.update.players)
         filteredData.update.players = data.update.players.map(
-          player => RestAPIFacade.filterProperties(player, RestAPIFacade.KEYS_PLAYER_UPDATE)
+          player => RestPersister.filterProperties(player, RestPersister.KEYS_PLAYER_UPDATE)
         );
       if (data.update.protocols)
         filteredData.update.protocols = data.update.protocols.map(
-          protocol => RestAPIFacade.filterProperties(protocol, RestAPIFacade.KEYS_PROTOCOL_UPDATE)
+          protocol => RestPersister.filterProperties(protocol, RestPersister.KEYS_PROTOCOL_UPDATE)
         );
     }
     return this.http.patch<ExpandedTournamentDTO>(
       `/api/tournaments/${data.tid}`,
       filteredData,
-      {headers: RestAPIFacade.constructHeaders(token)}
+      {headers: RestPersister.constructHeaders(token)}
     );
   }
 
@@ -96,18 +96,18 @@ export class RestAPIFacade implements APIFacade {
       return throwError('illegal tournament id');
     return this.http.delete(
       `/api/tournaments/${id}`,
-      {headers: RestAPIFacade.constructHeaders(token)}
+      {headers: RestPersister.constructHeaders(token)}
     ).pipe(
       map(() => void(0))
     );
   }
 
   private putResource(baseUri: string, data: any, keys: string[], token?: AuthToken): Observable<void> {
-    data = RestAPIFacade.filterProperties(data, keys);
+    data = RestPersister.filterProperties(data, keys);
     return this.http.put<HttpResponse<void>>(`${baseUri}/${data.id}`,
       data,
       {
-        headers: RestAPIFacade.constructHeaders(token),
+        headers: RestPersister.constructHeaders(token),
         observe: 'response'
       }
     ).pipe(

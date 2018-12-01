@@ -1,3 +1,3 @@
 export interface DTO {
-  id: number;
+  id?: number;
 }
