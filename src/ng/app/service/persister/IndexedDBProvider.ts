@@ -48,8 +48,7 @@ export class IndexedDBProvider {
         request.onerror = e => reject(e);
         request.onupgradeneeded = e => {
           const stores = this.createSchema(request.result, e);
-          this.initializeData(stores)
-            .then(() => resolve(this.get(version)));
+          this.initializeData(stores);
         };
       });
     return this.dbRequest;
