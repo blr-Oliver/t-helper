@@ -38,16 +38,21 @@ export class IndexedDBProvider {
     {sid: 1, tour: 12, table: 1, deal: 12, dealer: 'W', players: {N: 'A', E: 'D', S: 'a', W: 'd'}}
   ];
 
+  private dbRequest: Promise<IDBDatabase> = null;
+
   get(version = 1): Promise<IDBDatabase> {
-    return new Promise<IDBDatabase>((resolve, reject) => {
-      const request: IDBOpenDBRequest = window.indexedDB.open('Tournament', version);
-      request.onsuccess = e => resolve(request.result);
-      request.onerror = e => reject(e);
-      request.onupgradeneeded = e => {
-        const stores = this.createSchema(request.result, e);
-        this.initializeData(stores).then(() => resolve(request.result));
-      };
-    });
+    if (!this.dbRequest)
+      this.dbRequest = new Promise<IDBDatabase>((resolve, reject) => {
+        const request: IDBOpenDBRequest = window.indexedDB.open('Tournament', version);
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = e => reject(e);
+        request.onupgradeneeded = e => {
+          const stores = this.createSchema(request.result, e);
+          this.initializeData(stores)
+            .then(() => resolve(this.get(version)));
+        };
+      });
+    return this.dbRequest;
   }
 
   private createSchema(db: IDBDatabase, e: IDBVersionChangeEvent): { [key: string]: IDBObjectStore } {
