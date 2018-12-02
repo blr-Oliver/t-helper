@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs';
 import {map, mergeMap, tap} from 'rxjs/operators';
 import {Tournament} from '../../model/Tournament';
-import {TournamentService} from '../../service/tournament.service';
+import {TournamentProvider} from '../../service/TournamentProvider';
 import {Duel} from '../../model/Duel';
 
 @Component({
@@ -21,7 +21,7 @@ export class DuelsComponent implements OnInit {
   duelTotals: number[][];
 
   constructor(
-    private tournamentService: TournamentService,
+    private tournamentService: TournamentProvider,
     private route: ActivatedRoute) {
   }
 

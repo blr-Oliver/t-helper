@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Observable, zip} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
-import {TournamentService} from '../../service/tournament.service';
+import {TournamentProvider} from '../../service/TournamentProvider';
 import {map, mergeMap, tap} from 'rxjs/operators';
 import {Game} from '../../model/Game';
 import {UpdateEvent} from '../../service/UpdateEvent';
@@ -20,7 +20,7 @@ export class ProtocolEditorComponent implements OnInit {
   private debounceBarrier: UpdateEventDebounceBarrier<ProtocolDTO>;
 
   constructor(
-    private tournamentService: TournamentService,
+    private tournamentService: TournamentProvider,
     private route: ActivatedRoute,
     private updateManager: UpdateManager) {
     this.debounceBarrier = new UpdateEventDebounceBarrier<ProtocolDTO>(

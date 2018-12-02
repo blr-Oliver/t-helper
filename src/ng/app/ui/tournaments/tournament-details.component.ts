@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
-import {TournamentService} from '../../service/tournament.service';
+import {TournamentProvider} from '../../service/TournamentProvider';
 import {mergeMap, tap} from 'rxjs/operators';
 import {Tournament} from '../../model/Tournament';
 import {UpdateManager} from '../../service/UpdateManager';
@@ -18,7 +18,7 @@ export class TournamentDetailsComponent implements OnInit {
   debounceBarrier: UpdateEventDebounceBarrier<TournamentDTO>;
 
   constructor(
-    private tournamentService: TournamentService,
+    private tournamentService: TournamentProvider,
     private route: ActivatedRoute,
     private updateManager: UpdateManager) {
     this.debounceBarrier = new UpdateEventDebounceBarrier<TournamentDTO>(

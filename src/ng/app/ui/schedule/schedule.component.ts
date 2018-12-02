@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {TournamentService} from '../../service/tournament.service';
+import {TournamentProvider} from '../../service/TournamentProvider';
 import {Observable} from 'rxjs';
 import {map, mergeMap} from 'rxjs/operators';
 import {Game} from '../../model/Game';
@@ -12,7 +12,7 @@ export class ScheduleComponent implements OnInit {
   games$: Observable<Game[][]>;
 
   constructor(
-    private tournamentService: TournamentService,
+    private tournamentService: TournamentProvider,
     private route: ActivatedRoute) {
   }
 

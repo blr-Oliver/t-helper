@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
-import {TournamentService} from '../../service/tournament.service';
+import {TournamentProvider} from '../../service/TournamentProvider';
 import {Observable} from 'rxjs';
 import {RouteNameTracker} from '../../service/RouteNameTracker';
 import {TranslateService} from '@ngx-translate/core';
@@ -18,7 +18,7 @@ export class TopMenuComponent implements OnInit, OnDestroy {
   private listener;
 
   constructor(
-    private tournamentService: TournamentService,
+    private tournamentService: TournamentProvider,
     nameTracker: RouteNameTracker,
     translateService: TranslateService,
     private renderer: Renderer2

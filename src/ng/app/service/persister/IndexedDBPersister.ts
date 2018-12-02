@@ -5,7 +5,7 @@ import {ExpandedTournamentDTO, TournamentDTO} from '../../model/dto/TournamentDT
 import {ScheduleDTO} from '../../model/dto/ScheduleDTO';
 import {PlayerDTO} from '../../model/dto/PlayerDTO';
 import {ProtocolDTO} from '../../model/dto/ProtocolDTO';
-import {IndexedDBProvider} from '../IndexedDBProvider';
+import {IndexedDBProvider} from './IndexedDBProvider';
 import {GameSlotDTO} from '../../model/dto/GameSlotDTO';
 import {fromPromise} from 'rxjs/internal-compatibility';
 import {DTO} from '../../model/dto/DTO';

@@ -4,10 +4,10 @@ import {PipingStreamSupplier} from './PipingStreamSupplier';
 import {map, switchMap} from 'rxjs/operators';
 import {Tournament} from '../model/Tournament';
 import {TournamentDTO} from '../model/dto/TournamentDTO';
-import {Persister} from './api/Persister';
+import {Persister} from './persister/Persister';
 
 @Injectable()
-export class TournamentService {
+export class TournamentProvider {
   private streamSupplier: PipingStreamSupplier<number, Tournament>;
 
   constructor(@Inject('Persister') private persister: Persister) {

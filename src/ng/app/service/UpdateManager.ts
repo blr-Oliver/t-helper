@@ -2,7 +2,7 @@ import {Inject, Injectable} from '@angular/core';
 import {ConnectableObservable, Observable, Subject} from 'rxjs';
 import {UpdateEvent} from './UpdateEvent';
 import {mergeMap, publish} from 'rxjs/operators';
-import {Persister} from './api/Persister';
+import {Persister} from './persister/Persister';
 
 @Injectable()
 export class UpdateManager {

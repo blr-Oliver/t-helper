@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {IndexedDBUtils} from './api/IndexedDBUtils';
+import {IndexedDBUtils} from './IndexedDBUtils';
 
 @Injectable()
 export class IndexedDBProvider {

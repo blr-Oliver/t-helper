@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TournamentService} from '../../service/tournament.service';
+import {TournamentProvider} from '../../service/TournamentProvider';
 import {Observable} from 'rxjs';
 import {TournamentDTO} from '../../model/dto/TournamentDTO';
 
@@ -10,7 +10,7 @@ export class TournamentListComponent implements OnInit {
   tournaments$: Observable<TournamentDTO[]>;
 
   constructor(
-    private tournamentService: TournamentService
+    private tournamentService: TournamentProvider
   ) {
   }
 

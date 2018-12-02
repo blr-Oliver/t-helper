@@ -14,7 +14,7 @@ import {ProtocolEditorComponent} from './ui/protocol/protocol-editor.component';
 import {ContractComponent} from './ui/protocol/contract/contract.component';
 import {TricksComponent} from './ui/protocol/tricks/tricks.component';
 import {TournamentListComponent} from './ui/tournaments/tournament-list.component';
-import {TournamentService} from './service/tournament.service';
+import {TournamentProvider} from './service/TournamentProvider';
 import {TournamentDetailsComponent} from './ui/tournaments/tournament-details.component';
 import {DuelsComponent} from './ui/duels/duels.component';
 import {UpdateManager} from './service/UpdateManager';
@@ -28,11 +28,11 @@ import {ProtocolPrintFormComponent} from './ui/print/protocol-print-form.compone
 import {ProtocolSelectorComponent} from './ui/print/protocol-selector.component';
 import {SequencePipe} from './util/sequence.pipe';
 import {FlatPipe} from './util/flat.pipe';
-import {ProtocolSelectionParserService} from './service/protocol-selection-parser.service';
+import {ProtocolSelectionParser} from './service/ProtocolSelectionParser';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {IndexedDBPersister} from './service/api/IndexedDBPersister';
-import {IndexedDBProvider} from './service/IndexedDBProvider';
+import {IndexedDBPersister} from './service/persister/IndexedDBPersister';
+import {IndexedDBProvider} from './service/persister/IndexedDBProvider';
 
 const appRoutes: Routes = [
   {
@@ -118,8 +118,8 @@ const appRoutes: Routes = [
     })
   ],
   providers: [
-    TournamentService,
-    ProtocolSelectionParserService,
+    TournamentProvider,
+    ProtocolSelectionParser,
     {provide: 'Persister', useClass: IndexedDBPersister},
     IndexedDBProvider,
     UpdateManager,

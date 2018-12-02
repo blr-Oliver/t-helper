@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {ScheduleDTO} from '../../model/dto/ScheduleDTO';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
-import {Persister} from '../../service/api/Persister';
+import {Persister} from '../../service/persister/Persister';
 
 @Component({
   templateUrl: './new-tournament.component.html'

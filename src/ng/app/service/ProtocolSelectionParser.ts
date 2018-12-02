@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 
 @Injectable()
-export class ProtocolSelectionParserService {
+export class ProtocolSelectionParser {
   private static readonly validOnly = range => !range.invalid;
 
   parse(selection: string, target: boolean[][]) {
@@ -9,7 +9,7 @@ export class ProtocolSelectionParserService {
 
     const parts = selection.toUpperCase().trim().split(/\s*,\s*/);
     let ranges = parts.map(part => new SelectionRange(part));
-    ranges = ranges.filter(ProtocolSelectionParserService.validOnly);
+    ranges = ranges.filter(ProtocolSelectionParser.validOnly);
     if (ranges.length) {
       const tours = target.length, tables = target[0].length;
       ranges.forEach(range => {
@@ -26,7 +26,7 @@ export class ProtocolSelectionParserService {
           range.invalid = true;
       });
 
-      ranges = ranges.filter(ProtocolSelectionParserService.validOnly);
+      ranges = ranges.filter(ProtocolSelectionParser.validOnly);
       ranges.forEach(range => {
         for (let i = range.minTour - 1; i < range.maxTour; ++i)
           for (let j = range.minTable - 1; j < range.maxTable; ++j)

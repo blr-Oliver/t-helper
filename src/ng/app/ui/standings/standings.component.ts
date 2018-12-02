@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Standings} from '../../model/Standings';
 import {Observable} from 'rxjs';
-import {TournamentService} from '../../service/tournament.service';
+import {TournamentProvider} from '../../service/TournamentProvider';
 import {ActivatedRoute} from '@angular/router';
 import {map, mergeMap, tap} from 'rxjs/operators';
 
@@ -12,7 +12,7 @@ export class StandingsComponent implements OnInit {
   standings$: Observable<Standings>;
 
   constructor(
-    private tournamentService: TournamentService,
+    private tournamentService: TournamentProvider,
     private route: ActivatedRoute) {
   }
 
