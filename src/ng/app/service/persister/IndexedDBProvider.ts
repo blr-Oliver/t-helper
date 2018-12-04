@@ -45,7 +45,7 @@ export class IndexedDBProvider {
       this.dbRequest = new Promise<IDBDatabase>((resolve, reject) => {
         const request: IDBOpenDBRequest = window.indexedDB.open('Tournament', version);
         request.onsuccess = () => resolve(request.result);
-        request.onerror = e => reject(e);
+        request.onerror = () => reject(request.error);
         request.onupgradeneeded = e => {
           const stores = this.createSchema(request.result, e);
           this.initializeData(stores);
@@ -55,6 +55,7 @@ export class IndexedDBProvider {
   }
 
   private createSchema(db: IDBDatabase, e: IDBVersionChangeEvent): { [key: string]: IDBObjectStore } {
+    console.log('creating schema');
     if (e.newVersion !== 1)
       throw new Error('Only version 1 is supported');
 
