@@ -1,5 +1,9 @@
 package com.oliver.thelper.model;
 
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class Player {
@@ -8,6 +12,8 @@ public class Player {
   private String slot;
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private String name;
+  @JsonFormat(shape = Shape.NUMBER_INT)
+  private Date lastModified;
 
   public Player() {}
   public Player(int tid, String slot) {
@@ -17,8 +23,8 @@ public class Player {
   public int getId() { return id; }
   public int getTid() { return tid; }
   public String getSlot() { return slot; }
+  public Date getLastModified() { return lastModified; }
+
   public String getName() { return name; }
-  
   public void setName(String name) { this.name = name; }
-  
 }

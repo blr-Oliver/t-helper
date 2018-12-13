@@ -3,6 +3,8 @@ package com.oliver.thelper.model;
 import java.util.Date;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.oliver.thelper.annotation.Views;
 
@@ -13,6 +15,8 @@ public class Tournament {
   @JsonView(Views.ShortView.class) private String description;
   @JsonView(Views.ShortView.class) private Date dateCreated;
   @JsonView(Views.ShortView.class) private String status;
+  @JsonFormat(shape = Shape.NUMBER_INT)
+  @JsonView(Views.ShortView.class) private Date lastModified;
 
   private Schedule schedule;
   private Set<Player> players;
@@ -27,6 +31,7 @@ public class Tournament {
   public String getDescription() { return description; }
   public Date getDateCreated() { return dateCreated; }
   public String getStatus() { return status; }
+  public Date getLastModified() { return lastModified; }
 
   public void setSid(int sid) { this.sid = sid; }
   public void setName(String name) { this.name = name; }

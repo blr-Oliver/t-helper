@@ -44,6 +44,7 @@ CREATE TABLE tournament (
   description VARCHAR(2047),
   date_created TIMESTAMP NOT NULL DEFAULT NOW(),
   status VARCHAR(127) NOT NULL DEFAULT 'unknown',
+  last_modified TIMESTAMP NOT NULL DEFAULT NOW(),
   FOREIGN KEY (sid) REFERENCES schedule (id)
 );
 
@@ -52,6 +53,7 @@ CREATE TABLE player (
   tid INT NOT NULL,
   slot VARCHAR(127) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   name VARCHAR(255),
+  last_modified TIMESTAMP NOT NULL DEFAULT NOW(),
   UNIQUE KEY u_player (tid, slot),
   FOREIGN KEY (tid) REFERENCES tournament (id)
 );
@@ -64,6 +66,7 @@ CREATE TABLE protocol (
   owner NCHAR(2),
   level TINYINT,
   tricks TINYINT,
+  last_modified TIMESTAMP NOT NULL DEFAULT NOW(),
   UNIQUE KEY u_protocol (tid, gid),
   FOREIGN KEY (tid) REFERENCES tournament (id),
   FOREIGN KEY (gid) REFERENCES game_slot (id)

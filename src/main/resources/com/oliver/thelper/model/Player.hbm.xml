@@ -6,6 +6,7 @@
     <id name="id" column="id" unsaved-value="-1" access="field">
       <generator class="identity" />
     </id>
+    <timestamp name="lastModified" column="last_modified" source="vm" access="field" />
     <property name="tid" column="tid" not-null="true" access="field" />
     <property name="slot" column="slot" not-null="true" access="field" length="127" />
     <property name="name" column="name" not-null="false" access="field" length="255" />

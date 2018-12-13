@@ -1,5 +1,9 @@
 package com.oliver.thelper.model;
 
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class Protocol {
@@ -14,6 +18,8 @@ public class Protocol {
   private Integer level;
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Integer tricks;
+  @JsonFormat(shape = Shape.NUMBER_INT)
+  private Date lastModified;
 
   public Protocol() {}
   public Protocol(int tid, int gid) {
@@ -29,6 +35,7 @@ public class Protocol {
   public PairPosition getOwner() { return owner; }
   public Integer getLevel() { return level; }
   public Integer getTricks() { return tricks; }
+  public Date getLastModified() { return lastModified; }
 
   public void setSuit(Suit suit) { this.suit = suit; }
   public void setOwner(PairPosition owner) { this.owner = owner; }
