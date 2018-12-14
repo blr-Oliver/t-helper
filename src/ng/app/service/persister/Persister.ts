@@ -1,7 +1,6 @@
 import {Observable} from 'rxjs';
 import {ExpandedTournamentDTO, TournamentDTO} from '../../model/dto/TournamentDTO';
 import {ScheduleDTO} from '../../model/dto/ScheduleDTO';
-import {TournamentPatchRequest} from './TournamentPatchRequest';
 import {PlayerDTO} from '../../model/dto/PlayerDTO';
 import {ProtocolDTO} from '../../model/dto/ProtocolDTO';
 
@@ -16,6 +15,6 @@ export interface Persister {
   updateTournament(data: TournamentDTO, token?: AuthToken): Observable<void | TournamentDTO>;
   updatePlayer(data: PlayerDTO, token?: AuthToken): Observable<void | PlayerDTO>;
   updateProtocol(data: ProtocolDTO, token?: AuthToken): Observable<void | ProtocolDTO>;
-  batchUpdateTournament(data: TournamentPatchRequest, token?: AuthToken): Observable<ExpandedTournamentDTO>;
+  // batchUpdateTournament(data: TournamentPatchRequest, token?: AuthToken): Observable<ExpandedTournamentDTO>;
   deleteTournament(id: number, token?: AuthToken): Observable<void>;
 }

@@ -10,7 +10,7 @@ import com.oliver.thelper.annotation.Views;
 
 public class Tournament implements WithTimestamp {
   @JsonView(Views.ShortView.class) private int id = -1;
-  @JsonView(Views.ShortView.class) private int sid;
+  @JsonView(Views.ShortView.class) private Integer sid;
   @JsonView(Views.ShortView.class) private String name;
   @JsonView(Views.ShortView.class) private String description;
   @JsonView(Views.ShortView.class) private Date dateCreated;
@@ -26,14 +26,14 @@ public class Tournament implements WithTimestamp {
   public Tournament(int sid) { this.sid = sid; }
 
   public int getId() { return id; }
-  public int getSid() { return sid; }
+  public Integer getSid() { return sid; }
   public String getName() { return name; }
   public String getDescription() { return description; }
   public Date getDateCreated() { return dateCreated; }
   public String getStatus() { return status; }
   public Date getLastModified() { return lastModified; }
 
-  public void setSid(int sid) { this.sid = sid; }
+  public void setSid(Integer sid) { this.sid = sid; }
   public void setName(String name) { this.name = name; }
   public void setDescription(String description) { this.description = description; }
   public void setStatus(String status) { this.status = status; }
