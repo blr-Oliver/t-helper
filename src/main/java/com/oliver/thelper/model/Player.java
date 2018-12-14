@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-public class Player {
+public class Player implements WithTimestamp {
   private int id = -1;
-  private int tid;
+  private Integer tid;
   private String slot;
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private String name;
@@ -21,7 +21,7 @@ public class Player {
     this.slot = slot;
   }
   public int getId() { return id; }
-  public int getTid() { return tid; }
+  public Integer getTid() { return tid; }
   public String getSlot() { return slot; }
   public Date getLastModified() { return lastModified; }
 

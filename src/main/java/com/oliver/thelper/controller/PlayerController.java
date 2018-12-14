@@ -3,36 +3,45 @@ package com.oliver.thelper.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import com.oliver.thelper.model.Player;
 import com.oliver.thelper.repository.PlayerRepository;
 
 @RestController
 @RequestMapping("/api/players")
-public class PlayerController {
-  @Autowired private PlayerRepository playerRepo;
+public class PlayerController extends VersionedEntityController<Player> {
+  public PlayerController(@Autowired PlayerRepository repo) {
+    super(repo);
+  }
 
+  @Override
   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-  public Player getOne(@PathVariable Integer id) {
-    return playerRepo.findById(id).get();
+  public ResponseEntity<?> getResource(@PathVariable("id") int id, WebRequest request) {
+    return super.getResource(id, request);
   }
 
+  @Override
   @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-  public ResponseEntity<?> updateOne(
-      @PathVariable Integer id,
+  public ResponseEntity<?> putResource(
+      @PathVariable("id") int id,
       @RequestBody Player item,
-      @RequestHeader(value = Constants.HEADER_TOURNAMENT_TOKEN, required = false) String token) {
-    Player existing = playerRepo.findById(id).get();
-    validatePlayer(existing, item, token);
-
-    existing.setName(item.getName());
-
-    playerRepo.save(existing);
-    return ResponseEntity.noContent().build();
+      @RequestHeader(value = Constants.HEADER_TOURNAMENT_TOKEN, required = false) String authToken,
+      WebRequest request) {
+    return super.putResource(id, item, authToken, request);
   }
 
-  private void validatePlayer(Player existing, Player item, String token) {
-    // TODO validate for same tournament and game slot
+  @Override
+  protected void copyData(Player existing, Player incoming) {
+    existing.setName(incoming.getName());
+  }
+  
+  @Override
+  protected boolean validateResource(Player existing, Player incoming) {
+    if (incoming.getId() != -1 && incoming.getId() != existing.getId()) return false;
+    if (!eq(existing.getTid(), incoming.getTid(), false)) return false;
+    if (!eq(existing.getSlot(), incoming.getSlot(), false)) return false;
+    return true;
   }
 
 }

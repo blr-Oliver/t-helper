@@ -6,10 +6,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-public class Protocol {
+public class Protocol implements WithTimestamp {
   private int id = -1;
-  private int tid;
-  private int gid;
+  private Integer tid;
+  private Integer gid;
   @JsonInclude(JsonInclude.Include.NON_NULL)
   private Suit suit;
   @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -28,8 +28,8 @@ public class Protocol {
   }
 
   public int getId() { return id; }
-  public int getTid() { return tid; }
-  public int getGid() { return gid; }
+  public Integer getTid() { return tid; }
+  public Integer getGid() { return gid; }
 
   public Suit getSuit() { return suit; }
   public PairPosition getOwner() { return owner; }

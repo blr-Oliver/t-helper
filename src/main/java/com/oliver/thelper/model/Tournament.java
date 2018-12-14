@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.oliver.thelper.annotation.Views;
 
-public class Tournament {
+public class Tournament implements WithTimestamp {
   @JsonView(Views.ShortView.class) private int id = -1;
   @JsonView(Views.ShortView.class) private int sid;
   @JsonView(Views.ShortView.class) private String name;
