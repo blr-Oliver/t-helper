@@ -22,7 +22,7 @@ public abstract class VersionedEntityController<T extends WithTimestamp> {
     if (!found.isPresent())
       return ResponseEntity.notFound().build();
     T existing = found.get();
-    if (request.checkNotModified(existing.getLastModified().getTime()))
+    if (request.checkNotModified(getLastModified(existing, true)))
       return null;
     return ResponseEntity.ok(existing);
   }
@@ -38,11 +38,11 @@ public abstract class VersionedEntityController<T extends WithTimestamp> {
     // force version info to be present either as header or in body
     // header value takes precedence over body value
     if (request.getHeader("If-Unmodified-Since") != null) {
-      if (request.checkNotModified(existing.getLastModified().getTime()))
+      if (request.checkNotModified(getLastModified(existing, false)))
         return null;
     } else {
       Date lastModified = item.getLastModified();
-      if (lastModified == null || lastModified.before(existing.getLastModified()))
+      if (lastModified == null || lastModified.getTime() < getLastModified(existing, false))
         return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).build();
     }
 
@@ -57,6 +57,10 @@ public abstract class VersionedEntityController<T extends WithTimestamp> {
     // this produces both Last-Modified and Date headers on the response - it's ok
     // in fact, the tiny possible difference can provide useful info for client
     return ResponseEntity.noContent().lastModified(saved.getLastModified().getTime()).build();
+  }
+
+  protected long getLastModified(T existing, boolean readOnly) {
+    return existing.getLastModified().getTime();
   }
 
   protected boolean validateResource(T existing, T incoming) {
