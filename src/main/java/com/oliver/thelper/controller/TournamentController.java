@@ -23,7 +23,7 @@ public class TournamentController extends VersionedEntityController<Tournament> 
   private TournamentService tournamentService;
   
   public TournamentController(@Autowired TournamentRepository repo) {
-    super(repo);
+    super(repo, true);
   }
 
   @JsonView(Views.ShortView.class)

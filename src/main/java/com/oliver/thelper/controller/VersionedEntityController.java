@@ -11,10 +11,12 @@ import org.springframework.web.context.request.WebRequest;
 import com.oliver.thelper.model.WithTimestamp;
 
 public abstract class VersionedEntityController<T extends WithTimestamp> {
+  private boolean explicitReload;
   protected JpaRepository<T, Integer> repo;
 
-  protected VersionedEntityController(JpaRepository<T, Integer> repo) {
+  protected VersionedEntityController(JpaRepository<T, Integer> repo, boolean explicitReload) {
     this.repo = repo;
+    this.explicitReload = explicitReload;
   }
 
   public ResponseEntity<?> getResource(int id, WebRequest request) {
@@ -54,6 +56,8 @@ public abstract class VersionedEntityController<T extends WithTimestamp> {
 
     T saved = repo.save(existing);
 
+    if (this.explicitReload)
+      saved = repo.findById(id).get();
     // this produces both Last-Modified and Date headers on the response - it's ok
     // in fact, the tiny possible difference can provide useful info for client
     return ResponseEntity.noContent().lastModified(saved.getLastModified().getTime()).build();

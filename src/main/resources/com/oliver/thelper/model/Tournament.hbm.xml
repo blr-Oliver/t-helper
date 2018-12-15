@@ -2,25 +2,25 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.oliver.thelper.model">
-  <class name="Tournament" table="tournament">
+  <class name="Tournament" table="tournament" batch-size="2">
     <id name="id" column="id" unsaved-value="-1" access="field">
       <generator class="identity" />
     </id>
-    <timestamp name="lastModified" column="last_modified" source="vm" access="field" generated="always" />
+    <timestamp name="lastModified" column="last_modified" source="vm" access="field" generated="never" />
     <property name="childrenLastModified" column="children_last_modified" insert="false" update="false" access="field" generated="always" />
     <property name="sid" column="sid" not-null="true" />
     <property name="name" column="name" not-null="true" length="511" />
     <property name="description" column="description" not-null="false" length="2047" />
-    <property name="dateCreated" column="date_created" not-null="true" insert="false" update="false" access="field" />
+    <property name="dateCreated" column="date_created" not-null="true" insert="false" update="false" access="field" generated="always" />
     <property name="status" column="status" not-null="true" length="127" />
 
-    <many-to-one name="schedule" column="sid" class="Schedule" fetch="join" insert="false" update="false" />
+    <many-to-one name="schedule" column="sid" class="Schedule" fetch="join" insert="false" update="false" cascade="none" />
 
-    <set name="players" fetch="select" lazy="true">
+    <set name="players" fetch="select" lazy="true" cascade="none">
       <key column="tid" />
       <one-to-many class="Player" />
     </set>
-    <set name="protocols" fetch="select" lazy="true">
+    <set name="protocols" fetch="select" lazy="true" cascade="none">
       <key column="tid" />
       <one-to-many class="Protocol" />
     </set>

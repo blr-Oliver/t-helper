@@ -13,7 +13,7 @@ import com.oliver.thelper.repository.ProtocolRepository;
 public class ProtocolController extends VersionedEntityController<Protocol> {
   
   public ProtocolController(@Autowired ProtocolRepository repo) {
-    super(repo);
+    super(repo, true);
   }
 
   @Override

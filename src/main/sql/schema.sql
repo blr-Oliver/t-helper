@@ -19,7 +19,7 @@ CREATE TABLE player_slot (
   value VARCHAR(127) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (sid, idx),
   UNIQUE KEY u_player_slot (sid, value),
-  FOREIGN KEY (sid) REFERENCES schedule (id)
+  FOREIGN KEY (sid) REFERENCES schedule (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE game_slot (
@@ -34,7 +34,7 @@ CREATE TABLE game_slot (
   player_S VARCHAR(127) NOT NULL,
   player_W VARCHAR(127) NOT NULL,
   UNIQUE KEY u_game_slot (sid, tour, tbl),
-  FOREIGN KEY (sid) REFERENCES schedule (id)
+  FOREIGN KEY (sid) REFERENCES schedule (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE tournament (
@@ -46,7 +46,7 @@ CREATE TABLE tournament (
   status VARCHAR(127) NOT NULL DEFAULT 'unknown',
   last_modified TIMESTAMP NOT NULL DEFAULT NOW(),
   children_last_modified TIMESTAMP NOT NULL DEFAULT NOW(),
-  FOREIGN KEY (sid) REFERENCES schedule (id)
+  FOREIGN KEY (sid) REFERENCES schedule (id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 CREATE TABLE player (
@@ -56,7 +56,7 @@ CREATE TABLE player (
   name VARCHAR(255),
   last_modified TIMESTAMP NOT NULL DEFAULT NOW(),
   UNIQUE KEY u_player (tid, slot),
-  FOREIGN KEY (tid) REFERENCES tournament (id)
+  FOREIGN KEY (tid) REFERENCES tournament (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE protocol (
@@ -69,6 +69,6 @@ CREATE TABLE protocol (
   tricks TINYINT,
   last_modified TIMESTAMP NOT NULL DEFAULT NOW(),
   UNIQUE KEY u_protocol (tid, gid),
-  FOREIGN KEY (tid) REFERENCES tournament (id),
-  FOREIGN KEY (gid) REFERENCES game_slot (id)
+  FOREIGN KEY (tid) REFERENCES tournament (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (gid) REFERENCES game_slot (id) ON DELETE RESTRICT ON UPDATE CASCADE
 );

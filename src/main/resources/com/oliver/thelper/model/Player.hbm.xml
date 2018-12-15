@@ -2,11 +2,11 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.oliver.thelper.model">
-  <class name="Player" table="player">
+  <class name="Player" table="player" batch-size="50">
     <id name="id" column="id" unsaved-value="-1" access="field">
       <generator class="identity" />
     </id>
-    <timestamp name="lastModified" column="last_modified" source="vm" access="field" generated="always" />
+    <timestamp name="lastModified" column="last_modified" source="vm" access="field" generated="never" />
     <property name="tid" column="tid" not-null="true" access="field" />
     <property name="slot" column="slot" not-null="true" access="field" length="127" />
     <property name="name" column="name" not-null="false" access="field" length="255" />

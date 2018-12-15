@@ -12,7 +12,7 @@ import com.oliver.thelper.repository.PlayerRepository;
 @RequestMapping("/api/players")
 public class PlayerController extends VersionedEntityController<Player> {
   public PlayerController(@Autowired PlayerRepository repo) {
-    super(repo);
+    super(repo, true);
   }
 
   @Override

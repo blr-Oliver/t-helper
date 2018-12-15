@@ -6,6 +6,9 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,12 +71,14 @@ public class TournamentService {
     return tournamentRepo.findById(tournamentId).get();
   }
 
+  @Transactional(value = TxType.REQUIRES_NEW)
   public Tournament create(Tournament request, String token) {
     Schedule schedule = scheduleRepo.findById(request.getSid()).get();
 
     request.setStatus("unknown");
-    request = tournamentRepo.save(request); // now it has id
-    final int id = request.getId();
+    request = tournamentRepo.saveAndFlush(request);
+
+    final int id = request.getId(); // now it has id
     
     protocolRepo.saveAll(
       schedule.getGames().stream().map(slot -> new Protocol(id, slot.getId())).collect(Collectors.toList())
