@@ -12,9 +12,9 @@ export interface Persister {
   getScheduleList(): Observable<ScheduleDTO[]>;
 
   createTournament(data: TournamentDTO, token?: AuthToken): Observable<ExpandedTournamentDTO>;
-  updateTournament(data: TournamentDTO, token?: AuthToken): Observable<void | TournamentDTO>;
-  updatePlayer(data: PlayerDTO, token?: AuthToken): Observable<void | PlayerDTO>;
-  updateProtocol(data: ProtocolDTO, token?: AuthToken): Observable<void | ProtocolDTO>;
+  updateTournament(data: TournamentDTO, token?: AuthToken): Observable<Date | TournamentDTO>;
+  updatePlayer(data: PlayerDTO, token?: AuthToken): Observable<Date | PlayerDTO>;
+  updateProtocol(data: ProtocolDTO, token?: AuthToken): Observable<Date | ProtocolDTO>;
   // batchUpdateTournament(data: TournamentPatchRequest, token?: AuthToken): Observable<ExpandedTournamentDTO>;
   deleteTournament(id: number, token?: AuthToken): Observable<void>;
 }

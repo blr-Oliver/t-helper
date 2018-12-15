@@ -5,4 +5,5 @@ export interface PlayerDTO extends DTO {
   tid: number; // tournament id
   slot: PlayerSlot;
   name?: string;
+  lastModified?: number;
 }

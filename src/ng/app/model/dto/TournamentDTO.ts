@@ -9,6 +9,7 @@ export interface TournamentDTO extends DTO {
   description?: string;
   dateCreated: Date;
   status: string;
+  lastModified?: number;
 }
 
 export interface ExpandedTournamentDTO extends TournamentDTO {

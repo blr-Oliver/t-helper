@@ -9,4 +9,5 @@ export interface ProtocolDTO extends DTO {
   owner?: PairPosition;
   level?: number;
   tricks?: number;
+  lastModified?: number;
 }

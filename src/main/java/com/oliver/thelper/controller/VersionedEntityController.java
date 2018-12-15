@@ -1,8 +1,10 @@
 package com.oliver.thelper.controller;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.context.request.WebRequest;
 
@@ -33,12 +35,20 @@ public abstract class VersionedEntityController<T extends WithTimestamp> {
 
     T existing = found.get();
 
+    // force version info to be present either as header or in body
+    // header value takes precedence over body value
+    if (request.getHeader("If-Unmodified-Since") != null) {
+      if (request.checkNotModified(existing.getLastModified().getTime()))
+        return null;
+    } else {
+      Date lastModified = item.getLastModified();
+      if (lastModified == null || lastModified.before(existing.getLastModified()))
+        return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).build();
+    }
+
     if (!validateResource(existing, item))
       // TODO replace it with Exception and dispatcher-level handling
       return ResponseEntity.badRequest().build();
-
-    if (request.checkNotModified(existing.getLastModified().getTime()))
-      return null;
 
     copyData(existing, item);
 

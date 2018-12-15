@@ -30,7 +30,7 @@ export class RestPersister implements Persister {
   private static constructHeaders(token?: AuthToken): HttpHeaders {
     const headers: HttpHeaders = new HttpHeaders();
     if (arguments.length > 0 && token)
-      headers.append('X-Tournament-Token', token);
+      return headers.append('X-Tournament-Token', token);
     return headers;
   }
 
@@ -55,15 +55,15 @@ export class RestPersister implements Persister {
     );
   }
 
-  updateTournament(data: TournamentDTO, token?: AuthToken): Observable<void> {
+  updateTournament(data: TournamentDTO, token?: AuthToken): Observable<Date> {
     return this.putResource('/api/tournaments', data, RestPersister.KEYS_TOURNAMENT_UPDATE, token);
   }
 
-  updatePlayer(data: PlayerDTO, token?: AuthToken): Observable<void> {
+  updatePlayer(data: PlayerDTO, token?: AuthToken): Observable<Date> {
     return this.putResource('/api/players', data, RestPersister.KEYS_PLAYER_UPDATE, token);
   }
 
-  updateProtocol(data: ProtocolDTO, token?: AuthToken): Observable<void> {
+  updateProtocol(data: ProtocolDTO, token?: AuthToken): Observable<Date> {
     return this.putResource('/api/protocols', data, RestPersister.KEYS_PROTOCOL_UPDATE, token);
   }
 
@@ -102,16 +102,19 @@ export class RestPersister implements Persister {
     );
   }
 
-  private putResource(baseUri: string, data: any, keys: string[], token?: AuthToken): Observable<void> {
+  private putResource(baseUri: string, data: any, keys: string[], token?: AuthToken): Observable<Date> {
+    let headers = RestPersister.constructHeaders(token);
+    if (data['lastModified'])
+      headers = headers.append('If-Unmodified-Since', new Date(data['lastModified']).toUTCString());
     data = RestPersister.filterProperties(data, keys);
     return this.http.put<HttpResponse<void>>(`${baseUri}/${data.id}`,
       data,
       {
-        headers: RestPersister.constructHeaders(token),
+        headers: headers,
         observe: 'response'
       }
     ).pipe(
-      map(() => void(0))
+      map(response => new Date(response.headers.get('Last-Modified')))
     );
   }
 }
