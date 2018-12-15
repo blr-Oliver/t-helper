@@ -3,6 +3,7 @@ package com.oliver.thelper.controller;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,13 @@ public class TournamentController extends VersionedEntityController<Tournament> 
   @Override
   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
   public ResponseEntity<?> getResource(@PathVariable("id") int id, WebRequest request) {
-    return super.getResource(id, request);
+    Optional<Tournament> found = repo.findById(id);
+    if (!found.isPresent())
+      return ResponseEntity.notFound().build();
+    Tournament existing = found.get();
+    if (request.checkNotModified(existing.getChildrenLastModified().getTime()))
+      return null;
+    return ResponseEntity.ok(existing);
   }
   
   @Override

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.oliver.thelper.annotation.Views;
 
@@ -17,6 +18,8 @@ public class Tournament implements WithTimestamp {
   @JsonView(Views.ShortView.class) private String status;
   @JsonFormat(shape = Shape.NUMBER_INT)
   @JsonView(Views.ShortView.class) private Date lastModified;
+  @JsonIgnore
+  @JsonView(Views.ShortView.class) private Date childrenLastModified;
 
   private Schedule schedule;
   private Set<Player> players;
@@ -32,6 +35,7 @@ public class Tournament implements WithTimestamp {
   public Date getDateCreated() { return dateCreated; }
   public String getStatus() { return status; }
   public Date getLastModified() { return lastModified; }
+  public Date getChildrenLastModified() { return childrenLastModified; }
 
   public void setSid(Integer sid) { this.sid = sid; }
   public void setName(String name) { this.name = name; }

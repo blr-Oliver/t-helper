@@ -7,6 +7,7 @@
       <generator class="identity" />
     </id>
     <timestamp name="lastModified" column="last_modified" source="vm" access="field" generated="always" />
+    <property name="childrenLastModified" column="children_last_modified" insert="false" update="false" access="field" generated="always" />
     <property name="sid" column="sid" not-null="true" />
     <property name="name" column="name" not-null="true" length="511" />
     <property name="description" column="description" not-null="false" length="2047" />

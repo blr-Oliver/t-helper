@@ -45,6 +45,7 @@ CREATE TABLE tournament (
   date_created TIMESTAMP NOT NULL DEFAULT NOW(),
   status VARCHAR(127) NOT NULL DEFAULT 'unknown',
   last_modified TIMESTAMP NOT NULL DEFAULT NOW(),
+  children_last_modified TIMESTAMP NOT NULL DEFAULT NOW(),
   FOREIGN KEY (sid) REFERENCES schedule (id)
 );
 
