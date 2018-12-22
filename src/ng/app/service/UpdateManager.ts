@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {ConnectableObservable, Observable, Subject} from 'rxjs';
 import {UpdateEvent} from './UpdateEvent';
-import {mergeMap, publish, tap} from 'rxjs/operators';
+import {mergeMap, publish} from 'rxjs/operators';
 import {Persister} from './persister/Persister';
 
 @Injectable()
@@ -11,9 +11,7 @@ export class UpdateManager {
   constructor(@Inject('Persister') private persister: Persister) {
     this.subject = new Subject<UpdateEvent>();
     (<ConnectableObservable<any>> this.subject.pipe(
-      mergeMap(event => this.processUpdate(event).pipe(
-        tap(lastModified => event.subject['lastModified'] = lastModified.getTime())
-      )),
+      mergeMap(event => this.processUpdate(event)),
       publish()
     )).connect();
   }

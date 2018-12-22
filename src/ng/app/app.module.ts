@@ -33,7 +33,6 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {IndexedDBPersister} from './service/persister/IndexedDBPersister';
 import {IndexedDBProvider} from './service/persister/IndexedDBProvider';
-import {RestPersister} from './service/persister/RestPersister';
 
 const appRoutes: Routes = [
   {
@@ -121,7 +120,7 @@ const appRoutes: Routes = [
   providers: [
     TournamentProvider,
     ProtocolSelectionParser,
-    {provide: 'Persister', useClass: RestPersister},
+    {provide: 'Persister', useClass: IndexedDBPersister},
     IndexedDBProvider,
     UpdateManager,
     RouteNameTracker
