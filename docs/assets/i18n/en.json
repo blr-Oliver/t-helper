@@ -1,0 +1,71 @@
+{
+  "menu": {
+    "home": "Tournaments",
+    "new": "Create tournament",
+    "details": "Overview",
+    "players": "Players",
+    "print": "Printout",
+    "schedule": "Schedule",
+    "games": "Games",
+    "duels": "Duels",
+    "standings": "Standings"
+  },
+  "tournament": {
+    "list": {
+      "new": "Create new tournament"
+    },
+    "details": {
+      "name": {
+        "label": "Name",
+        "errors": {
+          "required": "Name is required",
+          "minlength": "At least 3 symbols required",
+          "maxlength": "String is too long"
+        }
+      },
+      "description": {
+        "label": "Description",
+        "add": "Add description",
+        "errors": {
+          "maxlength": "Too much text"
+        }
+      },
+      "schedule": {
+        "label": "Schedule",
+        "title": "Schedule cannot be changed after creation",
+        "errors": {
+          "required": "You must choose schedule"
+        }
+      },
+      "status": "Status",
+      "dateCreated": "Created"
+    },
+    "new": {
+      "create": "Create"
+    }
+  },
+  "print": {
+    "mode": {
+      "all": "All",
+      "type": "Type in",
+      "choose": "Choose"
+    },
+    "addBlanks": "Add blanks",
+    "print": "Print",
+    "form": {
+      "table": "Table",
+      "tour": "Tour",
+      "deal": "Deal",
+      "contract": "contract",
+      "tricks": "tricks"
+    }
+  },
+  "duels": {
+    "deal": "deal"
+  },
+  "standings": {
+    "pair": "Pair",
+    "score": "Score",
+    "bonus": "Bonus"
+  }
+}
