@@ -7,7 +7,7 @@ import {environment} from '../../environments/environment';
 export class BaseUrlHttpInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if ('baseUrl' in environment)
-      req = req.clone({url: `environment['baseUrl']${req.url}`});
+      req = req.clone({url: `${environment['baseUrl']}${req.url}`});
     return next.handle(req);
   }
 }
