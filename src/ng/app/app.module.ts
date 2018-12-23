@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './ui/app.component';
 import {TopMenuComponent} from './ui/top-menu/top-menu.component';
@@ -33,6 +33,7 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {IndexedDBPersister} from './service/persister/IndexedDBPersister';
 import {IndexedDBProvider} from './service/persister/IndexedDBProvider';
+import {BaseUrlHttpInterceptor} from './service/BaseUrlHttpInterceptor';
 
 const appRoutes: Routes = [
   {
@@ -121,6 +122,7 @@ const appRoutes: Routes = [
     TournamentProvider,
     ProtocolSelectionParser,
     {provide: 'Persister', useClass: IndexedDBPersister},
+    {provide: HTTP_INTERCEPTORS, useClass: BaseUrlHttpInterceptor, multi: true},
     IndexedDBProvider,
     UpdateManager,
     RouteNameTracker
